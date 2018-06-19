@@ -32,7 +32,7 @@ CREATE TABLE `access_flags` (
   `accessFlagId` int(11) NOT NULL AUTO_INCREMENT,
   `accessFlag` varchar(50) NOT NULL,
   PRIMARY KEY (`accessFlagId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `access_flags` (
 
 LOCK TABLES `access_flags` WRITE;
 /*!40000 ALTER TABLE `access_flags` DISABLE KEYS */;
+INSERT INTO `access_flags` VALUES (1,'addProductAF'),(2,'deleteProductAF'),(3,'addUserAF'),(4,'deleteUserAF');
 /*!40000 ALTER TABLE `access_flags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,6 +68,7 @@ CREATE TABLE `accessflag_role_x_ref` (
 
 LOCK TABLES `accessflag_role_x_ref` WRITE;
 /*!40000 ALTER TABLE `accessflag_role_x_ref` DISABLE KEYS */;
+INSERT INTO `accessflag_role_x_ref` VALUES (1,3),(1,4),(2,1),(2,2),(NULL,NULL);
 /*!40000 ALTER TABLE `accessflag_role_x_ref` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +83,7 @@ CREATE TABLE `ingredients` (
   `ingredientId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`ingredientId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +92,7 @@ CREATE TABLE `ingredients` (
 
 LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
+INSERT INTO `ingredients` VALUES (1,'Whole weath bread'),(2,'Honey'),(3,'Jam'),(4,'Tuna'),(5,'Edamer'),(6,'Meat'),(7,'Salad');
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +107,7 @@ CREATE TABLE `product_categories` (
   `productCategoryId` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(50) NOT NULL,
   PRIMARY KEY (`productCategoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,6 +116,7 @@ CREATE TABLE `product_categories` (
 
 LOCK TABLES `product_categories` WRITE;
 /*!40000 ALTER TABLE `product_categories` DISABLE KEYS */;
+INSERT INTO `product_categories` VALUES (1,'Breads'),(2,'Crepes'),(3,'Sandwiches and Quiches'),(4,'Viennoiseries'),(5,'Pastries'),(6,'Catering');
 /*!40000 ALTER TABLE `product_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,6 +143,7 @@ CREATE TABLE `product_ingredient_x_ref` (
 
 LOCK TABLES `product_ingredient_x_ref` WRITE;
 /*!40000 ALTER TABLE `product_ingredient_x_ref` DISABLE KEYS */;
+INSERT INTO `product_ingredient_x_ref` VALUES (1,1),(2,1),(3,1),(3,2),(5,2);
 /*!40000 ALTER TABLE `product_ingredient_x_ref` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +164,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`productId`),
   KEY `productCategoryId` (`productCategoryId`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`productCategoryId`) REFERENCES `product_categories` (`productCategoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,6 +173,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Ordinary bread',1.1,'Description for just ordinary bread','images/pic1.jpg',1),(2,'Whole weath bread',1.1,'Description for Whole weath bread','images/pic2.jpg',1),(3,'Honey crepes',1.1,'Description for Honey crepes','images/pic3.jpg',2),(4,'Jam crepes',1.1,'Description for Jam crepes','images/pic4.jpg',2),(5,'Cheese sandwich',1.1,'Description for Cheese sandwich','images/pic5.jpg',3),(6,'Tuna sandwich',1.1,'Description for Tuna sandwich','images/pic6.jpg',3);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +188,7 @@ CREATE TABLE `roles` (
   `roleId` int(11) NOT NULL AUTO_INCREMENT,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,6 +197,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` VALUES (1,'superadmin'),(2,'menager'),(3,'headcheaf'),(4,'waiter'),(5,'cashier');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +219,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userId`),
   KEY `roleId` (`roleId`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,6 +228,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Nedim','Kulovac',1,'nedim.kulovac@gmail.com','pass1','061 061 061'),(2,'Dino','Spreco',2,'spavas.li.mirno@gmail.com','pass2','062 062 062'),(3,'Zeljko','AlStvarno',3,'zeljko.stvarno@gmail.com','pass3','063 063 063');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -233,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-19 12:40:23
+-- Dump completed on 2018-06-19 13:50:07
