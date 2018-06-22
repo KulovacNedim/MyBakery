@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d90217ea-0703-4c54-927a-62a15312c459" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/dashboard/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/add_products.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/add_products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/list_products.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/list_products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/users/add_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/users/add_user.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,19 +41,37 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/index.html">
+      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/dashboard/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2091" />
+            <state relative-caret-position="731">
+              <caret line="334" column="19" selection-start-line="334" selection-start-column="19" selection-end-line="334" selection-end-column="19" />
+              <folding>
+                <element signature="e#5735#5741#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/login/login.html">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="add_products.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/add_products.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="22" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="57" column="118" selection-start-line="57" selection-start-column="118" selection-end-line="57" selection-end-column="118" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
@@ -63,6 +85,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>../../</find>
+      <find>login</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,6 +97,8 @@
         <option value="$PROJECT_DIR$/documentation/mockup/index.html" />
         <option value="$PROJECT_DIR$/project/src/main/java/dao/ProductCategoryDAO.java" />
         <option value="$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css" />
+        <option value="$PROJECT_DIR$/documentation/mockupAdminPanel/index.html" />
+        <option value="$PROJECT_DIR$/documentation/mockupAdminPanel/pages/dashboard/dashboard.html" />
       </list>
     </option>
   </component>
@@ -91,7 +116,7 @@
       <path value="$PROJECT_DIR$/documentation/mockupAdminPanel/plugins/tinymce/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="420" />
     <option name="y" value="195" />
     <option name="width" value="1400" />
@@ -132,6 +157,13 @@
               <item name="frenchbakery" type="462c0819:PsiDirectoryNode" />
               <item name="documentation" type="462c0819:PsiDirectoryNode" />
               <item name="mockupAdminPanel" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frenchbakery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frenchbakery" type="462c0819:PsiDirectoryNode" />
+              <item name="documentation" type="462c0819:PsiDirectoryNode" />
+              <item name="mockupAdminPanel" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -140,7 +172,15 @@
               <item name="documentation" type="462c0819:PsiDirectoryNode" />
               <item name="mockupAdminPanel" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
+              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frenchbakery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frenchbakery" type="462c0819:PsiDirectoryNode" />
+              <item name="documentation" type="462c0819:PsiDirectoryNode" />
+              <item name="mockupAdminPanel" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="products" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="frenchbakery" type="b2602c69:ProjectViewProjectNode" />
@@ -222,6 +262,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Studio\frenchbakery\documentation\mockupAdminPanel" />
+      <recent name="G:\Studio\frenchbakery\documentation\mockupAdminPanel\pages\dashboard" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\Studio\frenchbakery\documentation\mockupAdminPanel\pages\login" />
@@ -241,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.login.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -261,9 +302,9 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frenchbakery/documentation/mockupAdminPanel/index.html" />
+    <configuration name="dashboard.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frenchbakery/documentation/mockupAdminPanel/pages/dashboard/dashboard.html" />
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frenchbakery/documentation/mockup/index.html" />
-    <configuration name="login.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frenchbakery/documentation/mockupAdminPanel/pages/login/login.html" />
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/frenchbakery/documentation/mockupAdminPanel/index.html" />
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -288,14 +329,14 @@
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.index.html" />
-      <item itemvalue="JavaScript Debug.index.html (1)" />
-      <item itemvalue="JavaScript Debug.login.html" />
+      <item itemvalue="JavaScript Debug.dashboard.html" />
+      <item itemvalue="JavaScript Debug.index.html" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.login.html" />
-        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.dashboard.html" />
       </list>
     </recent_temporary>
   </component>
@@ -314,7 +355,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5910000" />
+    <option name="totallyTimeSpent" value="6777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -506,25 +547,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/add_products.html">
+    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2499">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+        <state relative-caret-position="322">
+          <caret line="7722" column="28" selection-start-line="7722" selection-start-column="28" selection-end-line="7722" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2091" />
+        <state relative-caret-position="349">
+          <caret line="57" column="118" selection-start-line="57" selection-start-column="118" selection-end-line="57" selection-end-column="118" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/login/login.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/css/style.css">
+    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/products/add_products.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="7722" column="28" selection-start-line="7722" selection-start-column="28" selection-end-line="7722" selection-end-column="28" />
+        <state relative-caret-position="119">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/mockupAdminPanel/pages/dashboard/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="334" column="19" selection-start-line="334" selection-start-column="19" selection-end-line="334" selection-end-column="19" />
+          <folding>
+            <element signature="e#5735#5741#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
