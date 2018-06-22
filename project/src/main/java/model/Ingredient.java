@@ -1,10 +1,18 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "ingredients")
 public class Ingredient {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ingredientId")
     private int ingredientId;
+
+    @Column(name = "name")
     private String name;
 
     public int getIngredientId() {

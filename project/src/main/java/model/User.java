@@ -1,15 +1,33 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "userId")
     private int userId;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "roleId")
     private int roleId;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
     public int getUserId() {
@@ -86,18 +104,18 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUserId() == user.getUserId() &&
-                getRoleId() == user.getRoleId() &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getPhoneNumber(), user.getPhoneNumber());
+        return userId == user.userId &&
+                roleId == user.roleId &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(phoneNumber, user.phoneNumber);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getRoleId(), getEmail(), getPassword(), getPhoneNumber());
+        return Objects.hash(userId, firstName, lastName, roleId, email, password, phoneNumber);
     }
 }

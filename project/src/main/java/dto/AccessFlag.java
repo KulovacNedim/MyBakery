@@ -1,5 +1,8 @@
 package dto;
 
+import javax.persistence.*;
+import java.util.Objects;
+
 /**
  * Access Flag
  *
@@ -7,12 +10,20 @@ package dto;
  *
  * 
  */
+
+@Entity
+@Table(name = "access_flags")
 public class AccessFlag {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "accessFlagId")
     private int accessFlagId;
+
+    @Column(name = "accessFlag")
     private String accessFlag;
 
-    public AccessFlag {
+    public AccessFlag() {
 
     }
 

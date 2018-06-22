@@ -10,7 +10,7 @@ public interface ProductDAO {
 
     Product getProductById(int id);
     ArrayList<Product> getAllProducts();
-    ArrayList<Product> getAllProductByCategory(ProductCategory productCategory);
+    ArrayList<Product> getAllProductsByCategory(ProductCategory productCategory);
     boolean addProduct(Product product);
     boolean deleteProduct(Product product);
     boolean updateProduct(Product product);

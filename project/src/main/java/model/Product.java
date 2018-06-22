@@ -1,16 +1,34 @@
 package model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "productId")
     private int productId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "price")
     private double price;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "image")
     private String image;
-    private ProductCategory productCategory;
+
+    @Column(name = "productCategoryId")
+    private int productCategory;
+
+    @Transient
     private ArrayList<Ingredient> ingredients;
 
     public int getProductId() {
@@ -41,6 +59,10 @@ public class Product {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getImage() {
         return image;
     }
@@ -49,16 +71,12 @@ public class Product {
         this.image = image;
     }
 
-    public ProductCategory getProductCategory() {
+    public int getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(ProductCategory productCategory) {
+    public void setProductCategory(int productCategory) {
         this.productCategory = productCategory;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public ArrayList<Ingredient> getIngredients() {
@@ -87,18 +105,18 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getProductId() == product.getProductId() &&
-                Double.compare(product.getPrice(), getPrice()) == 0 &&
-                Objects.equals(getName(), product.getName()) &&
-                Objects.equals(getDescription(), product.getDescription()) &&
-                Objects.equals(getImage(), product.getImage()) &&
-                Objects.equals(getProductCategory(), product.getProductCategory()) &&
-                Objects.equals(getIngredients(), product.getIngredients());
+        return productId == product.productId &&
+                Double.compare(product.price, price) == 0 &&
+                productCategory == product.productCategory &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(ingredients, product.ingredients);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage(), getProductCategory(), getIngredients());
+        return Objects.hash(productId, name, price, description, image, productCategory, ingredients);
     }
 }
