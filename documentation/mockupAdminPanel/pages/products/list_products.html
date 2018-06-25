@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>List products - Administration</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>List all products - Admin panel</title>
+        <!-- Favicon-->
+        <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+        <!-- Bootstrap Core Css -->
+        <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+        <!-- Waves Effect Css -->
+        <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+        <!-- Animation Css -->
+        <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+        <!-- Bootstrap Material Datetime Picker Css -->
+        <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+        <!-- Wait Me Css -->
+        <link href="../../plugins/waitme/waitMe.css" rel="stylesheet" />
+
+        <!-- Bootstrap Select Css -->
+        <link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+        <!-- Custom Css -->
+        <link href="../../css/style.css" rel="stylesheet">
+
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    </head>
+
+    <body class="theme-red">
+       <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">Laboulangerie Administration</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Call Search -->
+                    <!-- #END# Call Search -->
+                    <!-- Notifications -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="material-icons">notifications</i>
+                            <span class="label-count">6</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">NOTIFICATIONS</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-light-green">
+                                                <i class="material-icons">add_shopping_cart</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4>6 new order</h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="javascript:void(0);">View All Notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications -->
+                    <!-- Tasks -->
+                    
+                    <!-- #END# Tasks -->
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="../../images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+                    
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="">
+                        <a href="../dashboard/dashboard.html">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./add_user.html">
+                            <i class="material-icons">person_add</i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">add_shopping_cart</i>
+                            <span>Products</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="../products/add_products.html">Add product</a>
+                            </li>
+                            <li  class="active">
+                                <a href="../products/list_products.html">List all products</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2018 <a href="javascript:void(0);">Laboulangerie</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.0
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+
+        <!-- #END# Right Sidebar -->
+    </section>
+    <!-- #END# Left Sidebar -->
+    <!-- Right Sidebar -->
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>PRODUCT INFORMATION</h2>
+            </div>
+           <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                LIST
+                                <small>All products</small>
+                            </h2>
+                         
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>IMAGE</th>
+                                        <th>PRODUCT NAME</th>
+                                        <th>DESCRIPTION</th>
+                                        <th>CATEGORY</th>
+                                        <th>PRICE</th>
+                                        <th>ACTIVE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>  <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div></td>
+                                        <td>Sendwitch with salami</td>
+                                        <td>Salami, bread, tomato</td>
+                                        <td>Sendwitch</td>
+                                        <td>3.00$</td>
+                                        <td> 
+                                            <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                    
+                                    </div></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>  <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div></td>
+                                        <td>Sendwitch with salami</td>
+                                        <td>Salami, bread, tomato</td>
+                                        <td>Sendwitch</td>
+                                        <td>3.00$</td>
+                                        <td> 
+                                            <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                    
+                                    </div></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>  <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div></td>
+                                        <td>Sendwitch with salami</td>
+                                        <td>Salami, bread, tomato</td>
+                                        <td>Sendwitch</td>
+                                        <td>3.00$</td>
+                                        <td> 
+                                            <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                    
+                                    </div></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>  <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div></td>
+                                        <td>Sendwitch with salami</td>
+                                        <td>Salami, bread, tomato</td>
+                                        <td>Sendwitch</td>
+                                        <td>3.00$</td>
+                                        <td> 
+                                            <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                    
+                                    </div></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>  <div class="media-left">
+                                    <a href="javascript:void(0);">
+                                        <img class="media-object" src="http://placehold.it/64x64" width="64" height="64">
+                                    </a>
+                                </div></td>
+                                        <td>Sendwitch with salami</td>
+                                        <td>Salami, bread, tomato</td>
+                                        <td>Sendwitch</td>
+                                        <td>3.00$</td>
+                                        <td> 
+                                            <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                    
+                                    </div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+
+
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">EDIT DIALOG</h4>
+                        </div>
+                        <div class="modal-body">
+                           
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Edit
+                                <small>User informations</small>
+                            </h2>
+
+                        </div>
+                        <div class="body">
+
+
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="First name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" placeholder="Last name" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="email" class="form-control" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="password" class="form-control" placeholder="Password" />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="number" class="form-control" placeholder="Phone number" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                     <div class="demo-checkbox">
+
+                                        <input type="checkbox" id="basic_checkbox_2" class="filled-in" checked />
+                                        <label for="basic_checkbox_2">Administrator</label>
+                                        <input type="checkbox" id="basic_checkbox_3" class="filled-in"  />
+                                        <label for="basic_checkbox_3">Moderator</label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            
+                    </div>
+                </div>
+            </div>
+       
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!-- Jquery Core Js -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core Js -->
+<script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+
+<!-- Select Plugin Js -->
+<script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+<!-- Slimscroll Plugin Js -->
+<script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+<!-- Waves Effect Plugin Js -->
+<script src="../../plugins/node-waves/waves.js"></script>
+
+<!-- Autosize Plugin Js -->
+<script src="../../plugins/autosize/autosize.js"></script>
+
+<!-- Moment Plugin Js -->
+<script src="../../plugins/momentjs/moment.js"></script>
+
+<!-- Bootstrap Material Datetime Picker Plugin Js -->
+<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+<!-- Custom Js -->
+<script src="../../js/admin.js"></script>
+<script src="../../js/pages/forms/basic-form-elements.js"></script>
+
+<!-- Demo Js -->
+<script src="../../js/demo.js"></script>
+</body>
+</html>
