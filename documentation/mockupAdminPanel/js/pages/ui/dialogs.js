@@ -10,6 +10,9 @@ $(function () {
         else if (type === 'success') {
             showSuccessMessage();
         }
+        else if (type === 'accept') {
+            showAcceptMessage();
+        }
         else if (type === 'confirm') {
             showConfirmMessage();
         }
@@ -44,7 +47,11 @@ function showWithTitleMessage() {
 }
 
 function showSuccessMessage() {
-    swal("Good job!", "You clicked the button!", "success");
+    swal("Finished!", "Order is ready to deliver", "success");
+}
+
+function showAcceptMessage() {
+    swal("Accepted!", "Order is accepted", "success");
 }
 
 function showConfirmMessage() {

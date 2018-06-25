@@ -1,0 +1,275 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Image Gallery | Bootstrap Based Admin Template - Material Design</title>
+
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Light Gallery Plugin Css -->
+    <link href="../../plugins/light-gallery/css/lightgallery.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+
+    <script src="https://unpkg.com/sweetalert2@7.8.2/dist/sweetalert2.all.js"></script>
+
+</head>
+
+<body class="theme-red">
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+            <a href="javascript:void(0);" class="bars"></a>
+            <a class="navbar-brand" href="index.html">Laboulangerie Administration</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Call Search -->
+                <!-- #END# Call Search -->
+                <!-- Notifications -->
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <i class="material-icons">notifications</i>
+                        <span class="label-count">6</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">NOTIFICATIONS</li>
+                        <li class="body">
+                            <ul class="menu">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <div class="icon-circle bg-light-green">
+                                            <i class="material-icons">add_shopping_cart</i>
+                                        </div>
+                                        <div class="menu-info">
+                                            <h4>6 new order</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 14 mins ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="footer">
+                            <a href="javascript:void(0);">View All Notifications</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- #END# Notifications -->
+                <!-- Tasks -->
+
+                <!-- #END# Tasks -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- #Top Bar -->
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img src="../../images/user.png" width="48" height="48" alt="User" />
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+
+            </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li >
+                    <a href="../../pages/dashboard/dashboard.html">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="../../pages/users/add_user.html">
+                        <i class="material-icons">person_add</i>
+                        <span>Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">add_shopping_cart</i>
+                        <span>Products</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="../../pages/products/add_products.html">Add product</a>
+                        </li>
+                        <li>
+                            <a href="../../pages/products/list_products.html">List all products</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>Orders</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="../../pages/orders/orders.html">List all orders</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="./instagramImages.html">
+                        <i class="material-icons">image</i>
+                        <span>Instagram</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+        <!-- Footer -->
+        <div class="legal">
+            <div class="copyright">
+                &copy; 2018 <a href="javascript:void(0);">Laboulangerie</a>.
+            </div>
+            <div class="version">
+                <b>Version: </b> 1.0.0
+            </div>
+        </div>
+        <!-- #Footer -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+    <!-- Right Sidebar -->
+
+    <!-- #END# Right Sidebar -->
+</section>
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Image Gallery -->
+            <div class="block-header">
+                <h2>
+                   INSTAGRAM GALLERY
+                    <small>Images from instagram #laboulangerie</small>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card">
+                    <div class="header bg-red">
+                        <h2>
+                            NOT APPROVED
+                            <small>Images</small>
+                        </h2>
+
+                    </div>
+                    <div class="body">
+                        <div id="" class="list-unstyled row clearfix">
+
+                            <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                                <a onclick="sweetAlert('Image', 'approved', 'success');" class="" data-toggle="modal" href='#modale-id'>
+                                    <img class="img-responsive thumbnail" src="../../images/image-gallery/thumb/thumb-3.jpg">
+                                </a>
+                            </div>
+                            <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+
+                                    <img class="img-responsive thumbnail" src="../../images/image-gallery/thumb/thumb-4.jpg">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>
+                                APPROVED
+                                <small>Images</small>
+                            </h2>
+
+                        </div>
+                        <div class="body">
+                            <div id="" class="list-unstyled row clearfix">
+                                <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+                                    <a onclick="sweetAlert('Image', 'deleted', 'error');" class="" data-toggle="modal" href='#modale-id'>
+                                        <img class="img-responsive thumbnail" src="../../images/image-gallery/thumb/thumb-1.jpg">
+                                    </a>
+
+
+                                </div>
+                                <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+
+                                        <img class="img-responsive thumbnail" src="../../images/image-gallery/thumb/thumb-2.jpg">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="../../plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="../../plugins/node-waves/waves.js"></script>
+
+    <!-- Light Gallery Plugin Js -->
+    <script src="../../plugins/light-gallery/js/lightgallery-all.js"></script>
+
+    <!-- Custom Js -->
+    <script src="../../js/pages/medias/image-gallery.js"></script>
+    <script src="../../js/admin.js"></script>
+
+    <!-- Demo Js -->
+    <script src="../../js/demo.js"></script>
+</body>
+
+</html>
