@@ -1,10 +1,13 @@
 package configuration;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Configuration
-@Import(ServiceConfig.class)
+@SpringBootApplication
 public class AppConfig {
+
+    public static void main(String[] args) {
+        SpringApplication.run(AppConfig.class);
+    }
 
 }

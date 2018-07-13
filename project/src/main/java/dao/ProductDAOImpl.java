@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 
+@Component
 public class ProductDAOImpl implements ProductDAO {
 
     private static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
