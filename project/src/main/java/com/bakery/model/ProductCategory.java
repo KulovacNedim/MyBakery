@@ -1,4 +1,4 @@
-package model;
+package com.bakery.model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,16 +10,23 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productCategoryId")
-    private int productCategoryId;
+    private Long productCategoryId;
 
     @Column(name = "category")
     private String category;
 
-    public int getProductCategoryId() {
+    public ProductCategory() {
+    }
+
+    public ProductCategory(String category) {
+        this.category = category;
+    }
+
+    public Long getProductCategoryId() {
         return productCategoryId;
     }
 
-    public void setProductCategoryId(int productCategoryId) {
+    public void setProductCategoryId(Long productCategoryId) {
         this.productCategoryId = productCategoryId;
     }
 
@@ -32,19 +39,11 @@ public class ProductCategory {
     }
 
     @Override
-    public String toString() {
-        return "ProductCategory{" +
-                "productCategoryId=" + productCategoryId +
-                ", category='" + category + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductCategory that = (ProductCategory) o;
-        return getProductCategoryId() == that.getProductCategoryId() &&
+        return Objects.equals(getProductCategoryId(), that.getProductCategoryId()) &&
                 Objects.equals(getCategory(), that.getCategory());
     }
 
@@ -52,5 +51,13 @@ public class ProductCategory {
     public int hashCode() {
 
         return Objects.hash(getProductCategoryId(), getCategory());
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategory{" +
+                "productCategoryId=" + productCategoryId +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

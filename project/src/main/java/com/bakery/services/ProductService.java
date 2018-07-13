@@ -1,6 +1,6 @@
-package services;
+package com.bakery.services;
 
-import model.Product;
+import com.bakery.model.Product;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package model;
+package com.bakery.model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,16 +10,23 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ingredientId")
-    private int ingredientId;
+    private Long ingredientId;
 
     @Column(name = "name")
     private String name;
 
-    public int getIngredientId() {
+    public Ingredient() {
+    }
+
+    public Ingredient(String name) {
+        this.name = name;
+    }
+
+    public Long getIngredientId() {
         return ingredientId;
     }
 
-    public void setIngredientId(int ingredientId) {
+    public void setIngredientId(Long ingredientId) {
         this.ingredientId = ingredientId;
     }
 
@@ -32,19 +39,11 @@ public class Ingredient {
     }
 
     @Override
-    public String toString() {
-        return "Ingredient{" +
-                "ingredientId=" + ingredientId +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return getIngredientId() == that.getIngredientId() &&
+        return Objects.equals(getIngredientId(), that.getIngredientId()) &&
                 Objects.equals(getName(), that.getName());
     }
 
@@ -52,5 +51,13 @@ public class Ingredient {
     public int hashCode() {
 
         return Objects.hash(getIngredientId(), getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "ingredientId=" + ingredientId +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
