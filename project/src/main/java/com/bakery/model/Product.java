@@ -25,22 +25,27 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "productCategoryId")
-    private Long productCategoryId;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "categoryId", referencedColumnName = "productCategoryId")
+    private ProductCategory productCategory;
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "productCategoryId")
+//    private Long productCategoryId;
 
     @Transient
     private ArrayList<Ingredient> ingredients;
 
-
     public Product() {
     }
 
-    public Product(String name, double price, String description, String image, Long productCategoryId) {
+    public Product(String name, double price, String description, String image, ProductCategory productCategory) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
-        this.productCategoryId = productCategoryId;
+        this.productCategory = productCategory;
     }
 
     public Long getProductId() {
@@ -83,12 +88,12 @@ public class Product {
         this.image = image;
     }
 
-    public Long getProductCategoryId() {
-        return productCategoryId;
+    public ProductCategory getProductCategory() {
+        return productCategory;
     }
 
-    public void setProductCategoryId(Long productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public ArrayList<Ingredient> getIngredients() {
@@ -109,14 +114,14 @@ public class Product {
                 Objects.equals(getName(), product.getName()) &&
                 Objects.equals(getDescription(), product.getDescription()) &&
                 Objects.equals(getImage(), product.getImage()) &&
-                Objects.equals(getProductCategoryId(), product.getProductCategoryId()) &&
+                Objects.equals(getProductCategory(), product.getProductCategory()) &&
                 Objects.equals(getIngredients(), product.getIngredients());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage(), getProductCategoryId(), getIngredients());
+        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage(), getProductCategory(), getIngredients());
     }
 
     @Override
@@ -127,7 +132,7 @@ public class Product {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", productCategoryId=" + productCategoryId +
+                ", productCategory=" + productCategory +
                 ", ingredients=" + ingredients +
                 '}';
     }

@@ -1,6 +1,8 @@
 package com.bakery.controller;
 
 import com.bakery.model.Product;
+import com.bakery.model.ProductCategory;
+import com.bakery.services.ProductCategoriesService;
 import com.bakery.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +18,20 @@ public class FrontPageController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/test")
+    @Autowired
+    private ProductCategoriesService productCategoriesService;
+
+    @GetMapping("/")
     public String getAllProducts(Model model) {
 
         List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
+        List<ProductCategory> categories = productCategoriesService.getAllCategories();
 
-        return "home";
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+
+        return "index";
     }
 
 }
+

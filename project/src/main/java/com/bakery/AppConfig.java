@@ -1,14 +1,12 @@
 package com.bakery;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import javax.persistence.EntityManagerFactory;
 
 @SpringBootApplication
+@EnableAspectJAutoProxy
 public class AppConfig {
 
     public static void main(String[] args) {
