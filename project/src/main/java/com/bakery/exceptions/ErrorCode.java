@@ -25,7 +25,14 @@ public enum ErrorCode {
     UPDATE_USER_ERROR(32, "User is not updated."),
     DELETE_USER_ERROR(33, "User is not deleted."),
     SAVE_USER_ERROR(34, "User is not saved."),
-    GET_USER_ERROR(35, "Error during loading users");
+    GET_USER_ERROR(35, "Error during loading users"),
+
+    ROLE_NOT_FOUND(30, "Role is not found."),
+    DUPLICATE_ROLE(31, "Role already exists."),
+    UPDATE_ROLE_ERROR(32, "Role is not updated."),
+    DELETE_ROLE_ERROR(33, "Role is not deleted."),
+    SAVE_ROLE_ERROR(34, "Role is not saved."),
+    GET_ROLE_ERROR(35, "Error during loading roles");
 
 
 
