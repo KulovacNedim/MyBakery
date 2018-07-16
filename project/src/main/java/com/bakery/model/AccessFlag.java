@@ -1,4 +1,4 @@
-package com.bakery.dto;
+package com.bakery.model;
 
 import javax.persistence.*;
 import java.util.Objects;

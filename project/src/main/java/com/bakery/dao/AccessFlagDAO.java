@@ -1,6 +1,6 @@
 package com.bakery.dao;
 
-import com.bakery.dto.AccessFlag;
+import com.bakery.model.AccessFlag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -18,9 +18,6 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "roleId")
-    private Long roleId;
-
     @Column(name = "email")
     private String email;
 
@@ -30,16 +27,20 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "roleId", referencedColumnName = "roleId")
+    private Role role;
+
     public User() {
     }
 
-    public User(String firstName, String lastName, Long roleId, String email, String password, String phoneNumber) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.roleId = roleId;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.role = role;
     }
 
     public Long getUserId() {
@@ -66,14 +67,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -98,6 +91,14 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,16 +107,16 @@ public class User {
         return Objects.equals(getUserId(), user.getUserId()) &&
                 Objects.equals(getFirstName(), user.getFirstName()) &&
                 Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getRoleId(), user.getRoleId()) &&
                 Objects.equals(getEmail(), user.getEmail()) &&
                 Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getPhoneNumber(), user.getPhoneNumber());
+                Objects.equals(getPhoneNumber(), user.getPhoneNumber()) &&
+                Objects.equals(getRole(), user.getRole());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getRoleId(), getEmail(), getPassword(), getPhoneNumber());
+        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getPassword(), getPhoneNumber(), getRole());
     }
 
     @Override
@@ -124,10 +125,10 @@ public class User {
                 "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", roleId=" + roleId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role=" + role.toString() +
                 '}';
     }
 }
