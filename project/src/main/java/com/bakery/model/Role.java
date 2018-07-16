@@ -1,6 +1,7 @@
 package com.bakery.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +15,9 @@ public class Role {
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private List<User> users;
 
     public Role() {
     }
@@ -38,19 +42,28 @@ public class Role {
         this.role = role;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role1 = (Role) o;
         return Objects.equals(getRoleId(), role1.getRoleId()) &&
-                Objects.equals(getRole(), role1.getRole());
+                Objects.equals(getRole(), role1.getRole()) &&
+                Objects.equals(getUsers(), role1.getUsers());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getRoleId(), getRole());
+        return Objects.hash(getRoleId(), getRole(), getUsers());
     }
 
     @Override

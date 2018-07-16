@@ -16,7 +16,7 @@ public class ProductCategory {
     @Column(name = "category")
     private String category;
 
-    @OneToMany(mappedBy = "productCategory")
+    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.REMOVE)
     private List<Product> products;
 
     public ProductCategory() {
