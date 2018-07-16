@@ -10,6 +10,7 @@ public interface UserService {
     List<User> getAllUsers() throws ServiceException;
     User getUsertById(Long id) throws ServiceException;
 
+    List<User> getUsersByRole(String role) throws ServiceException;
     User getUserByEmail(String email) throws ServiceException;
     User getUserByPhoneNumber(String phoneNumber) throws ServiceException;
 

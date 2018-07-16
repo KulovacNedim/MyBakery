@@ -3,6 +3,7 @@ package com.bakery.services;
 import com.bakery.dao.UserDAO;
 import com.bakery.exceptions.ErrorCode;
 import com.bakery.exceptions.ServiceException;
+import com.bakery.model.Role;
 import com.bakery.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public List<User> getAllUsers() throws ServiceException {
@@ -40,6 +44,16 @@ public class UserServiceImpl implements UserService {
             return userDAO.getUserByEmail(email);
         } catch (Exception e) {
             throw new ServiceException(e, ErrorCode.USER_NOT_FOUND);
+        }
+    }
+
+    @Override
+    public List<User> getUsersByRole(String role) throws ServiceException {
+        try {
+            Role getRole = roleService.getRoleByRoleName(role);
+            return userDAO.getUsersByRole(getRole);
+        } catch (Exception e) {
+            throw new ServiceException(e, ErrorCode.GET_USER_ERROR);
         }
     }
 
