@@ -1,13 +1,7 @@
 package com.bakery.configuration;
 
-import com.bakery.dao.ProductCategoryDAO;
-import com.bakery.dao.ProductDAO;
-import com.bakery.dao.RoleDAO;
-import com.bakery.dao.UserDAO;
-import com.bakery.model.Product;
-import com.bakery.model.ProductCategory;
-import com.bakery.model.Role;
-import com.bakery.model.User;
+import com.bakery.dao.*;
+import com.bakery.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -35,17 +29,17 @@ public class DatabaseSeeder implements ApplicationRunner {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private AccessFlagDAO accessFlagDAO;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         seedCategories();
         seedProducts();
+        seedAccesFlags();
         seedRoles();
         seedUsers();
 
-        System.out.println("Get Products By Category");
-        for (Product product : productDAO.getProductsByProductCategory(productCategoryDAO.getProductCategoryByCategory("Bread"))) {
-            System.out.println(product.toString());
-        }
     }
 
     private void seedProducts() {
@@ -89,12 +83,42 @@ public class DatabaseSeeder implements ApplicationRunner {
     private void seedRoles() {
         if (roleDAO.count() == 0) {
             List<Role> roles = new ArrayList<>();
+            List<AccessFlag> accessFlags = accessFlagDAO.findAll();
 
-            roles.add(new Role("Admin"));
-            roles.add(new Role("Customer"));
-            roles.add(new Role("Manager"));
-            roles.add(new Role("Cook"));
-            roles.add(new Role("Waiter"));
+            //Admin acces flags
+            List<AccessFlag> admin = new ArrayList<>();
+            for (AccessFlag accessFlag: accessFlags) {
+                admin.add(accessFlag);
+            }
+
+            //Customer flags
+            List<AccessFlag> customer = new ArrayList<>();
+            customer.add(accessFlags.get(0));
+            customer.add(accessFlags.get(4));
+
+            //Manager flags
+            List<AccessFlag> manager = new ArrayList<>();
+            manager.add(accessFlags.get(0));
+            manager.add(accessFlags.get(2));
+            manager.add(accessFlags.get(4));
+            manager.add(accessFlags.get(5));
+
+            //Cook flags
+            List<AccessFlag> cook = new ArrayList<>();
+            cook.add(accessFlags.get(0));
+            cook.add(accessFlags.get(4));
+
+            //Waiter flags
+            List<AccessFlag> waiter = new ArrayList<>();
+            waiter.add(accessFlags.get(0));
+            waiter.add(accessFlags.get(4));
+            waiter.add(accessFlags.get(5));
+
+            roles.add(new Role("Admin",admin));
+            roles.add(new Role("Customer", customer));
+            roles.add(new Role("Manager", manager));
+            roles.add(new Role("Cook", cook));
+            roles.add(new Role("Waiter", waiter));
 
             roleDAO.saveAll(roles);
         }
@@ -119,6 +143,21 @@ public class DatabaseSeeder implements ApplicationRunner {
             users.add(new User("Spicek", "Mirko", "spicek@gmail.com", "password", "236514589", roles.get(4)));
 //
             userDAO.saveAll(users);
+        }
+    }
+
+    private void seedAccesFlags() {
+        if (accessFlagDAO.count() == 0) {
+            List<AccessFlag> accessFlags = new ArrayList<>();
+
+            accessFlags.add(new AccessFlag("frontPage"));   //0
+            accessFlags.add(new AccessFlag("addUser"));     //1
+            accessFlags.add(new AccessFlag("addProduct"));  //2
+            accessFlags.add(new AccessFlag("adminPanel"));  //3
+            accessFlags.add(new AccessFlag("orders"));      //4
+            accessFlags.add(new AccessFlag("users"));       //5
+
+            accessFlagDAO.saveAll(accessFlags);
         }
     }
 

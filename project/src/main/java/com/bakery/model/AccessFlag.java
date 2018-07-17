@@ -1,6 +1,7 @@
 package com.bakery.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -24,7 +25,10 @@ public class AccessFlag {
     private String accessFlag;
 
     public AccessFlag() {
+    }
 
+    public AccessFlag(String accessFlag) {
+        this.accessFlag = accessFlag;
     }
 
     public Long getAccessFlagId() {
