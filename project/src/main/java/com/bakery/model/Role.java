@@ -19,11 +19,21 @@ public class Role {
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<User> users;
 
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "role_x_accesflag", joinColumns = {@JoinColumn(name = "roleId")}, inverseJoinColumns = {@JoinColumn(name = "accesFlagId")})
+    private List<AccessFlag> accessFlags;
+
+
     public Role() {
     }
 
     public Role(String role) {
         this.role = role;
+    }
+
+    public Role(String role, List<AccessFlag> accessFlags) {
+        this.role = role;
+        this.accessFlags = accessFlags;
     }
 
     public Long getRoleId() {
@@ -50,6 +60,14 @@ public class Role {
         this.users = users;
     }
 
+    public List<AccessFlag> getAccessFlags() {
+        return accessFlags;
+    }
+
+    public void setAccessFlags(List<AccessFlag> accessFlags) {
+        this.accessFlags = accessFlags;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,13 +75,14 @@ public class Role {
         Role role1 = (Role) o;
         return Objects.equals(getRoleId(), role1.getRoleId()) &&
                 Objects.equals(getRole(), role1.getRole()) &&
-                Objects.equals(getUsers(), role1.getUsers());
+                Objects.equals(getUsers(), role1.getUsers()) &&
+                Objects.equals(getAccessFlags(), role1.getAccessFlags());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getRoleId(), getRole(), getUsers());
+        return Objects.hash(getRoleId(), getRole(), getUsers(), getAccessFlags());
     }
 
     @Override
