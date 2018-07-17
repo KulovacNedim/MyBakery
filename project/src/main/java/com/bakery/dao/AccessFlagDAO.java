@@ -12,6 +12,6 @@ import java.util.List;
 public interface AccessFlagDAO extends JpaRepository<AccessFlag, Long> {
 
     AccessFlag getAccessFlagByAccessFlag(String accesFlag) throws ServiceException;
-    List<AccessFlag> getAccessFlagByRoles(Role role) throws ServiceException;
+    List<AccessFlag> getAccessFlagsByRoles(Role role) throws ServiceException;
 
 }

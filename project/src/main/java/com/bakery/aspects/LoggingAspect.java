@@ -21,39 +21,42 @@ public class LoggingAspect {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    @AfterReturning(pointcut = "execution(* com.bakery.services.*.get*())", returning = "result")
+    @AfterReturning(pointcut = "execution(* com.bakery.services.*..*(..))", returning = "result")
     public void servicesGetMethodsLogger(JoinPoint joinPoint, Object result) {
 
         String method = joinPoint.getSignature().getName();
         String service = joinPoint.getSourceLocation().getWithinType().toString();
 
         if (result == null) {
-            logger.info("SERVICE: " + service + "; METHOD: " + method + " returned null");
+            logger.info("SERVICE: " + service + ";");
+            logger.info(" - METHOD: " + method);
+            logger.info(" - RETURNED: null");
         }
         else {
-            List<Object> returned = (List)result;
-            logger.info("SERVICE: " + service + "; METHOD: " + method + " returned " + returned.size() + " items: ");
-            for (Object product : returned) {
-                logger.info(product.toString());
+            if (result instanceof List<?>) {
+                List<Object> resultList = (List)result;
+                logger.info("SERVICE: " + service + ";");
+                logger.info(" - METHOD: " + method);
+                if (resultList.isEmpty()) {
+                    logger.info(" - RETURNED: " + resultList.getClass().getSimpleName()
+                            + "<" + resultList.get(0).getClass().getSimpleName() + ">"
+                            + " with " + resultList.size() + " elements: ");
+                } else {
+                    logger.info(" - RETURNED: " + resultList.getClass().getSimpleName()
+                            + "<" + resultList.get(0).getClass().getSimpleName() + ">"
+                            + " with " + resultList.size() + " elements: ");
+                }
+
+                for (Object object : resultList) {
+                    logger.info(" - - " + object.toString());
+                }
+            }
+            else {
+                logger.info("SERVICE: " + service);
+                logger.info(" - METHOD: " + method);
+                logger.info(" - RETURNED: " + result.getClass().getSimpleName());
+                logger.info(" - - " + result.toString());
             }
         }
     }
-
-//    @Before("execution(* com.bakery.exceptions.ServiceExceptioHandler.handle()) && args(e)")
-//    public void serviceExceptionHandlerLogger(JoinPoint joinPoint, ServiceException e) {
-////        ServiceException e = (ServiceException) joinPoint.getArgs()[0];
-//
-//            logger.warning("Exception thrown by " + joinPoint.getSourceLocation());
-//            logger.warning(" - ErrorCode: " + e.getErrorCode().getCode());
-//            logger.warning(" - Message: " + e.getErrorCode().getMessage());
-//
-//    }
-
-//    @AfterThrowing(pointcut = "execution(* com.bakery.services..*(..))", throwing = "e")
-//    public void serviceExceptionLogger(ServiceException e, JoinPoint joinPoint) throws Throwable {
-//        logger.warning("Exception thrown by " + joinPoint.getSourceLocation());
-//        logger.warning(" - ErrorCode: " + e.getErrorCode().getCode());
-//        logger.warning(" - Message: " + e.getErrorCode().getMessage());
-//    }
-
 }

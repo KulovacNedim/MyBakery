@@ -2,6 +2,7 @@ package com.bakery.configuration;
 
 import com.bakery.dao.*;
 import com.bakery.model.*;
+import com.bakery.services.AccessFlagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -32,6 +33,9 @@ public class DatabaseSeeder implements ApplicationRunner {
     @Autowired
     private AccessFlagDAO accessFlagDAO;
 
+    @Autowired
+    private AccessFlagService accessFlagService;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         seedCategories();
@@ -39,6 +43,10 @@ public class DatabaseSeeder implements ApplicationRunner {
         seedAccesFlags();
         seedRoles();
         seedUsers();
+
+        for (AccessFlag accessFlag : accessFlagService.getAccessFlagsByRole("Cook")) {
+            System.out.println(accessFlag.toString());
+        }
 
     }
 

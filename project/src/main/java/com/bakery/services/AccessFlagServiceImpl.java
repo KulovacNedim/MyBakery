@@ -30,7 +30,7 @@ public class AccessFlagServiceImpl implements AccessFlagService {
     @Override
     public List<AccessFlag> getAccessFlagsByRole(String role) throws ServiceException {
         try {
-            return accessFlagDAO.getAccessFlagByRoles(roleService.getRoleByRoleName(role));
+            return accessFlagDAO.getAccessFlagsByRoles(roleService.getRoleByRoleName(role));
         } catch (Exception e) {
             throw new ServiceException(e, ErrorCode.GET_ACCESS_FLAG_ERROR);
         }
