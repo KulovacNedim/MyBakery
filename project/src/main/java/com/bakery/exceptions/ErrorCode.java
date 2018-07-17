@@ -20,6 +20,7 @@ public enum ErrorCode {
     SAVE_PRODUCT_CATEGORY_ERROR(24, "Product Category is not saved."),
     GET_PRODUCT_CATEGORY_ERROR(25, "Error during loading product categories."),
 
+    //User Error codes (3x)
     USER_NOT_FOUND(30, "User is not found."),
     DUPLICATE_USER(31, "User already exists."),
     UPDATE_USER_ERROR(32, "User is not updated."),
@@ -27,14 +28,21 @@ public enum ErrorCode {
     SAVE_USER_ERROR(34, "User is not saved."),
     GET_USER_ERROR(35, "Error during loading users"),
 
-    ROLE_NOT_FOUND(30, "Role is not found."),
-    DUPLICATE_ROLE(31, "Role already exists."),
-    UPDATE_ROLE_ERROR(32, "Role is not updated."),
-    DELETE_ROLE_ERROR(33, "Role is not deleted."),
-    SAVE_ROLE_ERROR(34, "Role is not saved."),
-    GET_ROLE_ERROR(35, "Error during loading roles");
+    //Role Error codes (4x)
+    ROLE_NOT_FOUND(40, "Role is not found."),
+    DUPLICATE_ROLE(41, "Role already exists."),
+    UPDATE_ROLE_ERROR(42, "Role is not updated."),
+    DELETE_ROLE_ERROR(43, "Role is not deleted."),
+    SAVE_ROLE_ERROR(44, "Role is not saved."),
+    GET_ROLE_ERROR(45, "Error during loading roles"),
 
-
+    //Access Flag Error codes (5x)
+    ACCESS_FLAG_NOT_FOUND(50, "Access Flag is not found."),
+    DUPLICATE_ACCESS_FLAG(51, "Access Flag already exists."),
+    UPDATE_ACCESS_FLAG_ERROR(52, "Access Flag is not updated."),
+    DELETE_ACCESS_FLAG_ERROR(53, "Access Flag is not deleted."),
+    SAVE_ACCESS_FLAG_ERROR(54, "Access Flag is not saved."),
+    GET_ACCESS_FLAG_ERROR(55, "Error during loading access flags");
 
     private final int code;
     private final String message;

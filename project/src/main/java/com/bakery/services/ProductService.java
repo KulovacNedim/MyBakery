@@ -2,7 +2,6 @@ package com.bakery.services;
 
 import com.bakery.exceptions.ServiceException;
 import com.bakery.model.Product;
-import com.bakery.model.ProductCategory;
 
 import java.util.List;
 
