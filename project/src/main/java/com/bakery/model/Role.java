@@ -19,8 +19,8 @@ public class Role {
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<User> users;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "role_x_accesflag", joinColumns = {@JoinColumn(name = "roleId")}, inverseJoinColumns = {@JoinColumn(name = "accesFlagId")})
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "role_x_accessflag", joinColumns = {@JoinColumn(name = "roleId")}, inverseJoinColumns = {@JoinColumn(name = "accessFlagId")})
     private List<AccessFlag> accessFlags;
 
 

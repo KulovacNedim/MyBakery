@@ -24,6 +24,9 @@ public class AccessFlag {
     @Column(name = "accessFlag")
     private String accessFlag;
 
+    @ManyToMany(mappedBy = "accessFlags")
+    private List<Role> roles;
+
     public AccessFlag() {
     }
 
@@ -47,19 +50,28 @@ public class AccessFlag {
         this.accessFlag = accessFlag;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccessFlag that = (AccessFlag) o;
         return Objects.equals(getAccessFlagId(), that.getAccessFlagId()) &&
-                Objects.equals(getAccessFlag(), that.getAccessFlag());
+                Objects.equals(getAccessFlag(), that.getAccessFlag()) &&
+                Objects.equals(getRoles(), that.getRoles());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getAccessFlagId(), getAccessFlag());
+        return Objects.hash(getAccessFlagId(), getAccessFlag(), getRoles());
     }
 
     @Override
