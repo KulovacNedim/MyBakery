@@ -43,11 +43,6 @@ public class DatabaseSeeder implements ApplicationRunner {
         seedAccesFlags();
         seedRoles();
         seedUsers();
-
-        for (AccessFlag accessFlag : accessFlagService.getAccessFlagsByRole("Cook")) {
-            System.out.println(accessFlag.toString());
-        }
-
     }
 
     private void seedProducts() {

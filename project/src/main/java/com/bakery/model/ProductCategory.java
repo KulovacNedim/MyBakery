@@ -56,14 +56,13 @@ public class ProductCategory {
         if (o == null || getClass() != o.getClass()) return false;
         ProductCategory that = (ProductCategory) o;
         return Objects.equals(getProductCategoryId(), that.getProductCategoryId()) &&
-                Objects.equals(getCategory(), that.getCategory()) &&
-                Objects.equals(getProducts(), that.getProducts());
+                Objects.equals(getCategory(), that.getCategory());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getProductCategoryId(), getCategory(), getProducts());
+        return Objects.hash(getProductCategoryId(), getCategory());
     }
 
     @Override
