@@ -113,15 +113,13 @@ public class Product {
                 Objects.equals(getProductId(), product.getProductId()) &&
                 Objects.equals(getName(), product.getName()) &&
                 Objects.equals(getDescription(), product.getDescription()) &&
-                Objects.equals(getImage(), product.getImage()) &&
-                Objects.equals(getProductCategory(), product.getProductCategory()) &&
-                Objects.equals(getIngredients(), product.getIngredients());
+                Objects.equals(getImage(), product.getImage());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage(), getProductCategory(), getIngredients());
+        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage());
     }
 
     @Override
