@@ -1,6 +1,7 @@
 package com.bakery.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -27,20 +28,32 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "roleId", referencedColumnName = "roleId")
-    private Role role;
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "userId", referencedColumnName = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId")
+    )
+    private Collection<Role> roles;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, Role role) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.role = role;
+    }
+
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, Collection<Role> roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.roles = roles;
     }
 
     public Long getUserId() {
@@ -91,32 +104,26 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Role getRole() {
-        return role;
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
+    //Using only email as a unique value for equals() and hashCode() method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(getUserId(), user.getUserId()) &&
-                Objects.equals(getFirstName(), user.getFirstName()) &&
-                Objects.equals(getLastName(), user.getLastName()) &&
-                Objects.equals(getEmail(), user.getEmail()) &&
-                Objects.equals(getPassword(), user.getPassword()) &&
-                Objects.equals(getPhoneNumber(), user.getPhoneNumber()) &&
-                Objects.equals(getRole(), user.getRole());
+        return Objects.equals(getEmail(), user.getEmail());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getPassword(), getPhoneNumber(), getRole());
+        return Objects.hash(getEmail());
     }
 
     @Override
@@ -128,7 +135,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", role=" + role.toString() +
                 '}';
     }
 }
