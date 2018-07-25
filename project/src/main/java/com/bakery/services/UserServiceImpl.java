@@ -1,11 +1,6 @@
 package com.bakery.services;
 
-import com.bakery.dao.UserDAO;
-import com.bakery.exceptions.ErrorCode;
-import com.bakery.exceptions.ServiceException;
-import com.bakery.model.Role;
 import com.bakery.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,83 +8,43 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private RoleService roleService;
-
     @Override
-    public List<User> getAllUsers() throws ServiceException {
-        try {
-            return userDAO.findAll();
-        }
-        catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.GET_USER_ERROR);
-        }
+    public List<User> getAllUsers() {
+        return null;
     }
 
     @Override
-    public User getUsertById(Long id) throws ServiceException {
-        try {
-            return userDAO.findById(id).get();
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.USER_NOT_FOUND);
-        }
+    public User getUsertById(Long id) {
+        return null;
     }
 
     @Override
-    public User getUserByEmail(String email) throws ServiceException {
-        try {
-            return userDAO.getUserByEmail(email);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.USER_NOT_FOUND);
-        }
+    public List<User> getUsersByRole(String role) {
+        return null;
     }
 
     @Override
-    public List<User> getUsersByRole(String role) throws ServiceException {
-        try {
-            Role getRole = roleService.getRoleByRoleName(role);
-            return userDAO.getUsersByRole(getRole);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.GET_USER_ERROR);
-        }
+    public User getUserByEmail(String email) {
+        return null;
     }
 
     @Override
-    public User getUserByPhoneNumber(String phoneNumber) throws ServiceException {
-        try {
-            return userDAO.getUserByPhoneNumber(phoneNumber);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.USER_NOT_FOUND);
-        }
+    public User getUserByPhoneNumber(String phoneNumber) {
+        return null;
     }
 
     @Override
-    public User saveUser(User user) throws ServiceException {
-        try {
-            return userDAO.save(user);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.SAVE_USER_ERROR);
-        }
+    public User saveUser(User user) {
+        return null;
     }
 
     @Override
-    public User updateUser(User user) throws ServiceException {
-        try {
-            return userDAO.save(user);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.UPDATE_USER_ERROR);
-        }
+    public User updateUser(User user) {
+        return null;
     }
 
     @Override
-    public void deleteUser(User user) throws ServiceException {
-        try {
-            userDAO.delete(user);
-        } catch (Exception e) {
-            throw new ServiceException(e, ErrorCode.DELETE_USER_ERROR);
-        }
+    public void deleteUser(User user) {
+
     }
 }
