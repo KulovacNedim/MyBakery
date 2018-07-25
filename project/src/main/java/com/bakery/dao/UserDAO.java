@@ -15,4 +15,5 @@ public interface UserDAO extends JpaRepository<User, Long> {
     User getUserByPhoneNumber(String phoneNumber);
 
     List<User> getUsersByRole(Role role);
+
 }

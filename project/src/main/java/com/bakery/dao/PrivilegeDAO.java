@@ -1,12 +1,12 @@
 package com.bakery.dao;
 
-import com.bakery.model.Role;
+import com.bakery.model.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleDAO extends JpaRepository<Role, Long> {
+public interface PrivilegeDAO extends JpaRepository<Privilege, Long> {
 
-    Role getRoleByName(String name);
+    Privilege getPrivilegeByName(String name);
 
 }
