@@ -1,13 +1,8 @@
 package com.bakery.aspects;
 
-import com.bakery.exceptions.ServiceException;
-import com.bakery.model.Product;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.hibernate.mapping.Join;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -31,10 +26,9 @@ public class LoggingAspect {
             logger.info("SERVICE: " + service + ";");
             logger.info(" - METHOD: " + method);
             logger.info(" - RETURNED: null");
-        }
-        else {
+        } else {
             if (result instanceof List<?>) {
-                List<Object> resultList = (List)result;
+                List<Object> resultList = (List) result;
                 logger.info("SERVICE: " + service + ";");
                 logger.info(" - METHOD: " + method);
                 if (resultList.isEmpty()) {
@@ -50,8 +44,7 @@ public class LoggingAspect {
                 for (Object object : resultList) {
                     logger.info(" - - " + object.toString());
                 }
-            }
-            else {
+            } else {
                 logger.info("SERVICE: " + service);
                 logger.info(" - METHOD: " + method);
                 logger.info(" - RETURNED: " + result.getClass().getSimpleName());
