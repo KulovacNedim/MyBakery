@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IngredientDAO extends JpaRepository<Ingredient, Long> {
+
+    Ingredient getIngredientByName(String name);
+
 }

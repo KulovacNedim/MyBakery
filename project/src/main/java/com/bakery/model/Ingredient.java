@@ -1,6 +1,7 @@
 package com.bakery.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -15,11 +16,19 @@ public class Ingredient {
     @Column(name = "name")
     private String name;
 
+    @ManyToMany(mappedBy = "ingredients")
+    private Collection<Product> products;
+
     public Ingredient() {
     }
 
     public Ingredient(String name) {
         this.name = name;
+    }
+
+    public Ingredient(String name, Collection<Product> products) {
+        this.name = name;
+        this.products = products;
     }
 
     public Long getIngredientId() {
@@ -36,6 +45,14 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Collection<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
     }
 
     @Override

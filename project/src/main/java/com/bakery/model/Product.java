@@ -2,6 +2,7 @@ package com.bakery.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -29,23 +30,31 @@ public class Product {
     @JoinColumn(name = "categoryId", referencedColumnName = "productCategoryId")
     private ProductCategory productCategory;
 
-
-//    @ManyToOne
-//    @JoinColumn(name = "productCategoryId")
-//    private Long productCategoryId;
-
-    @Transient
-    private ArrayList<Ingredient> ingredients;
+    @ManyToMany
+    @JoinTable(
+            name = "products_ingredients",
+            joinColumns = @JoinColumn(name = "productId", referencedColumnName = "productId"),
+            inverseJoinColumns = @JoinColumn(name = "ingredientId", referencedColumnName = "ingredientId")
+    )
+    private Collection<Ingredient> ingredients;
 
     public Product() {
     }
 
-    public Product(String name, double price, String description, String image, ProductCategory productCategory) {
+    public Product(String name, double price, String description, String image) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+    }
+
+    public Product(String name, double price, String description, String image, ProductCategory productCategory, Collection<Ingredient> ingredients) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
         this.productCategory = productCategory;
+        this.ingredients = ingredients;
     }
 
     public Long getProductId() {
@@ -96,11 +105,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public Collection<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
+    public void setIngredients(Collection<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
