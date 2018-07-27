@@ -21,28 +21,16 @@ public class FrontPageController {
     @Autowired
     private ProductCategoriesService productCategoriesService;
 
-    @GetMapping("/admin/addProduct")
+    @GetMapping("/")
     public String getAllProducts(Model model) {
 
-        List<Product> products = null;
-        List<ProductCategory> categories = null;
-
-        categories = productCategoriesService.getAllCategories();
-        productCategoriesService.deleteProductCategory(categories.get(0));
-
-        products = productService.getAllProducts();
-
+        List<Product> products = productService.getAllProducts();
+        List<ProductCategory> categories = productCategoriesService.getAllCategories();
 
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
 
         return "index";
-    }
-
-    //TODO Error handling page
-    @RequestMapping("/error2")
-    public String errorHandler() {
-        return "errorPage";
     }
 
 }
