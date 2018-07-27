@@ -1913,7 +1913,6 @@ textarea {
 }
 
 .menu-main>ul>li>a:before {
-    content: "â€¢";
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -2950,11 +2949,15 @@ textarea {
     width: 100%;
 }
 
+.menuHover:hover{
+    background: white;
+}
+
 .menu-list {
     float: left;
     width: 100%;
     position: relative;
-    padding-left: 135px;
+
     margin-bottom: 25px;
 }
 
@@ -6810,7 +6813,7 @@ table.shop-cart-table .shop-cart-close {
 }
 
 .register-wrap p {
-    margin: 25px 0 0 0;
+    margin: 0px 0 0 0;
 }
 
 .form-common a {

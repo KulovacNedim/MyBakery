@@ -192,15 +192,20 @@
         showElement: function($elem) { $elem.show(); }
     });
 
+
+
     $(window).on('load', function() {
         if ($(".portfolioContainer").length || $(".gallery-filter").length) {
             var $container = $('.portfolioContainer , .gallery-filter');
+
             $container.isotope({
                 layoutMode: 'masonry',
+                filter: ':nth-child(-n+9)',
                 animationOptions: {
                     duration: 750,
                     easing: 'linear',
                     queue: false,
+
 
                 }
             });
@@ -245,9 +250,10 @@
 
                 var selector = $(this).attr('data-filter');
                 $container.isotope({
+                    filter: ':nth-child(-n+10)',
                     layoutMode: 'packery',
                     itemSelector: '.msrItem',
-                    filter: selector,
+
                     animationOptions: {
                         duration: 750,
                         easing: 'linear',

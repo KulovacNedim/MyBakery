@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -136,9 +136,9 @@
                 </section>
                 <!-- End Breadcrumb Part -->
                 <!-- Start Menu Part -->
-                <section class="special-menu home-icon">
-                    <div class="icon-default">
-                        <img src="./images/scroll-arrow.png" alt="" />
+                <section class="special-menu bg-skeen home-icon wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <div class="icon-default icon-skeen">
+                        <img src="./images/icon6.png" alt="" />
                     </div>
                     <div class="container">
                         <div class="build-title">
@@ -146,90 +146,35 @@
                             <h6>The role of a good cook ware in the preparation of a sumptuous meal cannot be over emphasized then one consider white bread</h6>
                         </div>
                         <div class="menu-wrapper">
+
                             <div class="portfolioFilter">
-                                <div class="portfolioFilter-inner bg-skeen">
+                                <div class="portfolioFilter-inner">
                                     <a href="javascript:;" data-filter="*" class="current">All</a>
-                                    <a href="javascript:;" data-filter=".breakfast">BREAKFAST</a>
-                                    <a href="javascript:;" data-filter=".dessert">DESSERT</a>
-                                    <a href="javascript:;" data-filter=".dinner">DINNER</a>
-                                    <a href="javascript:;" data-filter=".freshfood">FRESHFOOD</a>
-                                    <a href="javascript:;" data-filter=".lunch">LUNCH</a>
+                                    <span th:each="categorie:${categories}">
+                                        <a href="javascript:;" th:attr="data-filter='.' + ${categorie.category}" th:text="${categorie.category.toUpperCase()}"></a>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="portfolioContainer row">
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item breakfast">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img3.png" alt="" />
-                                        </span>
-                                        <h5>LASAL CHEESE <span>$ 15.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item lunch">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img4.png" alt="" />
-                                        </span>
-                                        <h5>JUMBO CARB SHRIMP <span>$ 25.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item dessert">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img5.png" alt="" />
-                                        </span>
-                                        <h5>SURMAI CHILLI <span>$ 15.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item dinner">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img6.png" alt="" />
-                                        </span>
-                                        <h5>CAPO STEAK <span>$ 45.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item freshfood">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img7.png" alt="" />
-                                        </span>
-                                        <h5>ORGANIC FRUIT SALAD <span>$ 15.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item freshfood">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img8.png" alt="" />
-                                        </span>
-                                        <h5>PRAWNS BUTTER GARLIC <span>$ 15.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item dessert">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img81.png" alt="" />
-                                        </span>
-                                        <h5>CHInese Egg Cake <span>$ 15.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 isotope-item dinner">
-                                    <div class="menu-list">
-                                        <span class="menu-list-product">
-                                            <img src="./images/img82.png" alt="" />
-                                        </span>
-                                        <h5>Beef SpaghettI <span>$ 45.00</span></h5>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
+
+
+
+
+                            <div class="portfolioContainer row"  >
+                                <div th:each="product:${products}" class="col-md-4 col-sm-4 col-xs-12 isotope-item" th:classappend="${product.getProductCategory().category}">
+                                    <div class="menu-list"  >
+                                        <a href="" class="" data-toggle="modal" data-target="#myModal" >
+                                            <img src="./images/sandwitch2.png" alt="" />
+                                        </a>
+                                        <h5 th:inline="text">[[${product.name}]]<span th:text="'$'+${product.price}"></span></h5>
+                                        <p th:text="${product.description}"></p>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="btn-outer">
+                                <a href="#" class="btn-main btn-shadow">Explore Full Menu</a>
+                            </div>
+
                         </div>
                     </div>
                     <div class="float-main">
