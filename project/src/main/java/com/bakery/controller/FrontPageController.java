@@ -21,7 +21,7 @@ public class FrontPageController {
     @Autowired
     private ProductCategoriesService productCategoriesService;
 
-    @GetMapping("/")
+    @GetMapping("/admin/addProduct")
     public String getAllProducts(Model model) {
 
         List<Product> products = null;
