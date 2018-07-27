@@ -65,7 +65,7 @@
                         <div class="header-info">
                             <div class="header-info-inner">
                                 <div class="header-collect book-md">
-                                    <a href="./menu.html" ><img src="./images/icon-table.png" alt="" />Menu</a>
+                                    <a href="../templates/menu.html" ><img src="./images/icon-table.png" alt="" />Menu</a>
                                 </div>
                                 <div class="shop-cart header-collect">
                                     <a href="#"><img src="./images/catering.png" alt="" />Catering</a>
@@ -256,10 +256,49 @@
     </div>
     <!-- Back To Top Arrow -->
     <a href="#" class="top-arrow"></a>
+    <script>
+
+        function initMap() {
+            // The location of Uluru
+            var uluru = {
+                lat: 41.964829, lng: -87.678527
+            };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('footer-map'),
+                {zoom: 18, center: uluru});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker(
+                {position: uluru, map: map}
+            );
+        }
+
+
+    </script>
+    <script>
+
+        function initMap2() {
+            // The location of Uluru
+            var uluru = {
+                lat: 41.964829, lng: -87.678527
+            };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('footer-map'),
+                {zoom: 18, center: uluru});
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker(
+                {position: uluru, map: map}
+            );
+        }
+
+
+    </script>
+
     <script src="./js/jquery.min.js"></script>
     <script src="./plugin/bootstrap/bootstrap.min.js"></script>
     <script src="./plugin/bootstrap/bootstrap-datepicker.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf6My1Jfdi1Fmj-DUmX_CcNOZ6FLkQ4Os"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf6My1Jfdi1Fmj-DUmX_CcNOZ6FLkQ4Os&callback=initMap2"></script>
     <script src="./plugin/form-field/jquery.formstyler.min.js"></script>
     <script src="./plugin/revolution-plugin/jquery.themepunch.plugins.min.js"></script>
     <script src="./plugin/revolution-plugin/jquery.themepunch.revolution.min.js"></script>
