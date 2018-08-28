@@ -1,11 +1,10 @@
 package com.bakery.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"userId", "email"}))
 public class User {
 
     @Id
@@ -28,13 +27,9 @@ public class User {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "userId", referencedColumnName = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId")
-    )
-    private Collection<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "roleId")
+    private Role role;
 
     public User() {
     }
@@ -47,13 +42,13 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, Collection<Role> roles) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.roles = roles;
+        this.role = role;
     }
 
     public Long getUserId() {
@@ -104,26 +99,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-    //Using only email as a unique value for equals() and hashCode() method
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(getEmail(), user.getEmail());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getEmail());
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
@@ -135,6 +116,26 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(role, user.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, firstName, lastName, email, password, phoneNumber, role);
     }
 }
