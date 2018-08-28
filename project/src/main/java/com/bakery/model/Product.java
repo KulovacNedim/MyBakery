@@ -1,7 +1,6 @@
 package com.bakery.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -114,24 +113,6 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Double.compare(product.getPrice(), getPrice()) == 0 &&
-                Objects.equals(getProductId(), product.getProductId()) &&
-                Objects.equals(getName(), product.getName()) &&
-                Objects.equals(getDescription(), product.getDescription()) &&
-                Objects.equals(getImage(), product.getImage());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getProductId(), getName(), getPrice(), getDescription(), getImage());
-    }
-
-    @Override
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
@@ -142,5 +123,24 @@ public class Product {
                 ", productCategory=" + productCategory +
                 ", ingredients=" + ingredients +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 &&
+                Objects.equals(productId, product.productId) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(image, product.image) &&
+                Objects.equals(productCategory, product.productCategory) &&
+                Objects.equals(ingredients, product.ingredients);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, name, price, description, image, productCategory, ingredients);
     }
 }

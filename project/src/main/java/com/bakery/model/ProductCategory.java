@@ -22,10 +22,6 @@ public class ProductCategory {
     public ProductCategory() {
     }
 
-    public ProductCategory(String category) {
-        this.category = category;
-    }
-
     public Long getProductCategoryId() {
         return productCategoryId;
     }
@@ -51,25 +47,26 @@ public class ProductCategory {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductCategory that = (ProductCategory) o;
-        return Objects.equals(getProductCategoryId(), that.getProductCategoryId()) &&
-                Objects.equals(getCategory(), that.getCategory());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getProductCategoryId(), getCategory());
-    }
-
-    @Override
     public String toString() {
         return "ProductCategory{" +
                 "productCategoryId=" + productCategoryId +
                 ", category='" + category + '\'' +
+                ", products=" + products +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductCategory that = (ProductCategory) o;
+        return Objects.equals(productCategoryId, that.productCategoryId) &&
+                Objects.equals(category, that.category) &&
+                Objects.equals(products, that.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productCategoryId, category, products);
     }
 }

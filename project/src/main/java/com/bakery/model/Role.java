@@ -1,7 +1,8 @@
 package com.bakery.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,37 +14,32 @@ public class Role {
     @Column(name = "roleId")
     private Long roleId;
 
-    //Changed this filed name to "name" (was role) as methods like getRole() are confusing;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "roleName")
+    private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
-
-    @ManyToMany
-    @JoinTable(
-            name = "roles_privileges",
-            joinColumns = @JoinColumn(name = "roleId", referencedColumnName = "roleId"),
-            inverseJoinColumns = @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")
+    @OneToMany(
+            mappedBy = "role",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    private Collection<Privilege> privileges;
+    private List<User> users = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "accessflag_role", joinColumns = @JoinColumn(name = "accessFlagId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId"))
+    private List<AccessFlag> roleFlags = new ArrayList<>();
 
     public Role() {
     }
 
-    public Role(String name) {
-        this.name = name;
+    public Role(String roleName) {
+        this.roleName = roleName;
     }
 
-    public Role(String name, Collection<Privilege> privileges) {
-        this.name = name;
-        this.privileges = privileges;
-    }
-
-    public Role(String name, Collection<User> users, Collection<Privilege> privileges) {
-        this.name = name;
+    public Role(String roleName, List<User> users, List<AccessFlag> roleFlags) {
+        this.roleName = roleName;
         this.users = users;
-        this.privileges = privileges;
+        this.roleFlags = roleFlags;
     }
 
     public Long getRoleId() {
@@ -54,49 +50,53 @@ public class Role {
         this.roleId = roleId;
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
-    public Collection<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
-    public Collection<Privilege> getPrivileges() {
-        return privileges;
+    public List<AccessFlag> getRoleFlags() {
+        return roleFlags;
     }
 
-    public void setPrivileges(Collection<Privilege> privileges) {
-        this.privileges = privileges;
-    }
-
-    //Using name as a unique value for equals() and hashCode() methods.
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
-        return Objects.equals(getName(), role.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName());
+    public void setRoleFlags(List<AccessFlag> roleFlags) {
+        this.roleFlags = roleFlags;
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "roleId=" + roleId +
-                ", name='" + name + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", users=" + users +
+                ", roleFlags=" + roleFlags +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return Objects.equals(roleId, role.roleId) &&
+                Objects.equals(roleName, role.roleName) &&
+                Objects.equals(users, role.users) &&
+                Objects.equals(roleFlags, role.roleFlags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roleId, roleName, users, roleFlags);
     }
 }

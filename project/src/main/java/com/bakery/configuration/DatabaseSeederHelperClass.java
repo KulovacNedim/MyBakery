@@ -11,48 +11,7 @@ import java.util.List;
 @Component
 public class DatabaseSeederHelperClass {
 
-
-    static List<Privilege> getALLPrivilegesList() {
-        List<Privilege> privileges = new ArrayList<>();
-
-        privileges.addAll(getProductCrudPrivileges());
-        privileges.addAll(getRoleCrudPrivileges());
-
-        return privileges;
-    }
-
-    static List<Privilege> getRoleCrudPrivileges() {
-        List<Privilege> rolePrivileges = new ArrayList<>();
-
-        rolePrivileges.add(new Privilege("CREATE_ROLE"));
-        rolePrivileges.add(new Privilege("VIEW_ROLE"));
-        rolePrivileges.add(new Privilege("DELETE_ROLE"));
-        rolePrivileges.add(new Privilege("MODIFY_ROLE"));
-
-        return rolePrivileges;
-    }
-
-    static List<Privilege> getProductCrudPrivileges() {
-        List<Privilege> productPrivileges = new ArrayList<>();
-
-        productPrivileges.add(new Privilege("CREATE_PRODUCT"));
-        productPrivileges.add(new Privilege("VIEW_PRODUCT"));
-        productPrivileges.add(new Privilege("DELETE_PRODUCT"));
-        productPrivileges.add(new Privilege("MODIFY_PRODUCT"));
-
-        return productPrivileges;
-    }
-
-    static List<Role> getRoleList() {
-        List<Role> roles = new ArrayList<>();
-
-        roles.add(new Role("ROLE_PRODUCT_CRUD"));
-        roles.add(new Role("ROLE_ROLE_CRUD"));
-
-        return roles;
-    }
-
-    static List<Ingredient> getIngrediendList() {
+    static List<Ingredient> getAllIngredients() {
         List<Ingredient> ingredients = new ArrayList<>();
 
         ingredients.add(new Ingredient("Flour"));
@@ -69,17 +28,17 @@ public class DatabaseSeederHelperClass {
         ingredients.add(new Ingredient("Chese"));
         ingredients.add(new Ingredient("Tuna"));
         ingredients.add(new Ingredient("Almond"));
-        ingredients.add(new Ingredient("Fortune"));         //14
-        ingredients.add(new Ingredient("Bread"));           //15
-        ingredients.add(new Ingredient("Cocoa"));           //16
-        ingredients.add(new Ingredient("Cornflakes"));      //17
-        ingredients.add(new Ingredient("Walnuts"));         //18
-        ingredients.add(new Ingredient("Vanilla extraxt")); //19
+        ingredients.add(new Ingredient("Fortune"));
+        ingredients.add(new Ingredient("Bread"));
+        ingredients.add(new Ingredient("Cocoa"));
+        ingredients.add(new Ingredient("Cornflakes"));
+        ingredients.add(new Ingredient("Walnuts"));
+        ingredients.add(new Ingredient("Vanilla extraxt"));
 
         return ingredients;
     }
 
-    static List<ProductCategory> getProductCategoryList() {
+    static List<ProductCategory> getAllProductCategories() {
         List<ProductCategory> productCategories = new ArrayList<>();
 
         productCategories.add(new ProductCategory("Bread"));
@@ -91,7 +50,7 @@ public class DatabaseSeederHelperClass {
         return productCategories;
     }
 
-    static List<Product> getProductList() {
+    static List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
 
         products.add(new Product("Ordinary bread", 2.5, "Description for just Ordinary bread", "productImage"));
@@ -112,11 +71,36 @@ public class DatabaseSeederHelperClass {
         return products;
     }
 
-    static List<User> getUserList() {
+    static List<AccessFlag> getAllAccessFlags() {
+        List<AccessFlag> accessFlags = new ArrayList<>();
+
+        accessFlags.add(new AccessFlag("addProductAF"));
+        accessFlags.add(new AccessFlag("deleteProductAF"));
+        accessFlags.add(new AccessFlag("addUserAF"));
+        accessFlags.add(new AccessFlag("deleteUserAF"));
+
+        return accessFlags;
+    }
+
+    static List<Role> getAllRoles() {
+        List<Role> roles = new ArrayList<>();
+
+        roles.add(new Role("Superadmin"));
+        roles.add(new Role("User"));
+        roles.add(new Role("Admin"));
+        roles.add(new Role("Menager"));
+        roles.add(new Role("Headcheaf"));
+        roles.add(new Role("Weiter"));
+        roles.add(new Role("Cashier"));
+
+        return roles;
+    }
+
+    static List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
 
-        users.add(new User("Dino", "Spreco", "testemail1@gmail.com", "password1", "123456789"));
-        users.add(new User("Nedim", "Kulovac", "testemail2@gmail.com", "password2", "223456789"));
+        users.add(new User("Nedim", "Kulovac", "testemail1@gmail.com", "password1", "123456789"));
+        users.add(new User("Dino", "Spreco", "testemail2@gmail.com", "password2", "223456789"));
         users.add(new User("Zeljko", "Dobrojevic", "testemail3@gmail.com", "password3", "323456789"));
         users.add(new User("Mujo", "Ramic", "testemail4@gmail.com", "password4", "423456789"));
         users.add(new User("Slobodan", "Vukovic", "testemail5@gmail.com", "password5", "523456789"));
@@ -124,7 +108,7 @@ public class DatabaseSeederHelperClass {
         users.add(new User("Ilinka", "Poletan", "testemail7@gmail.com", "password7", "723456789"));
         users.add(new User("Jasmin", "Mustafic", "testemail8@gmail.com", "password8", "823456789"));
         users.add(new User("Dejan", "Sipovac", "testemail9@gmail.com", "password9", "923456789"));
-
         return users;
     }
+
 }
