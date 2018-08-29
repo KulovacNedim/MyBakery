@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Profile("dev")
@@ -27,7 +28,7 @@ public class DatabaseSeeder implements ApplicationRunner {
     private ProductCategoryDAO productCategoryDAO;
 
     @Autowired
-    private AccessFlagDAO accessFlagDAO;
+    private CapabilityDAO capabilityDAO;
 
     @Autowired
     private RoleDAO roleDAO;
@@ -35,18 +36,23 @@ public class DatabaseSeeder implements ApplicationRunner {
     @Autowired
     private UserDAO userDAO;
 
+    @Autowired
+    private SubCapitabilityDAO subCapitabilityDAO;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         seedIngredients();
         seedCategories();
         seedProducts();
-        seedAccessFlags();
+        seedCapabilities();
         seedRoles();
         seedUsers();
+        seedSubCapabilities();
 
         updateProductsWithIngredientsAndCategories();
-        updateRolesWithAccessFlags();
+        updateRolesWithCapabilities();
         updateUsersWithRoles();
+        updateCapabilitiesWithWithSubCapabilities();
 
     }
 
@@ -62,8 +68,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         productDAO.saveAll(DatabaseSeederHelperClass.getAllProducts());
     }
 
-    private void seedAccessFlags() {
-        accessFlagDAO.saveAll(DatabaseSeederHelperClass.getAllAccessFlags());
+    private void seedCapabilities() {
+        capabilityDAO.saveAll(DatabaseSeederHelperClass.getAllCapabilities());
     }
 
     private void seedRoles() {
@@ -72,6 +78,10 @@ public class DatabaseSeeder implements ApplicationRunner {
 
     private void seedUsers() {
         userDAO.saveAll(DatabaseSeederHelperClass.getAllUsers());
+    }
+
+    private void seedSubCapabilities() {
+        subCapitabilityDAO.saveAll(DatabaseSeederHelperClass.getAllSubCapabilities());
     }
 
     private void updateProductsWithIngredientsAndCategories() {
@@ -211,15 +221,15 @@ public class DatabaseSeeder implements ApplicationRunner {
         productDAO.saveAll(products);
     }
 
-    private void updateRolesWithAccessFlags() {
+    private void updateRolesWithCapabilities() {
 
-        List<AccessFlag> accessFlags = accessFlagDAO.findAll();
+        List<Capability> capabilities = capabilityDAO.findAll();
         List<Role> roles = roleDAO.findAll();
 
         // Roles are not defined yet. Will be defined later, when become necessaray
         // Belove settings have purpose to populate database and are not relevant
-        roles.get(0).setRoleFlags(accessFlags);
-        roles.get(1).setRoleFlags(accessFlags);
+        roles.get(0).setRoleCapabilities(capabilities);
+        roles.get(1).setRoleCapabilities(capabilities);
 
         roleDAO.saveAll(roles);
     }
@@ -243,5 +253,26 @@ public class DatabaseSeeder implements ApplicationRunner {
         users.get(8).setRole(roles.get(6));
 
         userDAO.saveAll(users);
+    }
+
+    private void updateCapabilitiesWithWithSubCapabilities() {
+
+        List<Capability> capabilities = capabilityDAO.findAll();
+
+        // Updating Capabilities With SubCapabilities for SystemSetting
+        // Be careful with IDs
+        capabilities.get(0).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 1),
+                subCapitabilityDAO.getOne((long) 2)));
+
+        // Updating Capabilities With SubCapabilities for MenagementSettings
+        // Be careful with IDs
+        capabilities.get(1).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 3),
+                subCapitabilityDAO.getOne((long) 4)));
+
+        // Updating Capabilities With SubCapabilities for UserMenagement
+        // Be careful with IDs
+        capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 5),
+                subCapitabilityDAO.getOne((long) 6)));
+
     }
 }
