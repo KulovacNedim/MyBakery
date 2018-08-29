@@ -71,23 +71,25 @@ public class DatabaseSeederHelperClass {
         return products;
     }
 
-    static List<AccessFlag> getAllAccessFlags() {
-        List<AccessFlag> accessFlags = new ArrayList<>();
+    static List<Capability> getAllCapabilities() {
+        List<Capability> capabilities = new ArrayList<>();
 
-        accessFlags.add(new AccessFlag("addProductAF"));
-        accessFlags.add(new AccessFlag("deleteProductAF"));
-        accessFlags.add(new AccessFlag("addUserAF"));
-        accessFlags.add(new AccessFlag("deleteUserAF"));
+        capabilities.add(new Capability("SystemSettings", "systemSettings"));
+        capabilities.add(new Capability("MenagementSettings", "menagementSettings"));
+        capabilities.add(new Capability("UserMenagement", "userMenagement"));
+        capabilities.add(new Capability("ProductsMenagement", "productsMenagement"));
+        capabilities.add(new Capability("OrdersMenagement", "ordersMenagement"));
+        capabilities.add(new Capability("SocialMediaMenagement", "socialMediaMenagement"));
 
-        return accessFlags;
+        return capabilities;
     }
 
     static List<Role> getAllRoles() {
         List<Role> roles = new ArrayList<>();
 
-        roles.add(new Role("Superadmin"));
-        roles.add(new Role("User"));
-        roles.add(new Role("Admin"));
+        roles.add(new Role("Superadmin", true));
+        roles.add(new Role("Client"));
+        roles.add(new Role("Administrator"));
         roles.add(new Role("Menager"));
         roles.add(new Role("Headcheaf"));
         roles.add(new Role("Weiter"));
@@ -109,6 +111,28 @@ public class DatabaseSeederHelperClass {
         users.add(new User("Jasmin", "Mustafic", "testemail8@gmail.com", "password8", "823456789"));
         users.add(new User("Dejan", "Sipovac", "testemail9@gmail.com", "password9", "923456789"));
         return users;
+    }
+
+    static List<SubCapability> getAllSubCapabilities() {
+        List<SubCapability> subCapabilities = new ArrayList<>();
+
+        // Be very careful with order becouse DatabeseSeeder.updateCapabilitiesWithWithSubCapabilities use this list
+
+        // Seeding SubCapabilities for SystemSetting Capability
+        subCapabilities.add(new SubCapability("SystemSettingsFeature1", "1path"));
+        subCapabilities.add(new SubCapability("SystemSettingsFeature2", "2path"));
+
+        // Seeding SubCapabilities for MenagementSettings Capability
+        subCapabilities.add(new SubCapability("MenagementSettingsFeature1", "1path"));
+        subCapabilities.add(new SubCapability("MenagementSettingsFeature2", "2path"));
+
+        // Seeding SubCapabilities for UserMenagement Capability
+        subCapabilities.add(new SubCapability("UserMenagementFeature1", "1path"));
+        subCapabilities.add(new SubCapability("UserMenagementFeature12", "2path"));
+
+        // Other SubCapabilities will be added during app development
+
+        return subCapabilities;
     }
 
 }

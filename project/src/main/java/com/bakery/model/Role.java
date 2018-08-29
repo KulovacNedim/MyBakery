@@ -17,6 +17,9 @@ public class Role {
     @Column(name = "roleName")
     private String roleName;
 
+    @Column(name = "protected")
+    private boolean isProtected;
+
     @OneToMany(
             mappedBy = "role",
             cascade = CascadeType.ALL,
@@ -25,9 +28,9 @@ public class Role {
     private List<User> users = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "accessflag_role", joinColumns = @JoinColumn(name = "accessFlagId"),
+    @JoinTable(name = "capability_role", joinColumns = @JoinColumn(name = "capabilityId"),
             inverseJoinColumns = @JoinColumn(name = "roleId"))
-    private List<AccessFlag> roleFlags = new ArrayList<>();
+    private List<Capability> roleCapabilities = new ArrayList<>();
 
     public Role() {
     }
@@ -36,10 +39,15 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Role(String roleName, List<User> users, List<AccessFlag> roleFlags) {
+    public Role(String roleName, boolean isProtected) {
+        this.roleName = roleName;
+        this.isProtected = isProtected;
+    }
+
+    public Role(String roleName, List<User> users, List<Capability> capabilities) {
         this.roleName = roleName;
         this.users = users;
-        this.roleFlags = roleFlags;
+        this.roleCapabilities = capabilities;
     }
 
     public Long getRoleId() {
@@ -66,12 +74,16 @@ public class Role {
         this.users = users;
     }
 
-    public List<AccessFlag> getRoleFlags() {
-        return roleFlags;
+    public List<Capability> getRoleCapabilities() {
+        return roleCapabilities;
     }
 
-    public void setRoleFlags(List<AccessFlag> roleFlags) {
-        this.roleFlags = roleFlags;
+    public void setRoleCapabilities(List<Capability> roleCapabilities) {
+        this.roleCapabilities = roleCapabilities;
+    }
+
+    public boolean isProtected() {
+        return isProtected;
     }
 
     @Override
@@ -79,8 +91,9 @@ public class Role {
         return "Role{" +
                 "roleId=" + roleId +
                 ", roleName='" + roleName + '\'' +
+                ", isProtected=" + isProtected +
                 ", users=" + users +
-                ", roleFlags=" + roleFlags +
+                ", roleCapabilities=" + roleCapabilities +
                 '}';
     }
 
@@ -89,14 +102,15 @@ public class Role {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(roleId, role.roleId) &&
+        return isProtected == role.isProtected &&
+                Objects.equals(roleId, role.roleId) &&
                 Objects.equals(roleName, role.roleName) &&
                 Objects.equals(users, role.users) &&
-                Objects.equals(roleFlags, role.roleFlags);
+                Objects.equals(roleCapabilities, role.roleCapabilities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, roleName, users, roleFlags);
+        return Objects.hash(roleId, roleName, isProtected, users, roleCapabilities);
     }
 }

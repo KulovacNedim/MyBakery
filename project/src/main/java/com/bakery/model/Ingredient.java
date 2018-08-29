@@ -60,7 +60,6 @@ public class Ingredient {
         return "Ingredient{" +
                 "ingredientId=" + ingredientId +
                 ", name='" + name + '\'' +
-                ", products=" + products +
                 '}';
     }
 

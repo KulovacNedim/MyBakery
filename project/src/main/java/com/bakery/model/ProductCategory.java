@@ -1,5 +1,7 @@
 package com.bakery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +22,10 @@ public class ProductCategory {
     private List<Product> products;
 
     public ProductCategory() {
+    }
+
+    public ProductCategory(String category) {
+        this.category = category;
     }
 
     public Long getProductCategoryId() {
@@ -51,7 +57,6 @@ public class ProductCategory {
         return "ProductCategory{" +
                 "productCategoryId=" + productCategoryId +
                 ", category='" + category + '\'' +
-                ", products=" + products +
                 '}';
     }
 

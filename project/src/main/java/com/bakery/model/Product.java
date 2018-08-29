@@ -1,5 +1,9 @@
 package com.bakery.model;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -25,7 +29,7 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "categoryId", referencedColumnName = "productCategoryId")
     private ProductCategory productCategory;
 
