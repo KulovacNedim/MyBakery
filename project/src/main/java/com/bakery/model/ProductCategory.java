@@ -1,7 +1,5 @@
 package com.bakery.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -12,36 +10,36 @@ public class ProductCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "productCategoryId")
-    private Long productCategoryId;
+    @Column(name = "product_category_id")
+    private Long id;
 
-    @Column(name = "category")
-    private String category;
+    @Column(name = "name")
+    private String name;
 
-    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "productCategory")
     private List<Product> products;
 
     public ProductCategory() {
     }
 
     public ProductCategory(String category) {
-        this.category = category;
+        this.name = category;
     }
 
-    public Long getProductCategoryId() {
-        return productCategoryId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductCategoryId(Long productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Product> getProducts() {
@@ -55,8 +53,8 @@ public class ProductCategory {
     @Override
     public String toString() {
         return "ProductCategory{" +
-                "productCategoryId=" + productCategoryId +
-                ", category='" + category + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -65,13 +63,13 @@ public class ProductCategory {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductCategory that = (ProductCategory) o;
-        return Objects.equals(productCategoryId, that.productCategoryId) &&
-                Objects.equals(category, that.category) &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
                 Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productCategoryId, category, products);
+        return Objects.hash(id, name, products);
     }
 }

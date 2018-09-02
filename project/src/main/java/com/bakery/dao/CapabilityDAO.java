@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CapabilityDAO extends JpaRepository<Capability, Long> {
 
-    Capability getAccessFlagByCapabilityName(String capabilityName);
+    Capability getAccessFlagByName(String name);
 
 }

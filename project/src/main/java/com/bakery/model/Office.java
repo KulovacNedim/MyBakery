@@ -6,16 +6,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "office")
+@Table(name = "officies")
 public class Office {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "officeid")
-    private Long officeId;
+    @Column(name = "office_id")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "companyId")
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @Column(name = "name")
@@ -40,24 +40,24 @@ public class Office {
     private List<Email> emails = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_office", joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "officeId"))
+    @JoinTable(name = "users_officies", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "office_id"))
     private List<User> users = new ArrayList<>();
 
     public Office() {
     }
 
-    public Office(Company company, String officeName) {
+    public Office(Company company, String name) {
         this.company = company;
         this.name = name;
     }
 
-    public Long getOfficeId() {
-        return officeId;
+    public Long getId() {
+        return id;
     }
 
-    public void setOfficeId(Long officeId) {
-        this.officeId = officeId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -111,7 +111,7 @@ public class Office {
     @Override
     public String toString() {
         return "Office{" +
-                "officeId=" + officeId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
                 ", phones=" + phones +
@@ -125,7 +125,7 @@ public class Office {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Office office = (Office) o;
-        return Objects.equals(officeId, office.officeId) &&
+        return Objects.equals(id, office.id) &&
                 Objects.equals(company, office.company) &&
                 Objects.equals(name, office.name) &&
                 Objects.equals(address, office.address) &&
@@ -136,6 +136,6 @@ public class Office {
 
     @Override
     public int hashCode() {
-        return Objects.hash(officeId, company, name, address, phones, emails, users);
+        return Objects.hash(id, company, name, address, phones, emails, users);
     }
 }

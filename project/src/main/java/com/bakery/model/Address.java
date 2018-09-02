@@ -9,74 +9,74 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "addressId")
-    private Long addressId;
+    @Column(name = "address_id")
+    private Long id;
 
-    @Column(name = "adressStreet")
-    private String adressStreet;
+    @Column(name = "street")
+    private String street;
 
-    @Column(name = "addressState")
-    private String addressState;
+    @Column(name = "state")
+    private String state;
 
-    @Column(name = "addressCity")
-    private String addressCity;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "addresZIPcode")
-    private String addresZIPcode;
+    @Column(name = "zip_coode")
+    private String zipCode;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "officeid")
+    @JoinColumn(name = "office_id")
     private Office office;
 
-    public Address(String adressStreet, String addressState, String addressCity, String addresZIPcode) {
-        this.adressStreet = adressStreet;
-        this.addressState = addressState;
-        this.addressCity = addressCity;
-        this.addresZIPcode = addresZIPcode;
+    public Address(String street, String state, String city, String zipCode) {
+        this.street = street;
+        this.state = state;
+        this.city = city;
+        this.zipCode = zipCode;
     }
 
     public Address() {
 
     }
 
-    public Long getAddressId() {
-        return addressId;
+    public Long getId() {
+        return id;
     }
 
-    public void setAddressId(Long addressId) {
-        this.addressId = addressId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getAdressStreet() {
-        return adressStreet;
+    public String getStreet() {
+        return street;
     }
 
-    public void setAdressStreet(String adressStreet) {
-        this.adressStreet = adressStreet;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getAddressState() {
-        return addressState;
+    public String getState() {
+        return state;
     }
 
-    public void setAddressState(String addressState) {
-        this.addressState = addressState;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getAddressCity() {
-        return addressCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddressCity(String addressCity) {
-        this.addressCity = addressCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getAddresZIPcode() {
-        return addresZIPcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setAddresZIPcode(String addresZIPcode) {
-        this.addresZIPcode = addresZIPcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public Office getOffice() {
@@ -90,11 +90,11 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "addressId=" + addressId +
-                ", adressStreet='" + adressStreet + '\'' +
-                ", addressState='" + addressState + '\'' +
-                ", addressCity='" + addressCity + '\'' +
-                ", addresZIPcode='" + addresZIPcode + '\'' +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
                 '}';
     }
 
@@ -103,15 +103,15 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(addressId, address.addressId) &&
-                Objects.equals(adressStreet, address.adressStreet) &&
-                Objects.equals(addressState, address.addressState) &&
-                Objects.equals(addressCity, address.addressCity) &&
-                Objects.equals(addresZIPcode, address.addresZIPcode);
+        return Objects.equals(id, address.id) &&
+                Objects.equals(street, address.street) &&
+                Objects.equals(state, address.state) &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(zipCode, address.zipCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressId, adressStreet, addressState, addressCity, addresZIPcode);
+        return Objects.hash(id, street, state, city, zipCode);
     }
 }

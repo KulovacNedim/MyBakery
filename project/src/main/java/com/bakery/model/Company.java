@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "company")
+@Table(name = "companies")
 public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "companyId")
-    private Long companyId;
+    @Column(name = "company_id")
+    private Long id;
 
-    @Column(name = "fullName")
+    @Column(name = "full_name")
     private String fullName;
 
-    @Column(name = "shortName")
+    @Column(name = "short_name")
     private String shortName;
 
     @Column(name = "active")
@@ -54,12 +54,12 @@ public class Company {
         this.companySocialMediaList = companySocialMediaList;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullName() {
@@ -105,7 +105,7 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "companyId=" + companyId +
+                "id=" + id +
                 ", fullName='" + fullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", isActive=" + isActive +
@@ -120,7 +120,7 @@ public class Company {
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
         return isActive == company.isActive &&
-                Objects.equals(companyId, company.companyId) &&
+                Objects.equals(id, company.id) &&
                 Objects.equals(fullName, company.fullName) &&
                 Objects.equals(shortName, company.shortName) &&
                 Objects.equals(offices, company.offices) &&
@@ -129,6 +129,6 @@ public class Company {
 
     @Override
     public int hashCode() {
-        return Objects.hash(companyId, fullName, shortName, isActive, offices, companySocialMediaList);
+        return Objects.hash(id, fullName, shortName, isActive, offices, companySocialMediaList);
     }
 }

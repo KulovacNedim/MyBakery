@@ -95,50 +95,50 @@ public class DatabaseSeeder implements ApplicationRunner {
         CompanySocialMedia facebook1 = new CompanySocialMedia();
         facebook1.setCompany(company);
         facebook1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
-        facebook1.setSmMarkName("La Boulangerie Wilson");
-        facebook1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
+        facebook1.setName("La Boulangerie Wilson");
+        facebook1.setPath("https://www.facebook.com/laboulangeriewilsonchicago/");
         company.getCompanySocialMediaList().add(facebook1);
 
         CompanySocialMedia facebook2 = new CompanySocialMedia();
         facebook2.setCompany(company);
         facebook2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
-        facebook2.setSmMarkName("La Boulangerie Belmont");
-        facebook2.setSmPath("https://www.facebook.com/La-Boulangerie-Belmont-250542121715336/");
+        facebook2.setName("La Boulangerie Belmont");
+        facebook2.setPath("https://www.facebook.com/La-Boulangerie-Belmont-250542121715336/");
         company.getCompanySocialMediaList().add(facebook2);
 
         CompanySocialMedia twitter1 = new CompanySocialMedia();
         twitter1.setCompany(company);
         twitter1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
-        twitter1.setSmMarkName("La Boulangerie Wilson");
-        twitter1.setSmPath("https://twitter.com/boulangerie_wil");
+        twitter1.setName("La Boulangerie Wilson");
+        twitter1.setPath("https://twitter.com/boulangerie_wil");
         company.getCompanySocialMediaList().add(twitter1);
 
         CompanySocialMedia twitter2 = new CompanySocialMedia();
         twitter2.setCompany(company);
         twitter2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
-        twitter2.setSmMarkName("La Boulangerie Belmont");
-        twitter2.setSmPath("https://twitter.com/laboulangerie1");
+        twitter2.setName("La Boulangerie Belmont");
+        twitter2.setPath("https://twitter.com/laboulangerie1");
         company.getCompanySocialMediaList().add(twitter2);
 
         CompanySocialMedia twitter3 = new CompanySocialMedia();
         twitter3.setCompany(company);
         twitter3.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
-        twitter3.setSmMarkName("La Boulangerie Foodtruck");
-        twitter3.setSmPath("https://twitter.com/lbfoodtruck");
+        twitter3.setName("La Boulangerie Foodtruck");
+        twitter3.setPath("https://twitter.com/lbfoodtruck");
         company.getCompanySocialMediaList().add(twitter3);
 
         CompanySocialMedia instagram1 = new CompanySocialMedia();
         instagram1.setCompany(company);
         instagram1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 3));
-        instagram1.setSmMarkName("La Boulangerie Chicago");
-        instagram1.setSmPath("https://www.instagram.com/laboulangeriechicago/");
+        instagram1.setName("La Boulangerie Chicago");
+        instagram1.setPath("https://www.instagram.com/laboulangeriechicago/");
         company.getCompanySocialMediaList().add(instagram1);
 
         CompanySocialMedia yelp = new CompanySocialMedia();
         yelp.setCompany(company);
         yelp.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 6));
-        yelp.setSmMarkName("La Boulangerie Chicago");
-        yelp.setSmPath("https://www.yelp.com/biz/la-boulangerie-chicago-4");
+        yelp.setName("La Boulangerie Chicago");
+        yelp.setPath("https://www.yelp.com/biz/la-boulangerie-chicago-4");
         company.getCompanySocialMediaList().add(yelp);
 
         companyDAO.save(company);

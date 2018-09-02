@@ -4,58 +4,58 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "socialmedia")
+@Table(name = "socialmediaaccounts")
 public class SocialMediaAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "smId")
-    private Long smId;
+    @Column(name = "socialmedia_id")
+    private Long id;
 
-    @Column(name = "socialMedia")
-    private String socialMedia;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "smImage")
-    private String smImage;
+    @Column(name = "image_path")
+    private String imagePath;
 
     public SocialMediaAccount() {
     }
 
     public SocialMediaAccount(String socialMedia, String smImage) {
-        this.socialMedia = socialMedia;
-        this.smImage = smImage;
+        this.name = socialMedia;
+        this.imagePath = smImage;
     }
 
-    public Long getSmId() {
-        return smId;
+    public Long getId() {
+        return id;
     }
 
-    public void setSmId(Long smId) {
-        this.smId = smId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getSocialMedia() {
-        return socialMedia;
+    public String getName() {
+        return name;
     }
 
-    public void setSocialMedia(String socialMedia) {
-        this.socialMedia = socialMedia;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSmImage() {
-        return smImage;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setSmImage(String smImage) {
-        this.smImage = smImage;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Override
     public String toString() {
         return "SocialMediaAccount{" +
-                "smId=" + smId +
-                ", socialMedia='" + socialMedia + '\'' +
-                ", smImage='" + smImage + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 
@@ -64,14 +64,14 @@ public class SocialMediaAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SocialMediaAccount that = (SocialMediaAccount) o;
-        return Objects.equals(smId, that.smId) &&
-                Objects.equals(socialMedia, that.socialMedia) &&
-                Objects.equals(smImage, that.smImage);
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(imagePath, that.imagePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(smId, socialMedia, smImage);
+        return Objects.hash(id, name, imagePath);
     }
 
 }

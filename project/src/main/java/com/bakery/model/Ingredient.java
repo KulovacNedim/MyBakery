@@ -10,8 +10,8 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ingredientId")
-    private Long ingredientId;
+    @Column(name = "ingredient_id")
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -31,12 +31,12 @@ public class Ingredient {
         this.products = products;
     }
 
-    public Long getIngredientId() {
-        return ingredientId;
+    public Long getId() {
+        return id;
     }
 
-    public void setIngredientId(Long ingredientId) {
-        this.ingredientId = ingredientId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -58,7 +58,7 @@ public class Ingredient {
     @Override
     public String toString() {
         return "Ingredient{" +
-                "ingredientId=" + ingredientId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
@@ -68,13 +68,13 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ingredient that = (Ingredient) o;
-        return Objects.equals(ingredientId, that.ingredientId) &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(products, that.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ingredientId, name, products);
+        return Objects.hash(id, name, products);
     }
 }

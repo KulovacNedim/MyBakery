@@ -6,48 +6,48 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "capability")
+@Table(name = "capabilities")
 public class Capability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "capabilityId")
-    private int capabilityId;
+    @Column(name = "capatability_id")
+    private int id;
 
-    @Column(name = "capabilityName")
-    private String capabilityName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "path")
     private String path;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "capability_subcapabilities", joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "capabilityId"))
+    @JoinTable(name = "capabilities_subcapabilities", joinColumns = @JoinColumn(name = "subcapatibility_id"),
+            inverseJoinColumns = @JoinColumn(name = "capatability_id"))
     private List<SubCapability> subCapabilities = new ArrayList<>();
 
     public Capability() {
 
     }
 
-    public Capability(String capabilityName, String path) {
-        this.capabilityName = capabilityName;
+    public Capability(String name, String path) {
+        this.name = name;
         this.path = path;
     }
 
-    public int getCapabilityId() {
-        return capabilityId;
+    public int getId() {
+        return id;
     }
 
-    public void setCapabilityId(int capabilityId) {
-        this.capabilityId = capabilityId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCapabilityName() {
-        return capabilityName;
+    public String getName() {
+        return name;
     }
 
-    public void setCapabilityName(String capabilityName) {
-        this.capabilityName = capabilityName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPath() {
@@ -69,8 +69,8 @@ public class Capability {
     @Override
     public String toString() {
         return "Capability{" +
-                "capabilityId=" + capabilityId +
-                ", capabilityName='" + capabilityName + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", path='" + path + '\'' +
                 ", subCapabilities=" + subCapabilities +
                 '}';
@@ -81,14 +81,14 @@ public class Capability {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Capability that = (Capability) o;
-        return capabilityId == that.capabilityId &&
-                Objects.equals(capabilityName, that.capabilityName) &&
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
                 Objects.equals(path, that.path) &&
                 Objects.equals(subCapabilities, that.subCapabilities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(capabilityId, capabilityName, path, subCapabilities);
+        return Objects.hash(id, name, path, subCapabilities);
     }
 }
