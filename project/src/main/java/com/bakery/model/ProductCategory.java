@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_categories")
+@Table(name = "productcategories")
 public class ProductCategory {
 
     @Id

@@ -29,11 +29,10 @@ private  CompanyDAO companyDAO;
 
         List<Product> products = productService.getAllProducts();
         List<ProductCategory> categories = productCategoriesService.getAllCategories();
-Company company = companyDAO.getOne((long)1);
-model.addAttribute("company",company);
+        Company company = companyDAO.getOne((long)1);
 
-        Company company2 = companyDAO.getOne((long)2);
-        model.addAttribute("company2",company2);
+        model.addAttribute("company",company);
+        // products are available in categories
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
 

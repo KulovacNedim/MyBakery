@@ -43,9 +43,9 @@ public class DatabaseSeeder implements ApplicationRunner {
     private ProductDAO productDAO;
 
     @Autowired
-    private IngredientDAO ingredientDAO;
+    private ProductComponentDAO ingredientDAO;
 
-    private boolean doUpdate = false;
+    private boolean doUpdate = true;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -79,8 +79,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         // set ProductCategories, Products and Ingredients
         seedProductCategories();
         seedProducts();
-        seedIngredients();
-        updateProductsWithIngredientsAndCategories();
+        seedProductsComponents();
+        updateProductsWithCategoriesAndProductsComponents();
     }
 
 
@@ -235,12 +235,12 @@ public class DatabaseSeeder implements ApplicationRunner {
         productDAO.saveAll(DatabaseSeederHelperClass.getAllProducts());
     }
 
-    private void seedIngredients() {
-        ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllIngredients());
+    private void seedProductsComponents() {
+        ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllProductComponents());
     }
 
-    private void updateProductsWithIngredientsAndCategories() {
-        List<Ingredient> ingredients = ingredientDAO.findAll();
+    private void updateProductsWithCategoriesAndProductsComponents() {
+        List<ProductComponent> productComponents = ingredientDAO.findAll();
         List<ProductCategory> productCategories = productCategoryDAO.findAll();
         List<Product> products = productDAO.findAll();
 
@@ -266,112 +266,112 @@ public class DatabaseSeeder implements ApplicationRunner {
         products.get(13).setProductCategory(productCategories.get(4));
 
         //Updating ingredints
-        List<Ingredient> tmp0 = new ArrayList<Ingredient>();
-        tmp0.add(ingredients.get(0));
-        tmp0.add(ingredients.get(1));
-        tmp0.add(ingredients.get(2));
-        tmp0.add(ingredients.get(9));
-        products.get(0).setIngredients(tmp0);
+        List<ProductComponent> tmp0 = new ArrayList<ProductComponent>();
+        tmp0.add(productComponents.get(0));
+        tmp0.add(productComponents.get(1));
+        tmp0.add(productComponents.get(2));
+        tmp0.add(productComponents.get(9));
+        products.get(0).setProductcomponents(tmp0);
 
-        List<Ingredient> tmp1 = new ArrayList<Ingredient>();
-        tmp1.add(ingredients.get(0));
-        tmp1.add(ingredients.get(1));
-        tmp1.add(ingredients.get(2));
-        tmp1.add(ingredients.get(9));
-        tmp1.add(ingredients.get(15));
-        products.get(1).setIngredients(tmp1);
+        List<ProductComponent> tmp1 = new ArrayList<ProductComponent>();
+        tmp1.add(productComponents.get(0));
+        tmp1.add(productComponents.get(1));
+        tmp1.add(productComponents.get(2));
+        tmp1.add(productComponents.get(9));
+        tmp1.add(productComponents.get(15));
+        products.get(1).setProductcomponents(tmp1);
 
-        List<Ingredient> tmp2 = new ArrayList<Ingredient>();
-        tmp2.add(ingredients.get(0));
-        tmp2.add(ingredients.get(1));
-        tmp2.add(ingredients.get(2));
-        tmp2.add(ingredients.get(9));
-        products.get(2).setIngredients(tmp2);
+        List<ProductComponent> tmp2 = new ArrayList<ProductComponent>();
+        tmp2.add(productComponents.get(0));
+        tmp2.add(productComponents.get(1));
+        tmp2.add(productComponents.get(2));
+        tmp2.add(productComponents.get(9));
+        products.get(2).setProductcomponents(tmp2);
 
-        List<Ingredient> tmp3 = new ArrayList<Ingredient>();
-        tmp3.add(ingredients.get(0));
-        tmp3.add(ingredients.get(1));
-        tmp3.add(ingredients.get(2));
-        tmp3.add(ingredients.get(9));
-        products.get(3).setIngredients(tmp3);
+        List<ProductComponent> tmp3 = new ArrayList<ProductComponent>();
+        tmp3.add(productComponents.get(0));
+        tmp3.add(productComponents.get(1));
+        tmp3.add(productComponents.get(2));
+        tmp3.add(productComponents.get(9));
+        products.get(3).setProductcomponents(tmp3);
 
-        List<Ingredient> tmp4 = new ArrayList<Ingredient>();
-        tmp4.add(ingredients.get(0));
-        tmp4.add(ingredients.get(1));
-        tmp4.add(ingredients.get(2));
-        tmp4.add(ingredients.get(9));
-        products.get(4).setIngredients(tmp4);
+        List<ProductComponent> tmp4 = new ArrayList<ProductComponent>();
+        tmp4.add(productComponents.get(0));
+        tmp4.add(productComponents.get(1));
+        tmp4.add(productComponents.get(2));
+        tmp4.add(productComponents.get(9));
+        products.get(4).setProductcomponents(tmp4);
 
-        List<Ingredient> tmp5 = new ArrayList<Ingredient>();
-        tmp5.add(ingredients.get(0));
-        tmp5.add(ingredients.get(1));
-        tmp5.add(ingredients.get(4));
-        tmp5.add(ingredients.get(6));
-        tmp5.add(ingredients.get(7));
-        tmp5.add(ingredients.get(8));
-        products.get(5).setIngredients(tmp5);
+        List<ProductComponent> tmp5 = new ArrayList<ProductComponent>();
+        tmp5.add(productComponents.get(0));
+        tmp5.add(productComponents.get(1));
+        tmp5.add(productComponents.get(4));
+        tmp5.add(productComponents.get(6));
+        tmp5.add(productComponents.get(7));
+        tmp5.add(productComponents.get(8));
+        products.get(5).setProductcomponents(tmp5);
 
-        List<Ingredient> tmp6 = new ArrayList<Ingredient>();
-        tmp6.add(ingredients.get(0));
-        tmp6.add(ingredients.get(1));
-        tmp6.add(ingredients.get(5));
-        tmp6.add(ingredients.get(6));
-        tmp6.add(ingredients.get(7));
-        tmp6.add(ingredients.get(8));
-        products.get(6).setIngredients(tmp6);
+        List<ProductComponent> tmp6 = new ArrayList<ProductComponent>();
+        tmp6.add(productComponents.get(0));
+        tmp6.add(productComponents.get(1));
+        tmp6.add(productComponents.get(5));
+        tmp6.add(productComponents.get(6));
+        tmp6.add(productComponents.get(7));
+        tmp6.add(productComponents.get(8));
+        products.get(6).setProductcomponents(tmp6);
 
-        List<Ingredient> tmp7 = new ArrayList<Ingredient>();
-        tmp7.add(ingredients.get(11));
-        tmp7.add(ingredients.get(15));
-        products.get(7).setIngredients(tmp7);
+        List<ProductComponent> tmp7 = new ArrayList<ProductComponent>();
+        tmp7.add(productComponents.get(11));
+        tmp7.add(productComponents.get(15));
+        products.get(7).setProductcomponents(tmp7);
 
-        List<Ingredient> tmp8 = new ArrayList<Ingredient>();
-        tmp8.add(ingredients.get(12));
-        tmp8.add(ingredients.get(15));
-        products.get(8).setIngredients(tmp8);
+        List<ProductComponent> tmp8 = new ArrayList<ProductComponent>();
+        tmp8.add(productComponents.get(12));
+        tmp8.add(productComponents.get(15));
+        products.get(8).setProductcomponents(tmp8);
 
-        List<Ingredient> tmp9 = new ArrayList<Ingredient>();
-        tmp9.add(ingredients.get(0));
-        tmp9.add(ingredients.get(6));
-        tmp9.add(ingredients.get(3));
-        tmp9.add(ingredients.get(16));
-        tmp9.add(ingredients.get(17));
-        tmp9.add(ingredients.get(18));
-        products.get(9).setIngredients(tmp9);
+        List<ProductComponent> tmp9 = new ArrayList<ProductComponent>();
+        tmp9.add(productComponents.get(0));
+        tmp9.add(productComponents.get(6));
+        tmp9.add(productComponents.get(3));
+        tmp9.add(productComponents.get(16));
+        tmp9.add(productComponents.get(17));
+        tmp9.add(productComponents.get(18));
+        products.get(9).setProductcomponents(tmp9);
 
-        List<Ingredient> tmp10 = new ArrayList<Ingredient>();
-        tmp10.add(ingredients.get(0));
-        tmp10.add(ingredients.get(3));
-        tmp10.add(ingredients.get(6));
-        tmp10.add(ingredients.get(9));
-        tmp10.add(ingredients.get(13));
-        tmp10.add(ingredients.get(19));
-        products.get(10).setIngredients(tmp10);
+        List<ProductComponent> tmp10 = new ArrayList<ProductComponent>();
+        tmp10.add(productComponents.get(0));
+        tmp10.add(productComponents.get(3));
+        tmp10.add(productComponents.get(6));
+        tmp10.add(productComponents.get(9));
+        tmp10.add(productComponents.get(13));
+        tmp10.add(productComponents.get(19));
+        products.get(10).setProductcomponents(tmp10);
 
-        List<Ingredient> tmp11 = new ArrayList<Ingredient>();
-        tmp11.add(ingredients.get(0));
-        tmp11.add(ingredients.get(3));
-        tmp11.add(ingredients.get(6));
-        tmp11.add(ingredients.get(7));
-        tmp11.add(ingredients.get(14));
-        tmp11.add(ingredients.get(19));
-        products.get(11).setIngredients(tmp11);
+        List<ProductComponent> tmp11 = new ArrayList<ProductComponent>();
+        tmp11.add(productComponents.get(0));
+        tmp11.add(productComponents.get(3));
+        tmp11.add(productComponents.get(6));
+        tmp11.add(productComponents.get(7));
+        tmp11.add(productComponents.get(14));
+        tmp11.add(productComponents.get(19));
+        products.get(11).setProductcomponents(tmp11);
 
-        List<Ingredient> tmp12 = new ArrayList<Ingredient>();
-        tmp12.add(ingredients.get(0));
-        tmp12.add(ingredients.get(2));
-        tmp12.add(ingredients.get(3));
-        tmp12.add(ingredients.get(9));
-        tmp12.add(ingredients.get(10));
-        products.get(12).setIngredients(tmp12);
+        List<ProductComponent> tmp12 = new ArrayList<ProductComponent>();
+        tmp12.add(productComponents.get(0));
+        tmp12.add(productComponents.get(2));
+        tmp12.add(productComponents.get(3));
+        tmp12.add(productComponents.get(9));
+        tmp12.add(productComponents.get(10));
+        products.get(12).setProductcomponents(tmp12);
 
-        List<Ingredient> tmp13 = new ArrayList<Ingredient>();
-        tmp13.add(ingredients.get(0));
-        tmp13.add(ingredients.get(2));
-        tmp13.add(ingredients.get(3));
-        tmp13.add(ingredients.get(9));
-        tmp13.add(ingredients.get(11));
-        products.get(13).setIngredients(tmp13);
+        List<ProductComponent> tmp13 = new ArrayList<ProductComponent>();
+        tmp13.add(productComponents.get(0));
+        tmp13.add(productComponents.get(2));
+        tmp13.add(productComponents.get(3));
+        tmp13.add(productComponents.get(9));
+        tmp13.add(productComponents.get(11));
+        products.get(13).setProductcomponents(tmp13);
 
         productDAO.saveAll(products);
     }
