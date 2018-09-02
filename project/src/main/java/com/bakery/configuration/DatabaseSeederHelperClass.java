@@ -11,14 +11,19 @@ import java.util.List;
 @Component
 public class DatabaseSeederHelperClass {
 
-    static Company getCompany() {
+    static Company getCompanyAndOfficies() {
 
+        // create company
         Company company = new Company("Laboulangerie Bakery", "Laboulangerie", true);
+
+        // create list of officies
         List<Office> offices = new ArrayList<>();
 
+        // create office1 and set address, email list, phone list
+        Office office1 = new Office(company,"Logan Square");
         Address address1 = new Address("3129 W Logan Blvd", "Illinois",
                 "Chicago", "60640");
-        Office office1 = new Office(company,"Logan Square", address1);
+        office1.setAddress(address1);
         address1.setOffice(office1);
 
         List<Email> emailList1 = new ArrayList<>();
@@ -33,9 +38,11 @@ public class DatabaseSeederHelperClass {
         phoneList1.add(phone1);
         office1.setPhones(phoneList1);
 
+        // create office2 and set address, email list, phone list
+        Office office2 = new Office(company,"Ravenswood");
         Address address2 = new Address("1945 W Wilson Ave", "Illinois",
                 "Chicago", "60640");
-        Office office2 = new Office(company,"Ravenswood", address2);
+        office2.setAddress(address2);
         address2.setOffice(office2);
 
         List<Email> emailList2 = new ArrayList<>();
@@ -50,9 +57,9 @@ public class DatabaseSeederHelperClass {
         phoneList2.add(phone2);
         office2.setPhones(phoneList2);
 
+        // asocciate created officies with company
         offices.add(office1);
         offices.add(office2);
-
         company.setOffices(offices);
 
         return company;
@@ -71,33 +78,68 @@ public class DatabaseSeederHelperClass {
         return socialMediaAccounts;
     }
 
+    static List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
 
+        users.add(new User("Nedim", "Kulovac", "testemail1@gmail.com", "password1", "123456789"));
+        users.add(new User("Dino", "Spreco", "testemail2@gmail.com", "password2", "223456789"));
+        users.add(new User("Zeljko", "Dobrojevic", "testemail3@gmail.com", "password3", "323456789"));
+        users.add(new User("Mujo", "Ramic", "testemail4@gmail.com", "password4", "423456789"));
+        users.add(new User("Slobodan", "Vukovic", "testemail5@gmail.com", "password5", "523456789"));
+        users.add(new User("Boris", "Nunic", "testemail6@gmail.com", "password6", "623456789"));
+        users.add(new User("Ilinka", "Poletan", "testemail7@gmail.com", "password7", "723456789"));
+        users.add(new User("Jasmin", "Mustafic", "testemail8@gmail.com", "password8", "823456789"));
+        users.add(new User("Dejan", "Sipovac", "testemail9@gmail.com", "password9", "923456789"));
+        return users;
+    }
 
-    static List<Ingredient> getAllIngredients() {
-        List<Ingredient> ingredients = new ArrayList<>();
+    static List<Role> getAllRoles() {
+        List<Role> roles = new ArrayList<>();
 
-        ingredients.add(new Ingredient("Flour"));
-        ingredients.add(new Ingredient("Water"));
-        ingredients.add(new Ingredient("Salt"));
-        ingredients.add(new Ingredient("Sugar"));
-        ingredients.add(new Ingredient("Honey"));
-        ingredients.add(new Ingredient("Jam"));
-        ingredients.add(new Ingredient("Butter"));
-        ingredients.add(new Ingredient("Eggs"));
-        ingredients.add(new Ingredient("Milk"));
-        ingredients.add(new Ingredient("Baking powder"));
-        ingredients.add(new Ingredient("Rice"));
-        ingredients.add(new Ingredient("Chese"));
-        ingredients.add(new Ingredient("Tuna"));
-        ingredients.add(new Ingredient("Almond"));
-        ingredients.add(new Ingredient("Fortune"));
-        ingredients.add(new Ingredient("Bread"));
-        ingredients.add(new Ingredient("Cocoa"));
-        ingredients.add(new Ingredient("Cornflakes"));
-        ingredients.add(new Ingredient("Walnuts"));
-        ingredients.add(new Ingredient("Vanilla extraxt"));
+        roles.add(new Role("Superadmin", true));
+        roles.add(new Role("Client"));
+        roles.add(new Role("Administrator"));
+        roles.add(new Role("Menager"));
+        roles.add(new Role("Headcheaf"));
+        roles.add(new Role("Weiter"));
+        roles.add(new Role("Cashier"));
 
-        return ingredients;
+        return roles;
+    }
+
+    static List<Capability> getAllCapabilities() {
+        List<Capability> capabilities = new ArrayList<>();
+
+        capabilities.add(new Capability("SystemSettings", "systemSettings"));
+        capabilities.add(new Capability("MenagementSettings", "menagementSettings"));
+        capabilities.add(new Capability("UserMenagement", "userMenagement"));
+        capabilities.add(new Capability("ProductsMenagement", "productsMenagement"));
+        capabilities.add(new Capability("OrdersMenagement", "ordersMenagement"));
+        capabilities.add(new Capability("SocialMediaMenagement", "socialMediaMenagement"));
+
+        return capabilities;
+    }
+
+    static List<SubCapability> getAllSubCapabilities() {
+        List<SubCapability> subCapabilities = new ArrayList<>();
+
+        // Be very careful with order becouse DatabeseSeeder.updateCapabilitiesWithSubCapabilities use this list
+
+        // Seeding SubCapabilities for SystemSetting Capability
+        subCapabilities.add(new SubCapability("SystemSettingsFeature1", "1path"));
+        subCapabilities.add(new SubCapability("SystemSettingsFeature2", "2path"));
+
+        // Seeding SubCapabilities for MenagementSettings Capability
+        subCapabilities.add(new SubCapability("MenagementSettingsFeature1", "1path"));
+        subCapabilities.add(new SubCapability("MenagementSettingsFeature2", "2path"));
+
+        // Seeding SubCapabilities for UserMenagement Capability
+        subCapabilities.add(new SubCapability("UserMenagementFeature1", "1path"));
+        subCapabilities.add(new SubCapability("UserMenagementFeature12", "2path"));
+
+        // Other SubCapabilities will be added during app development
+
+        return subCapabilities;
     }
 
     static List<ProductCategory> getAllProductCategories() {
@@ -133,68 +175,30 @@ public class DatabaseSeederHelperClass {
         return products;
     }
 
-    static List<Capability> getAllCapabilities() {
-        List<Capability> capabilities = new ArrayList<>();
+    static List<Ingredient> getAllIngredients() {
+        List<Ingredient> ingredients = new ArrayList<>();
 
-        capabilities.add(new Capability("SystemSettings", "systemSettings"));
-        capabilities.add(new Capability("MenagementSettings", "menagementSettings"));
-        capabilities.add(new Capability("UserMenagement", "userMenagement"));
-        capabilities.add(new Capability("ProductsMenagement", "productsMenagement"));
-        capabilities.add(new Capability("OrdersMenagement", "ordersMenagement"));
-        capabilities.add(new Capability("SocialMediaMenagement", "socialMediaMenagement"));
+        ingredients.add(new Ingredient("Flour"));
+        ingredients.add(new Ingredient("Water"));
+        ingredients.add(new Ingredient("Salt"));
+        ingredients.add(new Ingredient("Sugar"));
+        ingredients.add(new Ingredient("Honey"));
+        ingredients.add(new Ingredient("Jam"));
+        ingredients.add(new Ingredient("Butter"));
+        ingredients.add(new Ingredient("Eggs"));
+        ingredients.add(new Ingredient("Milk"));
+        ingredients.add(new Ingredient("Baking powder"));
+        ingredients.add(new Ingredient("Rice"));
+        ingredients.add(new Ingredient("Chese"));
+        ingredients.add(new Ingredient("Tuna"));
+        ingredients.add(new Ingredient("Almond"));
+        ingredients.add(new Ingredient("Fortune"));
+        ingredients.add(new Ingredient("Bread"));
+        ingredients.add(new Ingredient("Cocoa"));
+        ingredients.add(new Ingredient("Cornflakes"));
+        ingredients.add(new Ingredient("Walnuts"));
+        ingredients.add(new Ingredient("Vanilla extraxt"));
 
-        return capabilities;
+        return ingredients;
     }
-
-    static List<Role> getAllRoles() {
-        List<Role> roles = new ArrayList<>();
-
-        roles.add(new Role("Superadmin", true));
-        roles.add(new Role("Client"));
-        roles.add(new Role("Administrator"));
-        roles.add(new Role("Menager"));
-        roles.add(new Role("Headcheaf"));
-        roles.add(new Role("Weiter"));
-        roles.add(new Role("Cashier"));
-
-        return roles;
-    }
-
-    static List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-
-        users.add(new User("Nedim", "Kulovac", "testemail1@gmail.com", "password1", "123456789"));
-        users.add(new User("Dino", "Spreco", "testemail2@gmail.com", "password2", "223456789"));
-        users.add(new User("Zeljko", "Dobrojevic", "testemail3@gmail.com", "password3", "323456789"));
-        users.add(new User("Mujo", "Ramic", "testemail4@gmail.com", "password4", "423456789"));
-        users.add(new User("Slobodan", "Vukovic", "testemail5@gmail.com", "password5", "523456789"));
-        users.add(new User("Boris", "Nunic", "testemail6@gmail.com", "password6", "623456789"));
-        users.add(new User("Ilinka", "Poletan", "testemail7@gmail.com", "password7", "723456789"));
-        users.add(new User("Jasmin", "Mustafic", "testemail8@gmail.com", "password8", "823456789"));
-        users.add(new User("Dejan", "Sipovac", "testemail9@gmail.com", "password9", "923456789"));
-        return users;
-    }
-
-    static List<SubCapability> getAllSubCapabilities() {
-        List<SubCapability> subCapabilities = new ArrayList<>();
-
-        // Be very careful with order becouse DatabeseSeeder.updateCapabilitiesWithWithSubCapabilities use this list
-
-        // Seeding SubCapabilities for SystemSetting Capability
-        subCapabilities.add(new SubCapability("SystemSettingsFeature1", "1path"));
-        subCapabilities.add(new SubCapability("SystemSettingsFeature2", "2path"));
-
-        // Seeding SubCapabilities for MenagementSettings Capability
-        subCapabilities.add(new SubCapability("MenagementSettingsFeature1", "1path"));
-        subCapabilities.add(new SubCapability("MenagementSettingsFeature2", "2path"));
-
-        // Seeding SubCapabilities for UserMenagement Capability
-        subCapabilities.add(new SubCapability("UserMenagementFeature1", "1path"));
-        subCapabilities.add(new SubCapability("UserMenagementFeature12", "2path"));
-
-        // Other SubCapabilities will be added during app development
-
-        return subCapabilities;
-    }
-
 }

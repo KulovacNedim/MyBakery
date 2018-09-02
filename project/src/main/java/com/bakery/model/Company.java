@@ -2,7 +2,6 @@ package com.bakery.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,14 +30,8 @@ public class Company {
     )
     private List<Office> offices = new ArrayList<>();
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "company_smaccounts", joinColumns = @JoinColumn(name = "smId"),
-//            inverseJoinColumns = @JoinColumn(name = "companyId"))
-//    private List<SocialMediaAccount> socialMediaAccounts = new ArrayList<>();
-
     @OneToMany(
             mappedBy = "company",
-//            cascade = {CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST},
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -51,6 +44,14 @@ public class Company {
         this.fullName = fullName;
         this.shortName = shortName;
         this.isActive = isActive;
+    }
+
+    public Company(String fullName, String shortName, boolean isActive, List<Office> offices, List<CompanySocialMedia> companySocialMediaList) {
+        this.fullName = fullName;
+        this.shortName = shortName;
+        this.isActive = isActive;
+        this.offices = offices;
+        this.companySocialMediaList = companySocialMediaList;
     }
 
     public Long getCompanyId() {
@@ -77,14 +78,6 @@ public class Company {
         this.shortName = shortName;
     }
 
-//    public List<SocialMediaAccount> getSocialMediaAccounts() {
-//        return socialMediaAccounts;
-//    }
-//
-//    public void setSocialMediaAccounts(List<SocialMediaAccount> socialMediaAccounts) {
-//        this.socialMediaAccounts = socialMediaAccounts;
-//    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -109,45 +102,6 @@ public class Company {
         this.companySocialMediaList = companySocialMediaList;
     }
 
-//    public void addSocialMediaAccount(SocialMediaAccount socialMediaAccount) {
-//        CompanySocialMedia companySocialMedia = new CompanySocialMedia(this, socialMediaAccount);
-//        companySocialMediaList.add(companySocialMedia);
-//    }
-//
-//    public void removeSocialMediaAccount(SocialMediaAccount socialMediaAccount) {
-//        for (Iterator<CompanySocialMedia> iterator = companySocialMediaList.iterator();
-//             iterator.hasNext(); ) {
-//            CompanySocialMedia companySocialMedia = iterator.next();
-//
-//            if (companySocialMedia.getCompany().equals(this) &&
-//                    companySocialMedia.getSocialMediaAccount().equals(socialMediaAccount)) {
-//                iterator.remove();
-//                companySocialMedia.setCompany(null);
-//                companySocialMedia.setSocialMediaAccount(null);
-//            }
-//        }
-//    }
-    public void addSocialMediaAccount(SocialMediaAccount socialMediaAccount) {
-        CompanySocialMedia companySocialMedia = new CompanySocialMedia(this, socialMediaAccount);
-        companySocialMediaList.add(companySocialMedia);
-        socialMediaAccount.getCompanySocialMediaList().add(companySocialMedia);
-    }
-
-    public void removeSocialMediaAccount(SocialMediaAccount socialMediaAccount) {
-        for (Iterator<CompanySocialMedia> iterator = companySocialMediaList.iterator();
-             iterator.hasNext(); ) {
-            CompanySocialMedia companySocialMedia = iterator.next();
-
-            if (companySocialMedia.getCompany().equals(this) &&
-                    companySocialMedia.getSocialMediaAccount().equals(socialMediaAccount)) {
-                iterator.remove();
-                companySocialMedia.getSocialMediaAccount().getCompanySocialMediaList().remove(companySocialMedia);
-                companySocialMedia.setCompany(null);
-                companySocialMedia.setSocialMediaAccount(null);
-            }
-        }
-    }
-
     @Override
     public String toString() {
         return "Company{" +
@@ -156,7 +110,6 @@ public class Company {
                 ", shortName='" + shortName + '\'' +
                 ", isActive=" + isActive +
                 ", offices=" + offices +
-//                ", socialMediaAccounts=" + socialMediaAccounts +
                 ", companySocialMediaList=" + companySocialMediaList +
                 '}';
     }

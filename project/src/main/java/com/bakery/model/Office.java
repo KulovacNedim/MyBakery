@@ -47,10 +47,9 @@ public class Office {
     public Office() {
     }
 
-    public Office(Company company, String name, Address address) {
+    public Office(Company company, String officeName) {
         this.company = company;
         this.name = name;
-        this.address = address;
     }
 
     public Long getOfficeId() {

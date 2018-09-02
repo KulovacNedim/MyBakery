@@ -19,13 +19,25 @@ import java.util.List;
 public class DatabaseSeeder implements ApplicationRunner {
 
     @Autowired
-    private SocialMediaAccountDAO socialMediaAccountDAO;
-
-    @Autowired
     private CompanyDAO companyDAO;
 
     @Autowired
-    private OfficeDAO officeDAO;
+    private SocialMediaAccountDAO socialMediaAccountDAO;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private RoleDAO roleDAO;
+
+    @Autowired
+    private CapabilityDAO capabilityDAO;
+
+    @Autowired
+    private SubCapitabilityDAO subCapitabilityDAO;
+
+    @Autowired
+    private ProductCategoryDAO productCategoryDAO;
 
     @Autowired
     private ProductDAO productDAO;
@@ -33,55 +45,171 @@ public class DatabaseSeeder implements ApplicationRunner {
     @Autowired
     private IngredientDAO ingredientDAO;
 
-    @Autowired
-    private ProductCategoryDAO productCategoryDAO;
-
-    @Autowired
-    private CapabilityDAO capabilityDAO;
-
-    @Autowired
-    private RoleDAO roleDAO;
-
-    @Autowired
-    private UserDAO userDAO;
-
-    @Autowired
-    private SubCapitabilityDAO subCapitabilityDAO;
+    private boolean doUpdate = false;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
+        if (doUpdate) {
+            updateDatebase();
+        }
+    }
 
-    seedCompany();
+    private void updateDatebase() {
 
-
+        // set Company
+        seedCompanyAndOfficies();
         seedSocialMedia();
-
-        seedIngredients();
-        seedCategories();
-        seedProducts();
-        seedCapabilities();
-        seedRoles();
-        seedUsers();
-        seedSubCapabilities();
-
-        updateProductsWithIngredientsAndCategories();
-        updateRolesWithCapabilities();
-        updateUsersWithRoles();
-        updateCapabilitiesWithWithSubCapabilities();
         seedCompaniesWithSocialMediaAccounts();
 
+
+        // set Users and Capabilities
+        seedUsers();
+        seedRoles();
+        seedCapabilities();
+        seedSubCapabilities();
+        updateUsersWithRoles();
+        updateRolesWithCapabilities();
+        updateCapabilitiesWithSubCapabilities();
+
+        // associate users with officies
         updateOfficiesWithUsers();
 
 
-
-
+        // set ProductCategories, Products and Ingredients
+        seedProductCategories();
+        seedProducts();
+        seedIngredients();
+        updateProductsWithIngredientsAndCategories();
     }
 
-    private void printA() {
 
-        System.out.println("----------------------------------------------");
-        System.out.println(companyDAO.getOne((long)1).toString());
+    private void seedCompanyAndOfficies() {companyDAO.save(DatabaseSeederHelperClass.getCompanyAndOfficies()); }
+
+    private void seedSocialMedia() {socialMediaAccountDAO.saveAll(DatabaseSeederHelperClass.getAllSocialMedia()); }
+
+    private void seedCompaniesWithSocialMediaAccounts() {
+
+        Company company = companyDAO.getOne((long)1);
+
+        CompanySocialMedia facebook1 = new CompanySocialMedia();
+        facebook1.setCompany(company);
+        facebook1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
+        facebook1.setSmMarkName("La Boulangerie Wilson");
+        facebook1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
+        company.getCompanySocialMediaList().add(facebook1);
+
+        CompanySocialMedia facebook2 = new CompanySocialMedia();
+        facebook2.setCompany(company);
+        facebook2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
+        facebook2.setSmMarkName("La Boulangerie Belmont");
+        facebook2.setSmPath("https://www.facebook.com/La-Boulangerie-Belmont-250542121715336/");
+        company.getCompanySocialMediaList().add(facebook2);
+
+        CompanySocialMedia twitter1 = new CompanySocialMedia();
+        twitter1.setCompany(company);
+        twitter1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter1.setSmMarkName("La Boulangerie Wilson");
+        twitter1.setSmPath("https://twitter.com/boulangerie_wil");
+        company.getCompanySocialMediaList().add(twitter1);
+
+        CompanySocialMedia twitter2 = new CompanySocialMedia();
+        twitter2.setCompany(company);
+        twitter2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter2.setSmMarkName("La Boulangerie Belmont");
+        twitter2.setSmPath("https://twitter.com/laboulangerie1");
+        company.getCompanySocialMediaList().add(twitter2);
+
+        CompanySocialMedia twitter3 = new CompanySocialMedia();
+        twitter3.setCompany(company);
+        twitter3.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter3.setSmMarkName("La Boulangerie Foodtruck");
+        twitter3.setSmPath("https://twitter.com/lbfoodtruck");
+        company.getCompanySocialMediaList().add(twitter3);
+
+        CompanySocialMedia instagram1 = new CompanySocialMedia();
+        instagram1.setCompany(company);
+        instagram1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 3));
+        instagram1.setSmMarkName("La Boulangerie Chicago");
+        instagram1.setSmPath("https://www.instagram.com/laboulangeriechicago/");
+        company.getCompanySocialMediaList().add(instagram1);
+
+        CompanySocialMedia yelp = new CompanySocialMedia();
+        yelp.setCompany(company);
+        yelp.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 6));
+        yelp.setSmMarkName("La Boulangerie Chicago");
+        yelp.setSmPath("https://www.yelp.com/biz/la-boulangerie-chicago-4");
+        company.getCompanySocialMediaList().add(yelp);
+
+        companyDAO.save(company);
+    }
+
+    private void seedUsers() {
+        userDAO.saveAll(DatabaseSeederHelperClass.getAllUsers());
+    }
+
+    private void seedRoles() {
+        roleDAO.saveAll(DatabaseSeederHelperClass.getAllRoles());
+    }
+
+    private void seedCapabilities() {
+        capabilityDAO.saveAll(DatabaseSeederHelperClass.getAllCapabilities());
+    }
+
+    private void seedSubCapabilities() { subCapitabilityDAO.saveAll(DatabaseSeederHelperClass.getAllSubCapabilities()); }
+
+    private void updateUsersWithRoles() {
+
+        List<Role> roles = roleDAO.findAll();
+        List<User> users = userDAO.findAll();
+
+        List<Role> managerRoles = new ArrayList<>();
+        managerRoles.add(roles.get(1));
+
+        users.get(0).setRole(roles.get(0));
+        users.get(1).setRole(roles.get(1));
+        users.get(2).setRole(roles.get(2));
+        users.get(3).setRole(roles.get(3));
+        users.get(4).setRole(roles.get(4));
+        users.get(5).setRole(roles.get(5));
+        users.get(6).setRole(roles.get(5));
+        users.get(7).setRole(roles.get(6));
+        users.get(8).setRole(roles.get(6));
+
+        userDAO.saveAll(users);
+    }
+
+    private void updateRolesWithCapabilities() {
+
+        List<Capability> capabilities = capabilityDAO.findAll();
+        List<Role> roles = roleDAO.findAll();
+
+        // Roles are not defined yet. Will be defined later, when become necessaray
+        // Belove settings have purpose to populate database and are not relevant
+        roles.get(0).setRoleCapabilities(capabilities);
+        roles.get(1).setRoleCapabilities(capabilities);
+
+        roleDAO.saveAll(roles);
+    }
+
+    private void updateCapabilitiesWithSubCapabilities() {
+
+        List<Capability> capabilities = capabilityDAO.findAll();
+
+        // Updating Capabilities With SubCapabilities for SystemSetting
+        // Be careful with IDs
+        capabilities.get(0).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 1),
+                subCapitabilityDAO.getOne((long) 2)));
+
+        // Updating Capabilities With SubCapabilities for MenagementSettings
+        // Be careful with IDs
+        capabilities.get(1).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 3),
+                subCapitabilityDAO.getOne((long) 4)));
+
+        // Updating Capabilities With SubCapabilities for UserMenagement
+        // Be careful with IDs
+        capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 5),
+                subCapitabilityDAO.getOne((long) 6)));
     }
 
     private void updateOfficiesWithUsers() {
@@ -100,74 +228,15 @@ public class DatabaseSeeder implements ApplicationRunner {
         companyDAO.save(company);
     }
 
-    private void seedSocialMedia() {socialMediaAccountDAO.saveAll(DatabaseSeederHelperClass.getAllSocialMedia()); }
-
-    private void seedCompaniesWithSocialMediaAccounts() {
-        // Setting Facebook account no. 1
-        seedAccountNo1();
-        // Setting Facebook account no. 2
-        seedAccountNo2();
-    }
-
-    private void seedAccountNo1() {
-        Company company = companyDAO.getOne((long) 1);
-
-        SocialMediaAccount socialMediaAccountFacebook = socialMediaAccountDAO.getOne((long) 1);
-        CompanySocialMedia companySocialMedia1 = new CompanySocialMedia(company, socialMediaAccountFacebook);
-        companySocialMedia1.setSmMarkName("La Boulangerie Wilson");
-        companySocialMedia1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
-
-        company.getCompanySocialMediaList().add(companySocialMedia1);
-        socialMediaAccountFacebook.getCompanySocialMediaList().add(companySocialMedia1);
-
-
-        socialMediaAccountDAO.save(socialMediaAccountFacebook);
-    }
-
-    private void seedAccountNo2() {
-        Company company = companyDAO.getOne((long) 1);
-
-        SocialMediaAccount socialMediaAccountFacebook = socialMediaAccountDAO.getOne((long) 2);
-        CompanySocialMedia companySocialMedia1 = new CompanySocialMedia(company, socialMediaAccountFacebook);
-        companySocialMedia1.setSmMarkName("La Boulangerie Wilson");
-        companySocialMedia1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
-
-        company.getCompanySocialMediaList().add(companySocialMedia1);
-        socialMediaAccountFacebook.getCompanySocialMediaList().add(companySocialMedia1);
-
-
-        socialMediaAccountDAO.save(socialMediaAccountFacebook);
-    }
-
-
-    private void seedCompany() {companyDAO.save(DatabaseSeederHelperClass.getCompany()); }
-
-    private void seedIngredients() {
-        ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllIngredients());
-    }
-
-    private void seedCategories() {
+    private void seedProductCategories() {
         productCategoryDAO.saveAll(DatabaseSeederHelperClass.getAllProductCategories());
     }
-
     private void seedProducts() {
         productDAO.saveAll(DatabaseSeederHelperClass.getAllProducts());
     }
 
-    private void seedCapabilities() {
-        capabilityDAO.saveAll(DatabaseSeederHelperClass.getAllCapabilities());
-    }
-
-    private void seedRoles() {
-        roleDAO.saveAll(DatabaseSeederHelperClass.getAllRoles());
-    }
-
-    private void seedUsers() {
-        userDAO.saveAll(DatabaseSeederHelperClass.getAllUsers());
-    }
-
-    private void seedSubCapabilities() {
-        subCapitabilityDAO.saveAll(DatabaseSeederHelperClass.getAllSubCapabilities());
+    private void seedIngredients() {
+        ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllIngredients());
     }
 
     private void updateProductsWithIngredientsAndCategories() {
@@ -305,68 +374,5 @@ public class DatabaseSeeder implements ApplicationRunner {
         products.get(13).setIngredients(tmp13);
 
         productDAO.saveAll(products);
-
-        printA();
-    }
-
-    private void updateRolesWithCapabilities() {
-
-        List<Capability> capabilities = capabilityDAO.findAll();
-        List<Role> roles = roleDAO.findAll();
-
-        // Roles are not defined yet. Will be defined later, when become necessaray
-        // Belove settings have purpose to populate database and are not relevant
-        roles.get(0).setRoleCapabilities(capabilities);
-        roles.get(1).setRoleCapabilities(capabilities);
-
-        roleDAO.saveAll(roles);
-
-        printA();
-    }
-
-    private void updateUsersWithRoles() {
-
-        List<Role> roles = roleDAO.findAll();
-        List<User> users = userDAO.findAll();
-
-        List<Role> managerRoles = new ArrayList<>();
-        managerRoles.add(roles.get(1));
-
-        users.get(0).setRole(roles.get(0));
-        users.get(1).setRole(roles.get(1));
-        users.get(2).setRole(roles.get(2));
-        users.get(3).setRole(roles.get(3));
-        users.get(4).setRole(roles.get(4));
-        users.get(5).setRole(roles.get(5));
-        users.get(6).setRole(roles.get(5));
-        users.get(7).setRole(roles.get(6));
-        users.get(8).setRole(roles.get(6));
-
-        userDAO.saveAll(users);
-
-        printA();
-    }
-
-    private void updateCapabilitiesWithWithSubCapabilities() {
-
-        List<Capability> capabilities = capabilityDAO.findAll();
-
-        // Updating Capabilities With SubCapabilities for SystemSetting
-        // Be careful with IDs
-        capabilities.get(0).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 1),
-                subCapitabilityDAO.getOne((long) 2)));
-
-        // Updating Capabilities With SubCapabilities for MenagementSettings
-        // Be careful with IDs
-        capabilities.get(1).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 3),
-                subCapitabilityDAO.getOne((long) 4)));
-
-        // Updating Capabilities With SubCapabilities for UserMenagement
-        // Be careful with IDs
-        capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 5),
-                subCapitabilityDAO.getOne((long) 6)));
-
-
-        printA();
     }
 }

@@ -1,24 +1,22 @@
 package com.bakery.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity()
 @Table(name = "company_smaccounts")
-public class CompanySocialMedia implements Serializable {
+public class CompanySocialMedia {
 
-    @EmbeddedId
-    private CompanySocialMediaId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long csmId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("company_id")
-    @JoinColumn(name="company_id", insertable = false, nullable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "companyId")
     private Company company;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("sm_id")
-    @JoinColumn(name="sm_id", insertable = false, nullable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "smId")
     private SocialMediaAccount socialMediaAccount;
 
     @Column(name = "sm_mark_name")
@@ -30,25 +28,12 @@ public class CompanySocialMedia implements Serializable {
     public CompanySocialMedia() {
     }
 
-    public CompanySocialMedia(Company company, SocialMediaAccount socialMediaAccount) {
-        this.company = company;
-        this.socialMediaAccount = socialMediaAccount;
-        this.id = new CompanySocialMediaId(company.getCompanyId(), socialMediaAccount.getSmId());
+    public Long getCsmId() {
+        return csmId;
     }
 
-    public CompanySocialMedia(Company company, String smMarkName, SocialMediaAccount socialMediaAccount) {
-        this.company = company;
-        this.smMarkName = smMarkName;
-        this.socialMediaAccount = socialMediaAccount;
-        this.id = new CompanySocialMediaId(company.getCompanyId(), socialMediaAccount.getSmId());
-    }
-
-    public CompanySocialMediaId getId() {
-        return id;
-    }
-
-    public void setId(CompanySocialMediaId id) {
-        this.id = id;
+    public void setCsmId(Long csmId) {
+        this.csmId = csmId;
     }
 
     public Company getCompany() {
@@ -59,20 +44,20 @@ public class CompanySocialMedia implements Serializable {
         this.company = company;
     }
 
-    public String getSmMarkName() {
-        return smMarkName;
-    }
-
-    public void setSmMarkName(String smMarkName) {
-        this.smMarkName = smMarkName;
-    }
-
     public SocialMediaAccount getSocialMediaAccount() {
         return socialMediaAccount;
     }
 
     public void setSocialMediaAccount(SocialMediaAccount socialMediaAccount) {
         this.socialMediaAccount = socialMediaAccount;
+    }
+
+    public String getSmMarkName() {
+        return smMarkName;
+    }
+
+    public void setSmMarkName(String smMarkName) {
+        this.smMarkName = smMarkName;
     }
 
     public String getSmPath() {
@@ -83,12 +68,19 @@ public class CompanySocialMedia implements Serializable {
         this.smPath = smPath;
     }
 
+    public CompanySocialMedia(Company company, SocialMediaAccount socialMediaAccount, String smMarkName, String smPath) {
+        this.company = company;
+        this.socialMediaAccount = socialMediaAccount;
+        this.smMarkName = smMarkName;
+        this.smPath = smPath;
+    }
+
     @Override
     public String toString() {
         return "CompanySocialMedia{" +
-                "id=" + id +
+                "csmId=" + csmId +
 //                ", company=" + company +
-//                ", socialMediaAccount=" + socialMediaAccount +
+                ", socialMediaAccount=" + socialMediaAccount +
                 ", smMarkName='" + smMarkName + '\'' +
                 ", smPath='" + smPath + '\'' +
                 '}';
@@ -99,7 +91,7 @@ public class CompanySocialMedia implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CompanySocialMedia that = (CompanySocialMedia) o;
-        return Objects.equals(id, that.id) &&
+        return Objects.equals(csmId, that.csmId) &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(socialMediaAccount, that.socialMediaAccount) &&
                 Objects.equals(smMarkName, that.smMarkName) &&
@@ -108,6 +100,7 @@ public class CompanySocialMedia implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, company, socialMediaAccount, smMarkName, smPath);
+        return Objects.hash(csmId, company, socialMediaAccount, smMarkName, smPath);
     }
+
 }
