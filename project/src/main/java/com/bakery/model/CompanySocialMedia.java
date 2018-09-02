@@ -4,36 +4,37 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity()
-@Table(name = "company_smaccounts")
+@Table(name = "companysocialmedias")
 public class CompanySocialMedia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long csmId;
+    @Column(name = "companysocialmedia_id")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "companyId")
+    @JoinColumn(name = "company_id")
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name = "smId")
+    @JoinColumn(name = "socialmedia_id")
     private SocialMediaAccount socialMediaAccount;
 
-    @Column(name = "sm_mark_name")
-    private String smMarkName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "sm_path")
-    private String smPath;
+    @Column(name = "path")
+    private String path;
 
     public CompanySocialMedia() {
     }
 
-    public Long getCsmId() {
-        return csmId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCsmId(Long csmId) {
-        this.csmId = csmId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Company getCompany() {
@@ -52,37 +53,37 @@ public class CompanySocialMedia {
         this.socialMediaAccount = socialMediaAccount;
     }
 
-    public String getSmMarkName() {
-        return smMarkName;
+    public String getName() {
+        return name;
     }
 
-    public void setSmMarkName(String smMarkName) {
-        this.smMarkName = smMarkName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSmPath() {
-        return smPath;
+    public String getPath() {
+        return path;
     }
 
-    public void setSmPath(String smPath) {
-        this.smPath = smPath;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public CompanySocialMedia(Company company, SocialMediaAccount socialMediaAccount, String smMarkName, String smPath) {
+    public CompanySocialMedia(Company company, SocialMediaAccount socialMediaAccount, String name, String path) {
         this.company = company;
         this.socialMediaAccount = socialMediaAccount;
-        this.smMarkName = smMarkName;
-        this.smPath = smPath;
+        this.name = name;
+        this.path = path;
     }
 
     @Override
     public String toString() {
         return "CompanySocialMedia{" +
-                "csmId=" + csmId +
+                "id=" + id +
 //                ", company=" + company +
                 ", socialMediaAccount=" + socialMediaAccount +
-                ", smMarkName='" + smMarkName + '\'' +
-                ", smPath='" + smPath + '\'' +
+                ", name='" + name + '\'' +
+                ", path='" + path + '\'' +
                 '}';
     }
 
@@ -91,16 +92,16 @@ public class CompanySocialMedia {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CompanySocialMedia that = (CompanySocialMedia) o;
-        return Objects.equals(csmId, that.csmId) &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(socialMediaAccount, that.socialMediaAccount) &&
-                Objects.equals(smMarkName, that.smMarkName) &&
-                Objects.equals(smPath, that.smPath);
+                Objects.equals(name, that.name) &&
+                Objects.equals(path, that.path);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(csmId, company, socialMediaAccount, smMarkName, smPath);
+        return Objects.hash(id, company, socialMediaAccount, name, path);
     }
 
 }

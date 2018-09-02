@@ -31,20 +31,20 @@ public class ProductDAOTest {
 
     private ProductCategory makeTestProductCategory() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setProductCategoryId(20L);
-        productCategory.setCategory("Test category");
+        productCategory.setId(20L);
+        productCategory.setName("Test category");
         return productCategory;
     }
     private ProductCategory makeExistingProductCategory() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setProductCategoryId(4L);
-        productCategory.setCategory("Cookie");
+        productCategory.setId(4L);
+        productCategory.setName("Cookie");
         return productCategory;
     }
 
     private Product makeExistingProduct() {
         Product product = new Product();
-        product.setProductId(12L);
+        product.setId(12L);
         product.setDescription("Description for just Fortune cookie");
         product.setImage("productImage");
         product.setName("Fortune cookie");
@@ -55,7 +55,7 @@ public class ProductDAOTest {
     }
     private Product makeTestProduct() {
         Product product = new Product();
-        product.setProductId(15L);
+        product.setId(15L);
         product.setDescription("Description for Test product");
         product.setImage("testProductImage");
         product.setName("Test Product");
@@ -67,7 +67,7 @@ public class ProductDAOTest {
     private Product makeTestProduct(Long var) {
         Product product = new Product();
 
-        product.setProductId(var);
+        product.setId(var);
         product.setDescription("Description for Test product " + var.toString());
         product.setImage("testProductImage" + var.toString());
         product.setName("Test Product " + var.toString());
@@ -80,7 +80,7 @@ public class ProductDAOTest {
     private Product makeTestProductWithExistingCategory(Long var) {
         Product product = new Product();
 
-        product.setProductId(var);
+        product.setId(var);
         product.setDescription("Description for Test product " + var.toString());
         product.setImage("testProductImage" + var.toString());
         product.setName("Test Product " + var.toString());
@@ -91,7 +91,7 @@ public class ProductDAOTest {
     }
     private Product makeTestProductWithTestCategory(Long var) {
         Product product = makeTestProduct();
-        product.setProductId(var);
+        product.setId(var);
         product.setProductCategory(makeTestProductCategory());
         return product;
     }
@@ -102,7 +102,7 @@ public class ProductDAOTest {
 
         //Setting attributes for Afhhan biscuit
         Product product1 = new Product();
-        product1.setProductId(10L);
+        product1.setId(10L);
         product1.setDescription("Description for just Afghan biscuit");
         product1.setImage("productImage");
         product1.setName("Afghan biscuit");
@@ -112,7 +112,7 @@ public class ProductDAOTest {
 
         //Setting attributes for Afhhan biscuit
         Product product2 = new Product();
-        product2.setProductId(11L);
+        product2.setId(11L);
         product2.setDescription("Description for just Almond biscuit");
         product2.setImage("productImage");
         product2.setName("Almond biscuit");
@@ -122,7 +122,7 @@ public class ProductDAOTest {
 
         //Setting attributes for Afhhan biscuit
         Product product3 = new Product();
-        product3.setProductId(12L);
+        product3.setId(12L);
         product3.setDescription("Description for just Fortune cookie");
         product3.setImage("productImage");
         product3.setName("Fortune cookie");
@@ -161,16 +161,16 @@ public class ProductDAOTest {
     @Test
     public void getProductsByProductCategory_categoryExists() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategory("Cookie");
-        productCategory.setProductCategoryId(4L);
+        productCategory.setName("Cookie");
+        productCategory.setId(4L);
         assertEquals(makeExistingProductList(), productDAO.getProductsByProductCategory(productCategory));
     }
 
     @Test
     public void getProductsByProductCategory_categoryDoesNotExists() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setProductCategoryId(7L);
-        productCategory.setCategory("Test category");
+        productCategory.setId(7L);
+        productCategory.setName("Test category");
         assertEquals(0, productDAO.getProductsByProductCategory(productCategory).size());
     }
 
@@ -183,7 +183,7 @@ public class ProductDAOTest {
     public void saveTestProduct() {
         Product product = makeTestProduct(20L);
         Product savedProduct = productDAO.save(product);
-        Product getSavedProduct = productDAO.findById(savedProduct.getProductId()).get();
+        Product getSavedProduct = productDAO.findById(savedProduct.getId()).get();
 
         assertEquals(savedProduct, getSavedProduct);
     }
@@ -193,7 +193,7 @@ public class ProductDAOTest {
         Product product = makeTestProduct(20L);
         Product savedProduct = productDAO.save(product);
         ProductCategory productCategory = savedProduct.getProductCategory();
-        ProductCategory getSavedProductCategory = productCategoryDAO.findById(productCategory.getProductCategoryId()).get();
+        ProductCategory getSavedProductCategory = productCategoryDAO.findById(productCategory.getId()).get();
 
         assertEquals(productCategory, getSavedProductCategory);
     }
@@ -210,10 +210,10 @@ public class ProductDAOTest {
         List<Product> products = makeTestProductListWithExistingCategory();
         List<Product> savedProducts = productDAO.saveAll(products);
         for (Product product : products) {
-            product.setProductId(1L);
+            product.setId(1L);
         }
         for (Product product : savedProducts) {
-            product.setProductId(1L);
+            product.setId(1L);
         }
         assertEquals(products, savedProducts);
     }
@@ -224,10 +224,10 @@ public class ProductDAOTest {
         List<Product> savedProducts = productDAO.saveAll(products);
 
         for (Product product : products) {
-            product.setProductId(1L);
+            product.setId(1L);
         }
         for (Product product : savedProducts) {
-            product.setProductId(1L);
+            product.setId(1L);
         }
 
         assertEquals(products, savedProducts);
@@ -240,7 +240,7 @@ public class ProductDAOTest {
         productDAO.delete(product);
 
         //Check if it is still there
-        assertEquals(Optional.empty(), productDAO.findById(product.getProductId()));
+        assertEquals(Optional.empty(), productDAO.findById(product.getId()));
     }
 
     @Test
@@ -250,7 +250,7 @@ public class ProductDAOTest {
         //Delete product
         productDAO.delete(product);
 
-        assertEquals(Optional.empty(), productDAO.findById(product.getProductId()));
+        assertEquals(Optional.empty(), productDAO.findById(product.getId()));
     }
 
     @Test

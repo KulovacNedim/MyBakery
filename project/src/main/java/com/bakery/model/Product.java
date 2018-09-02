@@ -2,8 +2,6 @@ package com.bakery.model;
 
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
@@ -14,8 +12,8 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "productId")
-    private Long productId;
+    @Column(name = "product_id")
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -30,14 +28,14 @@ public class Product {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "productCategoryId")
+    @JoinColumn(name = "product_category_id", referencedColumnName = "product_category_id")
     private ProductCategory productCategory;
 
     @ManyToMany
     @JoinTable(
             name = "products_ingredients",
-            joinColumns = @JoinColumn(name = "productId", referencedColumnName = "productId"),
-            inverseJoinColumns = @JoinColumn(name = "ingredientId", referencedColumnName = "ingredientId")
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id")
     )
     private Collection<Ingredient> ingredients;
 
@@ -60,12 +58,12 @@ public class Product {
         this.ingredients = ingredients;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -119,7 +117,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
@@ -135,7 +133,7 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return Double.compare(product.price, price) == 0 &&
-                Objects.equals(productId, product.productId) &&
+                Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
                 Objects.equals(image, product.image) &&
@@ -145,6 +143,6 @@ public class Product {
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, name, price, description, image, productCategory, ingredients);
+        return Objects.hash(id, name, price, description, image, productCategory, ingredients);
     }
 }

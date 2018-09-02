@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "subcapability")
+@Table(name = "subcapabilities")
 public class SubCapability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "subcapatibility_id")
     private Long id;
 
     @Column(name = "name")

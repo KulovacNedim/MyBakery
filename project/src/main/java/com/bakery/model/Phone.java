@@ -9,11 +9,11 @@ public class Phone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "phoneId")
-    private Long phoneId;
+    @Column(name = "phone_id")
+    private Long id;
 
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "number")
+    private String number;
 
     @ManyToOne
     @JoinColumn(name = "office")
@@ -22,25 +22,25 @@ public class Phone {
     public Phone() {
     }
 
-    public Phone(String phoneNumber, Office office) {
-        this.phoneNumber = phoneNumber;
+    public Phone(String number, Office office) {
+        this.number = number;
         this.office = office;
     }
 
-    public Long getPhoneId() {
-        return phoneId;
+    public Long getId() {
+        return id;
     }
 
-    public void setPhoneId(Long phoneId) {
-        this.phoneId = phoneId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getNumber() {
+        return number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public Office getOfficePhone() {
@@ -54,8 +54,8 @@ public class Phone {
     @Override
     public String toString() {
         return "Phone{" +
-                "phoneId=" + phoneId +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                "id=" + id +
+                ", number='" + number + '\'' +
                 '}';
     }
 
@@ -64,13 +64,13 @@ public class Phone {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Phone phone = (Phone) o;
-        return Objects.equals(phoneId, phone.phoneId) &&
-                Objects.equals(phoneNumber, phone.phoneNumber) &&
+        return Objects.equals(id, phone.id) &&
+                Objects.equals(number, phone.number) &&
                 Objects.equals(office, phone.office);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(phoneId, phoneNumber, office);
+        return Objects.hash(id, number, office);
     }
 }

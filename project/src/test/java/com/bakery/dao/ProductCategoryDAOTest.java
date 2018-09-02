@@ -32,16 +32,16 @@ public class ProductCategoryDAOTest {
     @Test
     public void getProductCategoryByCategory_categoryExists() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategory("Bread");
-        productCategory.setProductCategoryId(1L);
+        productCategory.setName("Bread");
+        productCategory.setId(1L);
 
-        assertEquals(productCategory, productCategoryDAO.getProductCategoryByCategory("Bread"));
+        assertEquals(productCategory, productCategoryDAO.getProductCategoryByName("Bread"));
     }
 
     @Test
     public void getProductCategoryByCategory_categoryDoesNotExists() {
 
-        assertEquals(null, productCategoryDAO.getProductCategoryByCategory("TestCategory"));
+        assertEquals(null, productCategoryDAO.getProductCategoryByName("TestCategory"));
     }
 
     @Test
@@ -52,8 +52,8 @@ public class ProductCategoryDAOTest {
     @Test
     public void getProductCategoryById_idExists() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setProductCategoryId(1L);
-        productCategory.setCategory("Bread");
+        productCategory.setId(1L);
+        productCategory.setName("Bread");
 
         assertEquals(productCategory, productCategoryDAO.findById(1L).get());
     }
@@ -68,7 +68,7 @@ public class ProductCategoryDAOTest {
         ProductCategory productCategory = new ProductCategory("TestCategory");
         ProductCategory productCategoryCheck = new ProductCategory("TestCategory");
 
-        assertEquals(productCategoryCheck.getCategory(), productCategoryDAO.save(productCategory).getCategory());
+        assertEquals(productCategoryCheck.getName(), productCategoryDAO.save(productCategory).getName());
     }
 
     @Test
@@ -88,18 +88,18 @@ public class ProductCategoryDAOTest {
 
         //Add existing product categories with category changed (ID is same)
         ProductCategory productCategory1 = new ProductCategory();
-        productCategory1.setProductCategoryId(1L);
-        productCategory1.setCategory("Test Category 1");
+        productCategory1.setId(1L);
+        productCategory1.setName("Test Category 1");
         productCategories.add(productCategory1);
 
         ProductCategory productCategory2 = new ProductCategory();
-        productCategory2.setProductCategoryId(2L);
-        productCategory2.setCategory("Test Category 2");
+        productCategory2.setId(2L);
+        productCategory2.setName("Test Category 2");
         productCategories.add(productCategory2);
 
         ProductCategory productCategory3 = new ProductCategory();
-        productCategory3.setProductCategoryId(3L);
-        productCategory3.setCategory("Test Category 2");
+        productCategory3.setId(3L);
+        productCategory3.setName("Test Category 2");
         productCategories.add(productCategory3);
 
         //Save categories
@@ -108,7 +108,7 @@ public class ProductCategoryDAOTest {
 
     @Test
     public void deleteProductCategoryById() {
-        ProductCategory productCategory = productCategoryDAO.getProductCategoryByCategory("Sandwich");
+        ProductCategory productCategory = productCategoryDAO.getProductCategoryByName("Sandwich");
 
         //Delete product category
         productCategoryDAO.delete(productCategory);
@@ -119,7 +119,7 @@ public class ProductCategoryDAOTest {
 
     @Test
     public void deleteProductCategory_checkProducts(){
-        ProductCategory productCategory = productCategoryDAO.getProductCategoryByCategory("Sandwich");
+        ProductCategory productCategory = productCategoryDAO.getProductCategoryByName("Sandwich");
 
         productCategoryDAO.delete(productCategory);
 

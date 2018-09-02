@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductCategoryDAO extends JpaRepository<ProductCategory, Long> {
 
-    ProductCategory getProductCategoryByCategory(String category);
+    ProductCategory getProductCategoryByName(String name);
 
 }

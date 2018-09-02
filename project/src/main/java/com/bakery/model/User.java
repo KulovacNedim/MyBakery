@@ -4,18 +4,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"userId", "email"}))
+@Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"user_id", "email"}))
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
-    private Long userId;
+    @Column(name = "user_id")
+    private Long id;
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "email")
@@ -24,11 +24,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "roleId")
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public User() {
@@ -51,12 +51,12 @@ public class User {
         this.role = role;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -110,7 +110,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -125,7 +125,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userId, user.userId) &&
+        return Objects.equals(id, user.id) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(email, user.email) &&
@@ -136,6 +136,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, firstName, lastName, email, password, phoneNumber, role);
+        return Objects.hash(id, firstName, lastName, email, password, phoneNumber, role);
     }
 }
