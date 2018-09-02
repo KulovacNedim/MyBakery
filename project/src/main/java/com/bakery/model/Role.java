@@ -92,7 +92,7 @@ public class Role {
                 "roleId=" + roleId +
                 ", roleName='" + roleName + '\'' +
                 ", isProtected=" + isProtected +
-                ", users=" + users +
+//                ", users=" + users +
                 ", roleCapabilities=" + roleCapabilities +
                 '}';
     }

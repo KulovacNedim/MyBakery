@@ -19,6 +19,15 @@ import java.util.List;
 public class DatabaseSeeder implements ApplicationRunner {
 
     @Autowired
+    private SocialMediaAccountDAO socialMediaAccountDAO;
+
+    @Autowired
+    private CompanyDAO companyDAO;
+
+    @Autowired
+    private OfficeDAO officeDAO;
+
+    @Autowired
     private ProductDAO productDAO;
 
     @Autowired
@@ -41,6 +50,13 @@ public class DatabaseSeeder implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+
+
+    seedCompany();
+
+
+        seedSocialMedia();
+
         seedIngredients();
         seedCategories();
         seedProducts();
@@ -53,8 +69,78 @@ public class DatabaseSeeder implements ApplicationRunner {
         updateRolesWithCapabilities();
         updateUsersWithRoles();
         updateCapabilitiesWithWithSubCapabilities();
+        seedCompaniesWithSocialMediaAccounts();
+
+        updateOfficiesWithUsers();
+
+
+
 
     }
+
+    private void printA() {
+
+        System.out.println("----------------------------------------------");
+        System.out.println(companyDAO.getOne((long)1).toString());
+    }
+
+    private void updateOfficiesWithUsers() {
+        Company company = companyDAO.getOne((long) 1);
+
+        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)1));
+        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)2));
+        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)3));
+        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)4));
+        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)5));
+        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)6));
+        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)7));
+        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)8));
+        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)9));
+
+        companyDAO.save(company);
+    }
+
+    private void seedSocialMedia() {socialMediaAccountDAO.saveAll(DatabaseSeederHelperClass.getAllSocialMedia()); }
+
+    private void seedCompaniesWithSocialMediaAccounts() {
+        // Setting Facebook account no. 1
+        seedAccountNo1();
+        // Setting Facebook account no. 2
+        seedAccountNo2();
+    }
+
+    private void seedAccountNo1() {
+        Company company = companyDAO.getOne((long) 1);
+
+        SocialMediaAccount socialMediaAccountFacebook = socialMediaAccountDAO.getOne((long) 1);
+        CompanySocialMedia companySocialMedia1 = new CompanySocialMedia(company, socialMediaAccountFacebook);
+        companySocialMedia1.setSmMarkName("La Boulangerie Wilson");
+        companySocialMedia1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
+
+        company.getCompanySocialMediaList().add(companySocialMedia1);
+        socialMediaAccountFacebook.getCompanySocialMediaList().add(companySocialMedia1);
+
+
+        socialMediaAccountDAO.save(socialMediaAccountFacebook);
+    }
+
+    private void seedAccountNo2() {
+        Company company = companyDAO.getOne((long) 1);
+
+        SocialMediaAccount socialMediaAccountFacebook = socialMediaAccountDAO.getOne((long) 2);
+        CompanySocialMedia companySocialMedia1 = new CompanySocialMedia(company, socialMediaAccountFacebook);
+        companySocialMedia1.setSmMarkName("La Boulangerie Wilson");
+        companySocialMedia1.setSmPath("https://www.facebook.com/laboulangeriewilsonchicago/");
+
+        company.getCompanySocialMediaList().add(companySocialMedia1);
+        socialMediaAccountFacebook.getCompanySocialMediaList().add(companySocialMedia1);
+
+
+        socialMediaAccountDAO.save(socialMediaAccountFacebook);
+    }
+
+
+    private void seedCompany() {companyDAO.save(DatabaseSeederHelperClass.getCompany()); }
 
     private void seedIngredients() {
         ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllIngredients());
@@ -219,6 +305,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         products.get(13).setIngredients(tmp13);
 
         productDAO.saveAll(products);
+
+        printA();
     }
 
     private void updateRolesWithCapabilities() {
@@ -232,6 +320,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         roles.get(1).setRoleCapabilities(capabilities);
 
         roleDAO.saveAll(roles);
+
+        printA();
     }
 
     private void updateUsersWithRoles() {
@@ -253,6 +343,8 @@ public class DatabaseSeeder implements ApplicationRunner {
         users.get(8).setRole(roles.get(6));
 
         userDAO.saveAll(users);
+
+        printA();
     }
 
     private void updateCapabilitiesWithWithSubCapabilities() {
@@ -274,5 +366,7 @@ public class DatabaseSeeder implements ApplicationRunner {
         capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 5),
                 subCapitabilityDAO.getOne((long) 6)));
 
+
+        printA();
     }
 }

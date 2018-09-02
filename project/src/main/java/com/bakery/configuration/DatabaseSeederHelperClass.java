@@ -11,6 +11,68 @@ import java.util.List;
 @Component
 public class DatabaseSeederHelperClass {
 
+    static Company getCompany() {
+
+        Company company = new Company("Laboulangerie Bakery", "Laboulangerie", true);
+        List<Office> offices = new ArrayList<>();
+
+        Address address1 = new Address("3129 W Logan Blvd", "Illinois",
+                "Chicago", "60640");
+        Office office1 = new Office(company,"Logan Square", address1);
+        address1.setOffice(office1);
+
+        List<Email> emailList1 = new ArrayList<>();
+        Email email1 = new Email("laboulangeriechicago@gmail.com", office1);
+        Email email2 = new Email("thisIsNotRealEmail@no1.com", office1);
+        emailList1.add(email1);
+        emailList1.add(email2);
+        office1.setEmails(emailList1);
+
+        List<Phone> phoneList1 = new ArrayList<>();
+        Phone phone1 = new Phone("(773) 666-5880", office1);
+        phoneList1.add(phone1);
+        office1.setPhones(phoneList1);
+
+        Address address2 = new Address("1945 W Wilson Ave", "Illinois",
+                "Chicago", "60640");
+        Office office2 = new Office(company,"Ravenswood", address2);
+        address2.setOffice(office2);
+
+        List<Email> emailList2 = new ArrayList<>();
+        Email email3 = new Email("thisIsNotRealEmail@no2.com", office2);
+        Email email4 = new Email("thisIsNotRealEmail@no3.com", office2);
+        emailList2.add(email3);
+        emailList2.add(email4);
+        office2.setEmails(emailList2);
+
+        List<Phone> phoneList2 = new ArrayList<>();
+        Phone phone2 = new Phone("(872) 208-3479", office2);
+        phoneList2.add(phone2);
+        office2.setPhones(phoneList2);
+
+        offices.add(office1);
+        offices.add(office2);
+
+        company.setOffices(offices);
+
+        return company;
+    }
+
+    static List<SocialMediaAccount> getAllSocialMedia() {
+        List<SocialMediaAccount> socialMediaAccounts = new ArrayList<>();
+
+        socialMediaAccounts.add(new SocialMediaAccount("Facebook","facebook icon"));
+        socialMediaAccounts.add(new SocialMediaAccount("Twitter","twitter icon"));
+        socialMediaAccounts.add(new SocialMediaAccount("Instagram","instagram icon"));
+        socialMediaAccounts.add(new SocialMediaAccount("Pinterest","pinterest icon"));
+        socialMediaAccounts.add(new SocialMediaAccount("Google+","googlr+ icon"));
+        socialMediaAccounts.add(new SocialMediaAccount("Yelp","yelp icon"));
+
+        return socialMediaAccounts;
+    }
+
+
+
     static List<Ingredient> getAllIngredients() {
         List<Ingredient> ingredients = new ArrayList<>();
 
