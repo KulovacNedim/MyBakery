@@ -5,28 +5,28 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ingredients")
-public class Ingredient {
+@Table(name = "productcomponents")
+public class ProductComponent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ingredient_id")
+    @Column(name = "productcomponent_id")
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "ingredients")
+    @ManyToMany(mappedBy = "productcomponents")
     private Collection<Product> products;
 
-    public Ingredient() {
+    public ProductComponent() {
     }
 
-    public Ingredient(String name) {
+    public ProductComponent(String name) {
         this.name = name;
     }
 
-    public Ingredient(String name, Collection<Product> products) {
+    public ProductComponent(String name, Collection<Product> products) {
         this.name = name;
         this.products = products;
     }
@@ -57,7 +57,7 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return "Ingredient{" +
+        return "ProductComponent{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
@@ -67,7 +67,7 @@ public class Ingredient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
+        ProductComponent that = (ProductComponent) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(products, that.products);

@@ -175,30 +175,30 @@ public class DatabaseSeederHelperClass {
         return products;
     }
 
-    static List<Ingredient> getAllIngredients() {
-        List<Ingredient> ingredients = new ArrayList<>();
+    static List<ProductComponent> getAllProductComponents() {
+        List<ProductComponent> productComponents = new ArrayList<>();
 
-        ingredients.add(new Ingredient("Flour"));
-        ingredients.add(new Ingredient("Water"));
-        ingredients.add(new Ingredient("Salt"));
-        ingredients.add(new Ingredient("Sugar"));
-        ingredients.add(new Ingredient("Honey"));
-        ingredients.add(new Ingredient("Jam"));
-        ingredients.add(new Ingredient("Butter"));
-        ingredients.add(new Ingredient("Eggs"));
-        ingredients.add(new Ingredient("Milk"));
-        ingredients.add(new Ingredient("Baking powder"));
-        ingredients.add(new Ingredient("Rice"));
-        ingredients.add(new Ingredient("Chese"));
-        ingredients.add(new Ingredient("Tuna"));
-        ingredients.add(new Ingredient("Almond"));
-        ingredients.add(new Ingredient("Fortune"));
-        ingredients.add(new Ingredient("Bread"));
-        ingredients.add(new Ingredient("Cocoa"));
-        ingredients.add(new Ingredient("Cornflakes"));
-        ingredients.add(new Ingredient("Walnuts"));
-        ingredients.add(new Ingredient("Vanilla extraxt"));
+        productComponents.add(new ProductComponent("Flour"));
+        productComponents.add(new ProductComponent("Water"));
+        productComponents.add(new ProductComponent("Salt"));
+        productComponents.add(new ProductComponent("Sugar"));
+        productComponents.add(new ProductComponent("Honey"));
+        productComponents.add(new ProductComponent("Jam"));
+        productComponents.add(new ProductComponent("Butter"));
+        productComponents.add(new ProductComponent("Eggs"));
+        productComponents.add(new ProductComponent("Milk"));
+        productComponents.add(new ProductComponent("Baking powder"));
+        productComponents.add(new ProductComponent("Rice"));
+        productComponents.add(new ProductComponent("Chese"));
+        productComponents.add(new ProductComponent("Tuna"));
+        productComponents.add(new ProductComponent("Almond"));
+        productComponents.add(new ProductComponent("Fortune"));
+        productComponents.add(new ProductComponent("Bread"));
+        productComponents.add(new ProductComponent("Cocoa"));
+        productComponents.add(new ProductComponent("Cornflakes"));
+        productComponents.add(new ProductComponent("Walnuts"));
+        productComponents.add(new ProductComponent("Vanilla extraxt"));
 
-        return ingredients;
+        return productComponents;
     }
 }

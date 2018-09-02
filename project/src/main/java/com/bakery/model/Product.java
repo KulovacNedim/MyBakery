@@ -33,11 +33,11 @@ public class Product {
 
     @ManyToMany
     @JoinTable(
-            name = "products_ingredients",
+            name = "products_productscomponents",
             joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id")
+            inverseJoinColumns = @JoinColumn(name = "productcomponent_id", referencedColumnName = "productcomponent_id")
     )
-    private Collection<Ingredient> ingredients;
+    private Collection<ProductComponent> productcomponents;
 
     public Product() {
     }
@@ -49,13 +49,13 @@ public class Product {
         this.image = image;
     }
 
-    public Product(String name, double price, String description, String image, ProductCategory productCategory, Collection<Ingredient> ingredients) {
+    public Product(String name, double price, String description, String image, ProductCategory productCategory, Collection<ProductComponent> productcomponents) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.image = image;
         this.productCategory = productCategory;
-        this.ingredients = ingredients;
+        this.productcomponents = productcomponents;
     }
 
     public Long getId() {
@@ -106,12 +106,12 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Collection<Ingredient> getIngredients() {
-        return ingredients;
+    public Collection<ProductComponent> getProductcomponents() {
+        return productcomponents;
     }
 
-    public void setIngredients(Collection<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setProductcomponents(Collection<ProductComponent> productcomponents) {
+        this.productcomponents = productcomponents;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", productCategory=" + productCategory +
-                ", ingredients=" + ingredients +
+                ", productcomponents=" + productcomponents +
                 '}';
     }
 
@@ -138,11 +138,11 @@ public class Product {
                 Objects.equals(description, product.description) &&
                 Objects.equals(image, product.image) &&
                 Objects.equals(productCategory, product.productCategory) &&
-                Objects.equals(ingredients, product.ingredients);
+                Objects.equals(productcomponents, product.productcomponents);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, description, image, productCategory, ingredients);
+        return Objects.hash(id, name, price, description, image, productCategory, productcomponents);
     }
 }
