@@ -22,18 +22,17 @@ public class FrontPageController {
 
     @Autowired
     private ProductCategoriesService productCategoriesService;
-@Autowired
-private  CompanyDAO companyDAO;
+
+    @Autowired
+    private  CompanyDAO companyDAO;
+
     @GetMapping("/")
     public String getAllProducts(Model model) {
 
-        List<Product> products = productService.getAllProducts();
         List<ProductCategory> categories = productCategoriesService.getAllCategories();
-        Company company = companyDAO.getOne((long)1);
+        Company company = companyDAO.findByIsActive(true);
 
         model.addAttribute("company",company);
-        // products are available in categories
-        model.addAttribute("products", products);
         model.addAttribute("categories", categories);
 
         return "index";

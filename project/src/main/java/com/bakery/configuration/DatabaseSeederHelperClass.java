@@ -157,20 +157,20 @@ public class DatabaseSeederHelperClass {
     static List<Product> getAllProducts() {
         List<Product> products = new ArrayList<>();
 
-        products.add(new Product("Ordinary bread", 2.5, "Description for just Ordinary bread", "productImage"));
-        products.add(new Product("Whole wheat bread", 3.5, "Description for just Whole weath bread", "productImage"));
-        products.add(new Product("Anadama bread", 3.5, "Description for just Anadama bread", "productImage"));
-        products.add(new Product("Cuban bread", 3.5, "Description for just Cuban bread", "productImage"));
-        products.add(new Product("Salt-rising bread", 3.5, "Description for just Salt-rising bread", "productImage"));
-        products.add(new Product("Honey crepes", 1.0, "Description for Honey crepes", "productImage"));
-        products.add(new Product("Jam crepes", 1.5, "Description for just Jam crepes", "productImage"));
-        products.add(new Product("Cheese sandwich", 4.5, "Description for just Cheese sandwich", "productImage"));
-        products.add(new Product("Tuna sandwich", 3.5, "Description for just Tuna sandwich", "productImage"));
-        products.add(new Product("Afghan biscuit", 3.5, "Description for just Afghan biscuit", "productImage"));
-        products.add(new Product("Almond biscuit", 3.5, "Description for just Almond biscuit", "productImage"));
-        products.add(new Product("Fortune cookie", 3.5, "Description for just Fortune cookie", "productImage"));
-        products.add(new Product("Rice cracker", 3.5, "Description for just Rice cracker", "productImage"));
-        products.add(new Product("Cheese cracker", 3.5, "Description for just Cheese cracker\"", "productImage"));
+        products.add(new Product("Ordinary bread", 2.5, "Description for just Ordinary bread", "sandwitch2"));
+        products.add(new Product("Whole wheat bread", 3.5, "Description for just Whole weath bread", "sandwitch2"));
+        products.add(new Product("Anadama bread", 3.5, "Description for just Anadama bread", "sandwitch2"));
+        products.add(new Product("Cuban bread", 3.5, "Description for just Cuban bread", "sandwitch2"));
+        products.add(new Product("Salt-rising bread", 3.5, "Description for just Salt-rising bread", "sandwitch2"));
+        products.add(new Product("Honey crepes", 1.0, "Description for Honey crepes", "sandwitch2"));
+        products.add(new Product("Jam crepes", 1.5, "Description for just Jam crepes", "sandwitch2"));
+        products.add(new Product("Cheese sandwich", 4.5, "Description for just Cheese sandwich", "sandwitch2"));
+        products.add(new Product("Tuna sandwich", 3.5, "Description for just Tuna sandwich", "sandwitch2"));
+        products.add(new Product("Afghan biscuit", 3.5, "Description for just Afghan biscuit", "sandwitch2"));
+        products.add(new Product("Almond biscuit", 3.5, "Description for just Almond biscuit", "sandwitch2"));
+        products.add(new Product("Fortune cookie", 3.5, "Description for just Fortune cookie", "sandwitch2"));
+        products.add(new Product("Rice cracker", 3.5, "Description for just Rice cracker", "sandwitch2"));
+        products.add(new Product("Cheese cracker", 3.5, "Description for just Cheese cracker\"", "sandwitch2"));
 
         return products;
     }

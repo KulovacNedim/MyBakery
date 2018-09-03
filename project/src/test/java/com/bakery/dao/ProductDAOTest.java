@@ -46,7 +46,7 @@ public class ProductDAOTest {
         Product product = new Product();
         product.setId(12L);
         product.setDescription("Description for just Fortune cookie");
-        product.setImage("productImage");
+        product.setImagePath("productImage");
         product.setName("Fortune cookie");
         product.setPrice(3.5);
         product.setProductCategory(makeExistingProductCategory());
@@ -57,7 +57,7 @@ public class ProductDAOTest {
         Product product = new Product();
         product.setId(15L);
         product.setDescription("Description for Test product");
-        product.setImage("testProductImage");
+        product.setImagePath("testProductImage");
         product.setName("Test Product");
         product.setPrice(20.20);
         product.setProductCategory(makeTestProductCategory());
@@ -69,7 +69,7 @@ public class ProductDAOTest {
 
         product.setId(var);
         product.setDescription("Description for Test product " + var.toString());
-        product.setImage("testProductImage" + var.toString());
+        product.setImagePath("testProductImage" + var.toString());
         product.setName("Test Product " + var.toString());
         product.setPrice(var);
         product.setProductCategory(makeTestProductCategory());
@@ -82,7 +82,7 @@ public class ProductDAOTest {
 
         product.setId(var);
         product.setDescription("Description for Test product " + var.toString());
-        product.setImage("testProductImage" + var.toString());
+        product.setImagePath("testProductImage" + var.toString());
         product.setName("Test Product " + var.toString());
         product.setPrice(var);
         product.setProductCategory(makeExistingProductCategory());
@@ -104,7 +104,7 @@ public class ProductDAOTest {
         Product product1 = new Product();
         product1.setId(10L);
         product1.setDescription("Description for just Afghan biscuit");
-        product1.setImage("productImage");
+        product1.setImagePath("productImage");
         product1.setName("Afghan biscuit");
         product1.setPrice(3.5);
         product1.setProductCategory(makeExistingProductCategory());
@@ -114,7 +114,7 @@ public class ProductDAOTest {
         Product product2 = new Product();
         product2.setId(11L);
         product2.setDescription("Description for just Almond biscuit");
-        product2.setImage("productImage");
+        product2.setImagePath("productImage");
         product2.setName("Almond biscuit");
         product2.setPrice(3.5);
         product2.setProductCategory(makeExistingProductCategory());
@@ -124,7 +124,7 @@ public class ProductDAOTest {
         Product product3 = new Product();
         product3.setId(12L);
         product3.setDescription("Description for just Fortune cookie");
-        product3.setImage("productImage");
+        product3.setImagePath("productImage");
         product3.setName("Fortune cookie");
         product3.setPrice(3.5);
         product3.setProductCategory(makeExistingProductCategory());

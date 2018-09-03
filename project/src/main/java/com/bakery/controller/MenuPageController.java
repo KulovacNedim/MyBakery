@@ -1,5 +1,7 @@
 package com.bakery.controller;
 
+import com.bakery.dao.CompanyDAO;
+import com.bakery.model.Company;
 import com.bakery.model.Product;
 import com.bakery.model.ProductCategory;
 import com.bakery.services.ProductCategoriesService;
@@ -14,6 +16,9 @@ import java.util.List;
 public class MenuPageController {
 
     @Autowired
+    private CompanyDAO companyDAO;
+
+    @Autowired
     private ProductService productService;
 
     @Autowired
@@ -22,10 +27,10 @@ public class MenuPageController {
     @GetMapping("/menu")
     public String getAllProducts(Model model) {
 
-        List<Product> products = productService.getAllProducts();
         List<ProductCategory> categories = productCategoriesService.getAllCategories();
+        Company company = companyDAO.findByIsActive(true);
 
-        model.addAttribute("products", products);
+        model.addAttribute("company",company);
         model.addAttribute("categories", categories);
 
         return "menu";

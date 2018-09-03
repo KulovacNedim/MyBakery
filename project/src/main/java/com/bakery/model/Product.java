@@ -24,8 +24,8 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "imagePath")
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "product_category_id", referencedColumnName = "product_category_id")
@@ -42,18 +42,18 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, double price, String description, String image) {
+    public Product(String name, double price, String description, String imagePath) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.image = image;
+        this.imagePath = imagePath;
     }
 
-    public Product(String name, double price, String description, String image, ProductCategory productCategory, Collection<ProductComponent> productcomponents) {
+    public Product(String name, double price, String description, String imagepath, ProductCategory productCategory, Collection<ProductComponent> productcomponents) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.image = image;
+        this.imagePath = imagePath;
         this.productCategory = productCategory;
         this.productcomponents = productcomponents;
     }
@@ -90,12 +90,12 @@ public class Product {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public ProductCategory getProductCategory() {
@@ -121,7 +121,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", image='" + image + '\'' +
+                ", imagePath='" + imagePath + '\'' +
                 ", productCategory=" + productCategory +
                 ", productcomponents=" + productcomponents +
                 '}';
@@ -136,13 +136,13 @@ public class Product {
                 Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
-                Objects.equals(image, product.image) &&
+                Objects.equals(imagePath, product.imagePath) &&
                 Objects.equals(productCategory, product.productCategory) &&
                 Objects.equals(productcomponents, product.productcomponents);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, description, image, productCategory, productcomponents);
+        return Objects.hash(id, name, price, description, imagePath, productCategory, productcomponents);
     }
 }
