@@ -45,7 +45,7 @@ public class DatabaseSeeder implements ApplicationRunner {
     @Autowired
     private ProductComponentDAO ingredientDAO;
 
-    private boolean doUpdate = true;
+    private boolean doUpdate = false;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
