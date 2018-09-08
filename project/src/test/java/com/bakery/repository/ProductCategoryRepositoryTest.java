@@ -1,4 +1,4 @@
-package com.bakery.dao;
+package com.bakery.repository;
 
 import com.bakery.AppConfig;
 import com.bakery.model.ProductCategory;
@@ -21,13 +21,13 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
 @Transactional
-public class ProductCategoryDAOTest {
+public class ProductCategoryRepositoryTest {
 
     @Autowired
-    private ProductCategoryDAO productCategoryDAO;
+    private ProductCategoryRepository productCategoryRepository;
 
     @Autowired
-    private ProductDAO productDAO;
+    private ProductRepository productRepository;
 
     @Test
     public void getProductCategoryByCategory_categoryExists() {
@@ -35,18 +35,18 @@ public class ProductCategoryDAOTest {
         productCategory.setName("Bread");
         productCategory.setId(1L);
 
-        assertEquals(productCategory, productCategoryDAO.getProductCategoryByName("Bread"));
+        assertEquals(productCategory, productCategoryRepository.getProductCategoryByName("Bread"));
     }
 
     @Test
     public void getProductCategoryByCategory_categoryDoesNotExists() {
 
-        assertEquals(null, productCategoryDAO.getProductCategoryByName("TestCategory"));
+        assertEquals(null, productCategoryRepository.getProductCategoryByName("TestCategory"));
     }
 
     @Test
     public void getAllProductCategories() {
-        assertEquals(5, productCategoryDAO.findAll().size());
+        assertEquals(5, productCategoryRepository.findAll().size());
     }
 
     @Test
@@ -55,12 +55,12 @@ public class ProductCategoryDAOTest {
         productCategory.setId(1L);
         productCategory.setName("Bread");
 
-        assertEquals(productCategory, productCategoryDAO.findById(1L).get());
+        assertEquals(productCategory, productCategoryRepository.findById(1L).get());
     }
 
     @Test
     public void getProductCategoryById_idDoesNotExists() {
-        assertEquals(Optional.empty(), productCategoryDAO.findById(6L));
+        assertEquals(Optional.empty(), productCategoryRepository.findById(6L));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class ProductCategoryDAOTest {
         ProductCategory productCategory = new ProductCategory("TestCategory");
         ProductCategory productCategoryCheck = new ProductCategory("TestCategory");
 
-        assertEquals(productCategoryCheck.getName(), productCategoryDAO.save(productCategory).getName());
+        assertEquals(productCategoryCheck.getName(), productCategoryRepository.save(productCategory).getName());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ProductCategoryDAOTest {
         productCategories.add(new ProductCategory("Test category 2"));
         productCategories.add(new ProductCategory("Test category 3"));
 
-        assertEquals(productCategories, productCategoryDAO.saveAll(productCategories));
+        assertEquals(productCategories, productCategoryRepository.saveAll(productCategories));
     }
 
     @Test
@@ -103,35 +103,35 @@ public class ProductCategoryDAOTest {
         productCategories.add(productCategory3);
 
         //Save categories
-        assertEquals(productCategories, productCategoryDAO.saveAll(productCategories));
+        assertEquals(productCategories, productCategoryRepository.saveAll(productCategories));
     }
 
     @Test
     public void deleteProductCategoryById() {
-        ProductCategory productCategory = productCategoryDAO.getProductCategoryByName("Sandwich");
+        ProductCategory productCategory = productCategoryRepository.getProductCategoryByName("Sandwich");
 
         //Delete product category
-        productCategoryDAO.delete(productCategory);
+        productCategoryRepository.delete(productCategory);
 
         //Check if is still there
-        assertEquals(Optional.empty(), productCategoryDAO.findById(3L));
+        assertEquals(Optional.empty(), productCategoryRepository.findById(3L));
     }
 
     @Test
     public void deleteProductCategory_checkProducts(){
-        ProductCategory productCategory = productCategoryDAO.getProductCategoryByName("Sandwich");
+        ProductCategory productCategory = productCategoryRepository.getProductCategoryByName("Sandwich");
 
-        productCategoryDAO.delete(productCategory);
+        productCategoryRepository.delete(productCategory);
 
-        assertEquals(0, productDAO.getProductsByProductCategory(productCategory).size());
+        assertEquals(0, productRepository.getProductsByProductCategory(productCategory).size());
     }
 
     @Test
     public void deleteAllProductCategories() {
         //Delete all product categories
-        productCategoryDAO.deleteAll();
+        productCategoryRepository.deleteAll();
 
         //Check if there are any product categories
-        assertEquals(0, productCategoryDAO.findAll().size());
+        assertEquals(0, productCategoryRepository.findAll().size());
     }
 }

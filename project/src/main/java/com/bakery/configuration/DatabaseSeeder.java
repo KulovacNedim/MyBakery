@@ -1,6 +1,6 @@
 package com.bakery.configuration;
 
-import com.bakery.dao.*;
+import com.bakery.repository.*;
 import com.bakery.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -19,31 +19,31 @@ import java.util.List;
 public class DatabaseSeeder implements ApplicationRunner {
 
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyRepository companyRepository;
 
     @Autowired
-    private SocialMediaAccountDAO socialMediaAccountDAO;
+    private SocialMediaAccountRepository socialMediaAccountRepository;
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Autowired
-    private RoleDAO roleDAO;
+    private RoleRepository roleRepository;
 
     @Autowired
-    private CapabilityDAO capabilityDAO;
+    private CapabilityRepository capabilityRepository;
 
     @Autowired
-    private SubCapitabilityDAO subCapitabilityDAO;
+    private SubCapitabilityRepository subCapitabilityRepository;
 
     @Autowired
-    private ProductCategoryDAO productCategoryDAO;
+    private ProductCategoryRepository productCategoryRepository;
 
     @Autowired
-    private ProductDAO productDAO;
+    private ProductRepository productRepository;
 
     @Autowired
-    private ProductComponentDAO ingredientDAO;
+    private ProductComponentRepository ingredientRepository;
 
     private boolean doUpdate = false;
 
@@ -84,84 +84,86 @@ public class DatabaseSeeder implements ApplicationRunner {
     }
 
 
-    private void seedCompanyAndOfficies() {companyDAO.save(DatabaseSeederHelperClass.getCompanyAndOfficies()); }
+    private void seedCompanyAndOfficies() {
+        companyRepository.save(DatabaseSeederHelperClass.getCompanyAndOfficies()); }
 
-    private void seedSocialMedia() {socialMediaAccountDAO.saveAll(DatabaseSeederHelperClass.getAllSocialMedia()); }
+    private void seedSocialMedia() {
+        socialMediaAccountRepository.saveAll(DatabaseSeederHelperClass.getAllSocialMedia()); }
 
     private void seedCompaniesWithSocialMediaAccounts() {
 
-        Company company = companyDAO.getOne((long)1);
+        Company company = companyRepository.getOne((long)1);
 
         CompanySocialMedia facebook1 = new CompanySocialMedia();
         facebook1.setCompany(company);
-        facebook1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
+        facebook1.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 1));
         facebook1.setName("La Boulangerie Wilson");
         facebook1.setPath("https://www.facebook.com/laboulangeriewilsonchicago/");
         company.getCompanySocialMediaList().add(facebook1);
 
         CompanySocialMedia facebook2 = new CompanySocialMedia();
         facebook2.setCompany(company);
-        facebook2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 1));
+        facebook2.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 1));
         facebook2.setName("La Boulangerie Belmont");
         facebook2.setPath("https://www.facebook.com/La-Boulangerie-Belmont-250542121715336/");
         company.getCompanySocialMediaList().add(facebook2);
 
         CompanySocialMedia twitter1 = new CompanySocialMedia();
         twitter1.setCompany(company);
-        twitter1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter1.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 2));
         twitter1.setName("La Boulangerie Wilson");
         twitter1.setPath("https://twitter.com/boulangerie_wil");
         company.getCompanySocialMediaList().add(twitter1);
 
         CompanySocialMedia twitter2 = new CompanySocialMedia();
         twitter2.setCompany(company);
-        twitter2.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter2.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 2));
         twitter2.setName("La Boulangerie Belmont");
         twitter2.setPath("https://twitter.com/laboulangerie1");
         company.getCompanySocialMediaList().add(twitter2);
 
         CompanySocialMedia twitter3 = new CompanySocialMedia();
         twitter3.setCompany(company);
-        twitter3.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 2));
+        twitter3.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 2));
         twitter3.setName("La Boulangerie Foodtruck");
         twitter3.setPath("https://twitter.com/lbfoodtruck");
         company.getCompanySocialMediaList().add(twitter3);
 
         CompanySocialMedia instagram1 = new CompanySocialMedia();
         instagram1.setCompany(company);
-        instagram1.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 3));
+        instagram1.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 3));
         instagram1.setName("La Boulangerie Chicago");
         instagram1.setPath("https://www.instagram.com/laboulangeriechicago/");
         company.getCompanySocialMediaList().add(instagram1);
 
         CompanySocialMedia yelp = new CompanySocialMedia();
         yelp.setCompany(company);
-        yelp.setSocialMediaAccount(socialMediaAccountDAO.getOne((long) 6));
+        yelp.setSocialMediaAccount(socialMediaAccountRepository.getOne((long) 6));
         yelp.setName("La Boulangerie Chicago");
         yelp.setPath("https://www.yelp.com/biz/la-boulangerie-chicago-4");
         company.getCompanySocialMediaList().add(yelp);
 
-        companyDAO.save(company);
+        companyRepository.save(company);
     }
 
     private void seedUsers() {
-        userDAO.saveAll(DatabaseSeederHelperClass.getAllUsers());
+        userRepository.saveAll(DatabaseSeederHelperClass.getAllUsers());
     }
 
     private void seedRoles() {
-        roleDAO.saveAll(DatabaseSeederHelperClass.getAllRoles());
+        roleRepository.saveAll(DatabaseSeederHelperClass.getAllRoles());
     }
 
     private void seedCapabilities() {
-        capabilityDAO.saveAll(DatabaseSeederHelperClass.getAllCapabilities());
+        capabilityRepository.saveAll(DatabaseSeederHelperClass.getAllCapabilities());
     }
 
-    private void seedSubCapabilities() { subCapitabilityDAO.saveAll(DatabaseSeederHelperClass.getAllSubCapabilities()); }
+    private void seedSubCapabilities() { subCapitabilityRepository.saveAll(DatabaseSeederHelperClass.getAllSubCapabilities()); }
 
     private void updateUsersWithRoles() {
 
-        List<Role> roles = roleDAO.findAll();
-        List<User> users = userDAO.findAll();
+        List<Role> roles = roleRepository.findAll();
+        List<User> users = userRepository.findAll();
 
         List<Role> managerRoles = new ArrayList<>();
         managerRoles.add(roles.get(1));
@@ -176,73 +178,73 @@ public class DatabaseSeeder implements ApplicationRunner {
         users.get(7).setRole(roles.get(6));
         users.get(8).setRole(roles.get(6));
 
-        userDAO.saveAll(users);
+        userRepository.saveAll(users);
     }
 
     private void updateRolesWithCapabilities() {
 
-        List<Capability> capabilities = capabilityDAO.findAll();
-        List<Role> roles = roleDAO.findAll();
+        List<Capability> capabilities = capabilityRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
 
         // Roles are not defined yet. Will be defined later, when become necessaray
         // Belove settings have purpose to populate database and are not relevant
         roles.get(0).setRoleCapabilities(capabilities);
         roles.get(1).setRoleCapabilities(capabilities);
 
-        roleDAO.saveAll(roles);
+        roleRepository.saveAll(roles);
     }
 
     private void updateCapabilitiesWithSubCapabilities() {
 
-        List<Capability> capabilities = capabilityDAO.findAll();
+        List<Capability> capabilities = capabilityRepository.findAll();
 
         // Updating Capabilities With SubCapabilities for SystemSetting
         // Be careful with IDs
-        capabilities.get(0).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 1),
-                subCapitabilityDAO.getOne((long) 2)));
+        capabilities.get(0).setSubCapabilities(Arrays.asList(subCapitabilityRepository.getOne((long) 1),
+                subCapitabilityRepository.getOne((long) 2)));
 
         // Updating Capabilities With SubCapabilities for MenagementSettings
         // Be careful with IDs
-        capabilities.get(1).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 3),
-                subCapitabilityDAO.getOne((long) 4)));
+        capabilities.get(1).setSubCapabilities(Arrays.asList(subCapitabilityRepository.getOne((long) 3),
+                subCapitabilityRepository.getOne((long) 4)));
 
         // Updating Capabilities With SubCapabilities for UserMenagement
         // Be careful with IDs
-        capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityDAO.getOne((long) 5),
-                subCapitabilityDAO.getOne((long) 6)));
+        capabilities.get(2).setSubCapabilities(Arrays.asList(subCapitabilityRepository.getOne((long) 5),
+                subCapitabilityRepository.getOne((long) 6)));
     }
 
     private void updateOfficiesWithUsers() {
-        Company company = companyDAO.getOne((long) 1);
+        Company company = companyRepository.getOne((long) 1);
 
-        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)1));
-        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)2));
-        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)3));
-        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)4));
-        company.getOffices().get(0).getUsers().add(userDAO.getOne((long)5));
-        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)6));
-        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)7));
-        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)8));
-        company.getOffices().get(1).getUsers().add(userDAO.getOne((long)9));
+        company.getOffices().get(0).getUsers().add(userRepository.getOne((long)1));
+        company.getOffices().get(0).getUsers().add(userRepository.getOne((long)2));
+        company.getOffices().get(0).getUsers().add(userRepository.getOne((long)3));
+        company.getOffices().get(0).getUsers().add(userRepository.getOne((long)4));
+        company.getOffices().get(0).getUsers().add(userRepository.getOne((long)5));
+        company.getOffices().get(1).getUsers().add(userRepository.getOne((long)6));
+        company.getOffices().get(1).getUsers().add(userRepository.getOne((long)7));
+        company.getOffices().get(1).getUsers().add(userRepository.getOne((long)8));
+        company.getOffices().get(1).getUsers().add(userRepository.getOne((long)9));
 
-        companyDAO.save(company);
+        companyRepository.save(company);
     }
 
     private void seedProductCategories() {
-        productCategoryDAO.saveAll(DatabaseSeederHelperClass.getAllProductCategories());
+        productCategoryRepository.saveAll(DatabaseSeederHelperClass.getAllProductCategories());
     }
     private void seedProducts() {
-        productDAO.saveAll(DatabaseSeederHelperClass.getAllProducts());
+        productRepository.saveAll(DatabaseSeederHelperClass.getAllProducts());
     }
 
     private void seedProductsComponents() {
-        ingredientDAO.saveAll(DatabaseSeederHelperClass.getAllProductComponents());
+        ingredientRepository.saveAll(DatabaseSeederHelperClass.getAllProductComponents());
     }
 
     private void updateProductsWithCategoriesAndProductsComponents() {
-        List<ProductComponent> productComponents = ingredientDAO.findAll();
-        List<ProductCategory> productCategories = productCategoryDAO.findAll();
-        List<Product> products = productDAO.findAll();
+        List<ProductComponent> productComponents = ingredientRepository.findAll();
+        List<ProductCategory> productCategories = productCategoryRepository.findAll();
+        List<Product> products = productRepository.findAll();
 
         //Updating categories
         //Bread
@@ -373,6 +375,6 @@ public class DatabaseSeeder implements ApplicationRunner {
         tmp13.add(productComponents.get(11));
         products.get(13).setProductcomponents(tmp13);
 
-        productDAO.saveAll(products);
+        productRepository.saveAll(products);
     }
 }

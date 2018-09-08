@@ -1,7 +1,12 @@
 package com.bakery.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "users", uniqueConstraints= @UniqueConstraint(columnNames={"user_id", "email"}))
@@ -13,16 +18,26 @@ public class User {
     private Long id;
 
     @Column(name = "first_name")
+    @NotEmpty(message = "*Please provide your first name")
     private String firstName;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "*Please provide your last name")
     private String lastName;
 
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
+//    @Transient
     private String password;
+
+    @Transient
+    private String passwordConfirm;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -32,6 +47,13 @@ public class User {
     private Role role;
 
     public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     public User(String firstName, String lastName, String email, String password, String phoneNumber) {
@@ -89,6 +111,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
     public String getPhoneNumber() {
