@@ -1,4 +1,4 @@
-package com.bakery.dao;
+package com.bakery.repository;
 
 import com.bakery.model.Product;
 import com.bakery.model.ProductCategory;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ProductDAO extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> getProductsByProductCategory(ProductCategory productCategory);
 

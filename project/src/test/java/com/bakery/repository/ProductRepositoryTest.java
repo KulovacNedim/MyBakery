@@ -1,4 +1,4 @@
-package com.bakery.dao;
+package com.bakery.repository;
 
 import com.bakery.AppConfig;
 import com.bakery.model.Product;
@@ -21,13 +21,13 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(classes = AppConfig.class)
 @SpringBootTest
 @Transactional
-public class ProductDAOTest {
+public class ProductRepositoryTest {
 
     @Autowired
-    private ProductDAO productDAO;
+    private ProductRepository productRepository;
 
     @Autowired
-    private ProductCategoryDAO productCategoryDAO;
+    private ProductCategoryRepository productCategoryRepository;
 
     private ProductCategory makeTestProductCategory() {
         ProductCategory productCategory = new ProductCategory();
@@ -150,12 +150,12 @@ public class ProductDAOTest {
 
     @Test
     public void getProductById_idExists() {
-        assertEquals(makeExistingProduct(), productDAO.findById(12L).get());
+        assertEquals(makeExistingProduct(), productRepository.findById(12L).get());
     }
 
     @Test
     public void getProductById_idDoesNotExists() {
-        assertEquals(Optional.empty(), productDAO.findById(20L));
+        assertEquals(Optional.empty(), productRepository.findById(20L));
     }
 
     @Test
@@ -163,7 +163,7 @@ public class ProductDAOTest {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setName("Cookie");
         productCategory.setId(4L);
-        assertEquals(makeExistingProductList(), productDAO.getProductsByProductCategory(productCategory));
+        assertEquals(makeExistingProductList(), productRepository.getProductsByProductCategory(productCategory));
     }
 
     @Test
@@ -171,19 +171,19 @@ public class ProductDAOTest {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setId(7L);
         productCategory.setName("Test category");
-        assertEquals(0, productDAO.getProductsByProductCategory(productCategory).size());
+        assertEquals(0, productRepository.getProductsByProductCategory(productCategory).size());
     }
 
     @Test
     public void getAllProducts() {
-        assertEquals(14, productDAO.findAll().size());
+        assertEquals(14, productRepository.findAll().size());
     }
 
     @Test
     public void saveTestProduct() {
         Product product = makeTestProduct(20L);
-        Product savedProduct = productDAO.save(product);
-        Product getSavedProduct = productDAO.findById(savedProduct.getId()).get();
+        Product savedProduct = productRepository.save(product);
+        Product getSavedProduct = productRepository.findById(savedProduct.getId()).get();
 
         assertEquals(savedProduct, getSavedProduct);
     }
@@ -191,9 +191,9 @@ public class ProductDAOTest {
     @Test
     public void saveTestProduct_checkCategory() {
         Product product = makeTestProduct(20L);
-        Product savedProduct = productDAO.save(product);
+        Product savedProduct = productRepository.save(product);
         ProductCategory productCategory = savedProduct.getProductCategory();
-        ProductCategory getSavedProductCategory = productCategoryDAO.findById(productCategory.getId()).get();
+        ProductCategory getSavedProductCategory = productCategoryRepository.findById(productCategory.getId()).get();
 
         assertEquals(productCategory, getSavedProductCategory);
     }
@@ -202,13 +202,13 @@ public class ProductDAOTest {
     public void saveExistingProduct() {
         Product product = makeExistingProduct();
         product.setName("Test name");
-        assertEquals(product, productDAO.save(product));
+        assertEquals(product, productRepository.save(product));
     }
 
     @Test
     public void saveAllTestProductsWithExistingCategory() {
         List<Product> products = makeTestProductListWithExistingCategory();
-        List<Product> savedProducts = productDAO.saveAll(products);
+        List<Product> savedProducts = productRepository.saveAll(products);
         for (Product product : products) {
             product.setId(1L);
         }
@@ -221,7 +221,7 @@ public class ProductDAOTest {
     @Test
     public void saveAllTestProductsWithTestCategory() {
         List<Product> products = makeTestProductListWithTestCategory();
-        List<Product> savedProducts = productDAO.saveAll(products);
+        List<Product> savedProducts = productRepository.saveAll(products);
 
         for (Product product : products) {
             product.setId(1L);
@@ -237,10 +237,10 @@ public class ProductDAOTest {
     public void deleteExistingProduct() {
         Product product = makeExistingProduct();
         //Delete product
-        productDAO.delete(product);
+        productRepository.delete(product);
 
         //Check if it is still there
-        assertEquals(Optional.empty(), productDAO.findById(product.getId()));
+        assertEquals(Optional.empty(), productRepository.findById(product.getId()));
     }
 
     @Test
@@ -248,18 +248,18 @@ public class ProductDAOTest {
         Product product = makeTestProduct();
 
         //Delete product
-        productDAO.delete(product);
+        productRepository.delete(product);
 
-        assertEquals(Optional.empty(), productDAO.findById(product.getId()));
+        assertEquals(Optional.empty(), productRepository.findById(product.getId()));
     }
 
     @Test
     public void deleteAllProducts() {
         //Delete all products
-        productDAO.deleteAll();
+        productRepository.deleteAll();
 
         //Check if there is products in DB
-        assertEquals(0, productDAO.findAll().size());
+        assertEquals(0, productRepository.findAll().size());
     }
 
 

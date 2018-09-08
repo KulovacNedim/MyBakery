@@ -1,21 +1,23 @@
 package com.bakery.services;
 
-import com.bakery.dao.ProductCategoryDAO;
+import com.bakery.repository.ProductCategoryRepository;
 import com.bakery.model.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductCategoriesServiceImpl implements ProductCategoriesService {
 
     @Autowired
-    private ProductCategoryDAO productCategoryDAO;
+    private ProductCategoryRepository productCategoryRepository;
 
     @Override
     public List<ProductCategory> getAllCategories() {
-        return productCategoryDAO.findAll();
+        return productCategoryRepository.findAll();
     }
 
     @Override

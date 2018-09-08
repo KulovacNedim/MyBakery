@@ -37,14 +37,26 @@
                                     <div class="title text-center">
                                         <h3 class="text-coffee">Login</h3>
                                     </div>
-                                    <form class="login-form" method="post" name="login" />
+                                    
+									
+									
+									
+									
+									
+									
+									
+									
+									<form th:action="@{/login}" class="login-form" method="post" />
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" name="txt" placeholder="Username or email address" class="input-fields" />
+                                                <input type="text" name="email" th:placeholder="Email" class="input-fields" />
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="password" name="password" placeholder="********" class="input-fields" />
+                                                <input type="password" name="password" th:placeholder="Password" class="input-fields" />
                                             </div>
+												<div align="center" th:if="${param.error}">
+												<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+											</div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -61,6 +73,17 @@
                                             </div>
                                         </div>
                                     </form>
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
                                     <div class="divider-login">
                                         <hr />
                                         <span>Or</span>
@@ -80,31 +103,67 @@
                                     <div class="title text-center">
                                         <h3 class="text-coffee">Register</h3>
                                     </div>
-                                    <form class="register-form" method="post" name="register" />
+									
+									
+									
+									<div>
+										
+										
+										
+									</div>
+									
+									
+									
+									<form autocomplete="off" th:action="@{/registration}"
+										th:object="${user}" method="post" class="register-form"
+										role="form">
+										<!-- -->
+										
+										
+									
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" name="txt" placeholder="First Name" class="input-fields" />
+												<label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+													class="validation-message"></label>
+                                                <input type="text" th:field="*{firstName}" name="firstName"   placeholder="First Name" class="input-fields" />
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" name="txt" placeholder="Last Name" class="input-fields" />
+                                                <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                                    class="validation-message"></label>
+                                                <input type="text" th:field="*{lastName}" name="lastName"   placeholder="Last Name" class="input-fields" />
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" name="txt" placeholder="alitfn58@gmail.com" class="input-fields" />
+                                                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                                    class="validation-message"></label>
+                                                <input type="text" th:field="*{email}" name="email"   placeholder="e-mail" class="input-fields" />
+                                            </div>
+											<div class="col-md-12 col-sm-12 col-xs-12">
+                                                <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                                                    class="validation-message"></label>
+                                                <input type="text" th:field="*{phoneNumber}" name="phoneNumber"   placeholder="Phone Number (not required)" class="input-fields" />
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="password" name="password" placeholder="Password" class="input-fields" />
+                                                <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                                    class="validation-message"></label>
+													<label th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"
+                                                    class="validation-message"></label>
+                                                <input type="password" th:field="*{password}" name="password"   placeholder="Password" class="input-fields" />
+                                            </div>
+											<div class="col-md-12 col-sm-12 col-xs-12">
+                                                <input type="password" th:field="*{passwordConfirm}" name="passwordConfirm"   placeholder="Confirm Password" class="input-fields" />
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="password" name="password" placeholder="Confirm Password" class="input-fields" />
+                                                <input type="submit" name="submit" class="button-default button-default-submit" value="Register now" />
                                             </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="password" name="password" placeholder="Confirm Password" class="input-fields" />
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <input type="submit" name="submit" class="button-default button-default-submit" value="RegIster now" />
-                                            </div>
+
+                                            <span th:utext="${successMessage}"></span>
                                         </div>
                                     </form>
+									
+									
+									
+									
+									
                                     <p>By clicking on “Register Now” button you are accepting the <a href="./terms_condition.html">Terms &amp; Conditions</a></p>
                                 </div>
                             </div>
@@ -114,7 +173,7 @@
             </div>
         </main>
         <!-- End Main -->
-        <!-- Start Footer -->
+		<!-- Start Footer -->
         <div th:replace="template :: footer">
 		</div>
         <!-- End Footer -->

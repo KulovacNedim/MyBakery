@@ -1,4 +1,4 @@
-package com.bakery.dao;
+package com.bakery.repository;
 
 import com.bakery.model.Role;
 import com.bakery.model.User;
@@ -8,9 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserDAO extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    User getUserByEmail(String email);
+    User findByEmail(String email);
+
+    User findByFirstName(String fn);
+
+    //
 
     User getUserByPhoneNumber(String phoneNumber);
 

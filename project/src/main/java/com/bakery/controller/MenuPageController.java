@@ -1,8 +1,7 @@
 package com.bakery.controller;
 
-import com.bakery.dao.CompanyDAO;
+import com.bakery.repository.CompanyRepository;
 import com.bakery.model.Company;
-import com.bakery.model.Product;
 import com.bakery.model.ProductCategory;
 import com.bakery.services.ProductCategoriesService;
 import com.bakery.services.ProductService;
@@ -16,7 +15,7 @@ import java.util.List;
 public class MenuPageController {
 
     @Autowired
-    private CompanyDAO companyDAO;
+    private CompanyRepository companyRepository;
 
     @Autowired
     private ProductService productService;
@@ -28,7 +27,7 @@ public class MenuPageController {
     public String getAllProducts(Model model) {
 
         List<ProductCategory> categories = productCategoriesService.getAllCategories();
-        Company company = companyDAO.findByIsActive(true);
+        Company company = companyRepository.findByIsActive(true);
 
         model.addAttribute("company",company);
         model.addAttribute("categories", categories);
