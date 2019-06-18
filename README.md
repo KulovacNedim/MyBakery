@@ -29,7 +29,7 @@ Roles: <br>
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/KulovacNedim/MyBakery`
+- Clone this repo to your local machine using `https://github.com/KulovacNedim/MyBakery.git`
 
 ---
 
